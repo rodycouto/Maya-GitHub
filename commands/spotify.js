@@ -4,13 +4,6 @@ const ms = require('parse-ms')
 
 exports.run = async (client, message, args) => {
 
-  if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-    const adm = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Eu preciso da permissão "Gerenciar Mensagens" para utilizar esta função.')
-    return message.inlineReply(adm)
-  }
-
   let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member
   let avatar = user.user.displayAvatarURL({ format: 'png' })
   var fotospot = 'https://imgur.com/vw6z7v4.png'
@@ -41,7 +34,7 @@ exports.run = async (client, message, args) => {
     let seconds = timeConvert.seconds < 10 ? `0${timeConvert.seconds}` : timeConvert.seconds
     let time = `${minutes}:${seconds}`
 
-    const embed = new Discord.MessageEmbed()
+    let embed = new Discord.MessageEmbed()
       .setAuthor(`${user.username} está escutando...`, (avatar))
       .setColor(0x1ED768)
       .setDescription(`**Nome:**\n[${name}](${url})`)

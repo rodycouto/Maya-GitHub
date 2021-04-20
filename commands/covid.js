@@ -7,14 +7,7 @@ exports.run = async (client, message, args) => {
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) prefix = "-"
 
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-        const adm = new Discord.MessageEmbed()
-            .setColor('#FF0000')
-            .setTitle('Eu preciso da permissão "Gerenciar Mensagens" para utilizar esta função.')
-        return message.inlineReply(adm)
-    }
-
-    const baseUrl = "https://corona.lmao.ninja/v2"
+    var baseUrl = "https://corona.lmao.ninja/v2"
     let url, response, corona;
 
     try {
@@ -22,11 +15,11 @@ exports.run = async (client, message, args) => {
         response = await axios.get(url)
         corona = response.data
     } catch (error) {
-        const loading = new Discord.MessageEmbed()
+        var loading = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('🔄 Loading...')
 
-        const noerl = new Discord.MessageEmbed()
+            var noerl = new Discord.MessageEmbed()
             .setColor('#FF0000')
             .setDescription(`O argumento ***${args[0]}*** não existe ou os dados não foram publicados pela OMS (Organização Mundial da Saúde)`)
             .addFields(
@@ -38,7 +31,7 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(loading).then(msg => msg.delete({ timeout: 4000 })).then(msg => message.inlineReply(noerl))
     }
 
-    const embed = new Discord.MessageEmbed()
+    var embed = new Discord.MessageEmbed()
         .setTitle(args[0] ? `${args[0].toUpperCase()} Status` : 'Dados Mundiais da COVID-19')
         .setColor('BLUE')
         .setThumbnail(args[0] ? corona.countryInfo.flag : 'https://i.giphy.com/YPbrUhP9Ryhgi2psz3.gif')

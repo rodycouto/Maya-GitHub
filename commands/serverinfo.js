@@ -2,13 +2,6 @@ const Discord = require('discord.js')
 
 exports.run = async (client, message, args) => {
 
-    if (!message.guild.me.hasPermission("MANAGE_GUILD")) {
-        const adm = new Discord.MessageEmbed()
-            .setColor('#FF0000')
-            .setTitle('Eu preciso da permissão "Gerenciar Servidor" para utilizar esta função.')
-        return message.inlineReply(adm)
-    }
-
     let region
     switch (message.guild.region) {
         case "europe":
@@ -31,7 +24,7 @@ exports.run = async (client, message, args) => {
             break
     }
 
-    const embed = new Discord.MessageEmbed()
+    let embed = new Discord.MessageEmbed()
         .setThumbnail(message.guild.iconURL({ dynamic: true }))
         .setColor('#f3f3f3')
         .setTitle(`${message.guild.name}`)

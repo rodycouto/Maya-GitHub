@@ -2,22 +2,8 @@ const Discord = require("discord.js")
 
 exports.run = async (client, message, args) => {
 
-    if (!message.guild.me.hasPermission("MANAGE_GUILD")) {
-        const adm = new Discord.MessageEmbed()
-            .setColor('#FF0000')
-            .setTitle('Eu preciso da permissão "Gerenciar Servidor" para utilizar esta função.')
-        return message.inlineReply(adm)
-    }
-
-    if (!message.guild.me.hasPermission("MANAGE_CHANNELS")) {
-        const adm = new Discord.MessageEmbed()
-            .setColor('#FF0000')
-            .setTitle('Eu preciso da permissão "Manusear Canais" para utilizar esta função.')
-        return message.inlineReply(adm)
-    }
-
     message.guild.fetchInvites().then((invites) => {
-        const inviteCounter = {}
+        let inviteCounter = {}
 
         invites.forEach((invite => {
             const { uses, inviter } = invite
@@ -34,16 +20,18 @@ exports.run = async (client, message, args) => {
             .setColor("BLUE")
             .setFooter('Apareceu o ID? O membro saiu do servidor')
 
-        const sortedInvites = Object.keys(inviteCounter).sort((a, b) => inviteCounter[b] - inviteCounter[a])
+        let sortedInvites = Object.keys(inviteCounter).sort((a, b) => inviteCounter[b] - inviteCounter[a])
 
         if (sortedInvites.length > 5) sortedInvites.length = 5
         else if (sortedInvites.length > 5) sortedInvites.length = sortedInvites.length
 
 
         for (const invite of sortedInvites) {
-            const count = inviteCounter[invite]
+            var count = inviteCounter[invite]
             replyText.description += `\n${invite} convidou ${count} membro(s).`
         }
-        message.inlineReply(replyText)
+        message.inlineReply(replyText).catch(err => {
+            if (err) { return message.channel.send(`Ocorreu um erro.\n \n${err}`) }
+        })
     })
 }

@@ -3,24 +3,11 @@ const db = require('quick.db')
 
 exports.run = async (client, message, args) => {
 
-  if (!message.guild.me.hasPermission("MANAGE_CHANNELS")) {
-    var adm = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Eu preciso das permissões "Manusear Canais" e "Adicionar Reações" para utilizar esta função.')
-    return message.inlineReply(adm)
-  }
-
-  if (!message.guild.me.hasPermission("ADD_REACTIONS")) {
-    var adm = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Eu preciso das permissões "Manusear Canais" e "Adicionar Reações" para utilizar esta função.')
-    return message.inlineReply(adm)
-  }
+  let prefix = db.get(`prefix_${message.guild.id}`)
+  if (prefix === null) prefix = "-"
 
   var canal = db.get(`ideiachannel_${message.guild.id}`)
   if (canal === null) {
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if (prefix === null) prefix = "-"
 
     var nochannel = new Discord.MessageEmbed()
       .setColor('BLUE')
@@ -42,8 +29,6 @@ exports.run = async (client, message, args) => {
   }
 
   if (!client.channels.cache.get(canal)) {
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if (prefix === null) prefix = "-"
 
     var nochanel = new Discord.MessageEmbed()
       .setColor('#FF0000')
@@ -56,8 +41,6 @@ exports.run = async (client, message, args) => {
   let avatar = message.author.displayAvatarURL({ format: 'png' })
 
   if (!args[0]) {
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if (prefix === null) prefix = "-"
 
     var noideia = new Discord.MessageEmbed()
       .setColor('BLUE')
@@ -82,8 +65,6 @@ exports.run = async (client, message, args) => {
     return message.inlineReply(umk)
 
   } else {
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if (prefix === null) prefix = "-"
 
     var msg = await client.channels.cache.get(canal).send(
       new Discord.MessageEmbed()

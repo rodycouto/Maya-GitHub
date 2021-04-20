@@ -7,10 +7,6 @@ exports.run = async (client, message, args) => {
   let prefix = db.get(`prefix_${message.guild.id}`)
   if (prefix === null) { prefix = "-" }
 
-  if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-    return message.inlineReply('Eu preciso da permissão "Gerenciar Mensagens" para utilizar esta função.')
-  }
-
   if (!args[0]) {
     const noargs = new Discord.MessageEmbed()
       .setColor('BLUE')
@@ -28,7 +24,7 @@ exports.run = async (client, message, args) => {
 
     if (!city) {
 
-      const nocity = new Discord.MessageEmbed()
+      var nocity = new Discord.MessageEmbed()
         .setColor('#FF0000')
         .setTitle('Siga o formato correto')
         .setDescription('`' + prefix + 'clima SP/RJ/MG ou o nome da Cidade/Estado`')
@@ -46,7 +42,7 @@ exports.run = async (client, message, args) => {
     let current = result[0].current
     let location = result[0].location
 
-    const embed = new Discord.MessageEmbed()
+    let embed = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setAuthor(current.observationpoint)
       .setDescription(`> ${current.skytext}`)

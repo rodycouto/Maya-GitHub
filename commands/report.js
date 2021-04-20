@@ -7,20 +7,6 @@ exports.run = async (client, message, args) => {
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) prefix = "-"
 
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-        const adm = new Discord.MessageEmbed()
-            .setColor('#FF0000')
-            .setTitle('Eu preciso das permissões "Gerenciar Mensagens" e "Gerenciar Canais" para utilizar esta função.')
-        return message.channel.send(adm)
-    }
-
-    if (!message.guild.me.hasPermission("MANAGE_CHANNELS")) {
-        const adm = new Discord.MessageEmbed()
-            .setColor('#FF0000')
-            .setTitle('Eu preciso das permissões "Gerenciar Mensagens" e "Gerenciar Canais" para utilizar esta função.')
-        return message.channel.send(adm)
-    }
-
     if (['help', 'ajuda'].includes(args[0])) {
         var help = new Discord.MessageEmbed()
             .setColor('BLUE') // red
@@ -36,7 +22,7 @@ exports.run = async (client, message, args) => {
 
     var channel = db.get(`reportchannel_${message.guild.id}`)
     if (!client.channels.cache.get(channel)) {
-        const nochanel = new Discord.MessageEmbed()
+        var nochanel = new Discord.MessageEmbed()
             .setColor('#FF0000')
             .setTitle('❌ Parece que o canal de report foi excluido.')
             .setDescription('`' + prefix + 'setreportchannel #canal`')
@@ -45,7 +31,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (channel === null) {
-        const nochannel = new Discord.MessageEmbed()
+        var nochannel = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('Nenhum canal de report definido.')
             .setDescription('Ooopa, parece que não definiram o canal de reports. Fale para alguém da Staff criar ou definir o canal, o comando é simples.\n \nCom está função, os membros são capazes de reportar coisas de qualquer canal para um canal especifico, geralmente exclusivo apenas para a moderação do servidor. As mensagens são apagadas, tornando anônimo o report, para evitar brigas e discussões.\n \nTem mais, não é necessário reportar só pessoas, você também pode reportar coisas do servidor sem precisar ficar marcando @alguém.')
@@ -56,7 +42,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (!args[0]) {
-        const noargs = new Discord.MessageEmbed()
+        var noargs = new Discord.MessageEmbed()
             .setColor('#FF0000')
             .setTitle('❌ Por favor, siga o formato correto')
             .setDescription(`Use o comando abaixo para reportar algo a equipe da ${message.guild.name}.\n \n*O **@user** é opcional, use se quiser reportar algum membro.*`)
@@ -67,7 +53,7 @@ exports.run = async (client, message, args) => {
     let user = message.mentions.members.first()
 
     if (!user) {
-        const embed1 = new Discord.MessageEmbed()
+        var embed1 = new Discord.MessageEmbed()
             .setColor("BLUE")
             .setTitle('📢 Novo Reporte Recebido')
             .addFields(
@@ -93,7 +79,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (args[0] !== user) {
-        const embed1 = new Discord.MessageEmbed()
+        var embed1 = new Discord.MessageEmbed()
             .setColor("BLUE")
             .setTitle('📢 Novo Reporte Recebido')
             .addFields(

@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
     var user = message.mentions.members.first()
 
     if (!args[0]) {
-        const embed1 = new Discord.MessageEmbed()
+        var embed1 = new Discord.MessageEmbed()
             .setColor('#9D24DD')
             .setTitle(`${message.author.username}`)
             .setDescription(`🆔 \`${message.author.id}\``)
@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (user) {
-        const idembed = new Discord.MessageEmbed()
+        var idembed = new Discord.MessageEmbed()
             .setColor('#9D24DD')
             .setTitle(`${user.user.username}`)
             .setDescription(`🆔 \`${user.user.id}\``)
@@ -25,7 +25,7 @@ exports.run = async (client, message, args) => {
         let prefix = db.get(`prefix_${message.guild.id}`)
         if (prefix === null) prefix = "-"
 
-        const no = new Discord.MessageEmbed()
+        var no = new Discord.MessageEmbed()
             .setColor('#FF0000')
             .setTitle('Comando não reconhecido.')
             .setDescription('Neste comando, é preciso marcar alguém ou mandar apenas o comando sem conteúdo algúm.')

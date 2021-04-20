@@ -3,20 +3,6 @@ const db = require('quick.db')
 
 exports.run = async (client, message, args) => {
 
-  if (!message.guild.me.hasPermission("MANAGE_CHANNELS")) {
-    var adm = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Eu preciso das permissões "Manusear Canais" e "Adicionar Reações" para utilizar esta função.')
-    return message.inlineReply(adm)
-  }
-
-  if (!message.guild.me.hasPermission("ADD_REACTIONS")) {
-    var adm = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Eu preciso das permissões "Manusear Canais" e "Adicionar Reações" para utilizar esta função.')
-    return message.inlineReply(adm)
-  }
-
   var canal = db.get(`ideiachannel_${message.guild.id}`)
   if (canal === null) {
     let prefix = db.get(`prefix_${message.guild.id}`)

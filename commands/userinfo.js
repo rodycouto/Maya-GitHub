@@ -3,16 +3,9 @@ const moment = require('moment')
 
 exports.run = async (client, message, args) => {
 
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-        const adm = new Discord.MessageEmbed()
-            .setColor('#FF0000')
-            .setTitle('Eu preciso da permissão "Gerenciar Mensagens" para utilizar esta função.')
-        return message.inlineReply(adm)
-    }
-
     let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member
 
-    const flags = {
+    var flags = {
         DISCORD_EMPLOYEE: 'Discord Employee',
         DISCORD_PARTNER: 'Discord Partner',
         BUGHUNTER_LEVEL_1: 'Bug Hunter (Level 1)',
@@ -28,14 +21,14 @@ exports.run = async (client, message, args) => {
         VERIFIED_DEVELOPER: 'Verified Bot Developer'
     }
 
-    const roles = user.roles.cache
+    let roles = user.roles.cache
         .sort((a, b) => b.position - a.position)
         .map(role => role.toString())
         .slice(0, -1)
 
-    const userFlags = user.user.flags.toArray()
+    let userFlags = user.user.flags.toArray()
 
-    const embed = new Discord.MessageEmbed()
+    let embed = new Discord.MessageEmbed()
         .setTitle(`📝 Informações sobre ${user.user.username}`)
         .setColor(`#f3f3f3`)
         .setThumbnail(user.user.displayAvatarURL({ dynamic: true }))
