@@ -48,27 +48,25 @@ client.on("message", async (message) => {
 
     if (db.get(`afk_${message.author.id}+${message.guild.id}`)) {
         db.delete(`afk_${message.author.id}+${message.guild.id}`)
-        message.inlineReply(`O modo AFK foi desativado.`).then(msg => msg.delete({ timeout: 3000 })).catch(err => { return })
+        message.inlineReply(`✅ O modo AFK foi desativado.`).then(msg => msg.delete({ timeout: 3000 })).catch(err => { return })
     }
 
     if (db.get(`afk_${message.author.id}+${message.author.id}`)) {
         db.delete(`afk_${message.author.id}+${message.author.id}`)
-        message.inlineReply(`O modo AFK Global foi desativado.`).then(msg => msg.delete({ timeout: 3000 })).catch(err => { return })
+        message.inlineReply(`✅ O modo AFK Global foi desativado.`).then(msg => msg.delete({ timeout: 3000 })).catch(err => { return })
     }
 
     if (message.mentions.members.first()) {
         if (db.get(`afk_${message.mentions.members.first().id}+${message.mentions.members.first().id}`)) { // AFK Sistema Global
             const off = new Discord.MessageEmbed()
                 .setColor('#B98823')
-                .setTitle('🔇 AFK Global System')
                 .setDescription('```fix\n' + `${db.get(`afk_${message.mentions.members.first().id}+${message.mentions.members.first().id}`)}` + '```')
-            message.inlineReply(`${message.mentions.members.first().user.username} está offline no momento.`, off).then(msg => msg.delete({ timeout: 8000 })).catch(err => { return })
+            message.inlineReply(`🔇 ${message.mentions.members.first().user.username} está offline.`, off).then(msg => msg.delete({ timeout: 8000 })).catch(err => { return })
         } else if (db.get(`afk_${message.mentions.members.first().id}+${message.guild.id}`)) { // AFK Sistema Servidor
             const off = new Discord.MessageEmbed()
                 .setColor('#B98823')
-                .setTitle('🔇 AFK Server System')
                 .setDescription('```fix\n' + `${db.get(`afk_${message.mentions.members.first().id}+${message.guild.id}`)}` + '```')
-            message.inlineReply(`${message.mentions.members.first().user.username} está offline no momento.`, off).then(msg => msg.delete({ timeout: 8000 })).catch(err => { return })
+            message.inlineReply(`🔇 ${message.mentions.members.first().user.username} está offline.`, off).then(msg => msg.delete({ timeout: 8000 })).catch(err => { return })
         }
     }
 

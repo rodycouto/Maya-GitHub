@@ -2,13 +2,6 @@ const Discord = require('discord.js')
 
 exports.run = async (client, message, args) => {
 
-  if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-    const adm = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Eu preciso da permissão "Gerenciar Mensagens" para utilizar esta função.')
-    return message.inlineReply(adm)
-  }
-
   var i = 'Isekai'
   var h = 'Hentai'
   var ms = 'Mahou Shoujo'
@@ -102,7 +95,7 @@ exports.run = async (client, message, args) => {
     `30-Sai No Hoken Taiiku \nGênero: ${ec}`,
     `3D Kanojo: Real Girl \nGênero: ${r}`,
     `801 T.T.S. Airbats \nGênero: ${aç}`,
-    `91 Days \nGênero: ${aç}`, //?
+    `91 Days \nGênero: ${aç}`,
     `AKB0048 \nGênero: ${m}`,
     `A Channel \nGênero: ${c}`,
     `Abarenbou Kishi!! Matsutarou \nGênero: ${e}`,
@@ -344,9 +337,9 @@ exports.run = async (client, message, args) => {
     `Butlers: Chitose Momotose Monogatari \nGênero: ${c}`
   ]
 
-  var rand = list[Math.floor(Math.random() * list.length)]
+  let rand = list[Math.floor(Math.random() * list.length)]
 
-  const IndEmbed = new Discord.MessageEmbed()
+  var IndEmbed = new Discord.MessageEmbed()
     .setColor('BLUE')
     .addFields(
       {
@@ -357,14 +350,14 @@ exports.run = async (client, message, args) => {
 
   await message.inlineReply(IndEmbed).then(msg => {
     msg.react('🔄')// 1º Embed
-    setTimeout(function () { msg.reactions.removeAll() }, 30000)
+    setTimeout(function () { msg.reactions.removeAll() }, 40000)
 
     msg.awaitReactions((reaction, user) => {
       if (message.author.id !== user.id) return
 
       if (reaction.emoji.name === '🔄') { // 1º Embed - Principal
         reaction.users.remove(user)
-        const IndEmbed1 = new Discord.MessageEmbed()
+        var IndEmbed1 = new Discord.MessageEmbed()
           .setColor('BLUE')
           .addFields(
             {

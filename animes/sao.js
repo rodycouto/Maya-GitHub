@@ -2,13 +2,6 @@ const Discord = require('discord.js')
 
 exports.run = async (client, message, args) => {
 
-  if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-    const adm = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Eu preciso da permissão "Gerenciar Mensagens" para utilizar esta função.')
-    return message.inlineReply(adm)
-  }
-
   var lista = [
     'https://imgur.com/XhwPW1b.png',
     'https://imgur.com/14iUC8B.gif',
@@ -69,9 +62,9 @@ exports.run = async (client, message, args) => {
     'https://imgur.com/qKbjyC9.gif'
   ]
 
-  var saophotos = lista[Math.floor(Math.random() * lista.length)]
+  let saophotos = lista[Math.floor(Math.random() * lista.length)]
 
-  const SAOEmbed = new Discord.MessageEmbed()
+  var SAOEmbed = new Discord.MessageEmbed()
     .setTitle('📺 SAO - Sword Art Online')
     .setColor('BLUE')
     .setImage(saophotos)
@@ -86,7 +79,7 @@ exports.run = async (client, message, args) => {
 
       if (reaction.emoji.name === '🔄') { // 1º Embed - Principal
         reaction.users.remove(user)
-        const SAOEmbed1 = new Discord.MessageEmbed()
+        let SAOEmbed1 = new Discord.MessageEmbed()
           .setTitle('📺 SAO - Sword Art Online')
           .setColor('BLUE')
           .setImage(lista[Math.floor(Math.random() * lista.length)])
