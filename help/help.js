@@ -3,13 +3,6 @@ const db = require('quick.db')
 
 exports.run = async (client, message, args) => {
 
-  if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-    var adm = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Eu preciso da permissão "Gerenciar Mensagens" para utilizar esta função.')
-    return message.inlineReply(adm)
-  }
-
   var linkgithub = 'https://github.com/rodycouto/MayaCommands/blob/main/README.md'
   var linksupport = 'https://forms.gle/vtJ5qBqFDd9rL5JU8'
   var linkservidor = 'https://discord.gg/YpFWgJuuUV'
@@ -157,7 +150,7 @@ exports.run = async (client, message, args) => {
     return message.inlineReply(embed)
   }
 
-  if (['economy', 'economia', 'mpoints', 'money'].includes(args[0])) {
+  if (['economy', 'economia', 'mpoints', 'money', 'shop', 'loja', 'dinheiro'].includes(args[0])) {
     var embed = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle(':coin: Economia Global System')
@@ -231,7 +224,7 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('<:zeroheart:833378638475821088> Personagens de animes')
       .setDescription('Gifs dos melhores personagens dos melhores animes, mande seus gifs também, vai ajudar muito! `' + prefix + 'gif`')
-      .addField('• Comandos Online: (1)', '`' + prefix + 'asuna`\n' + '`' + prefix + 'chika`\n' + '`' + prefix + 'itachi`\n' + '`' + prefix + 'naruto`\n' + '`' + prefix + 'nezuko`\n' + '`' + prefix + 'zenitsu`\n' + '`' + prefix + 'zerotwo/zt`\n')
+      .addField('• Comandos Online: (1)', '`' + prefix + 'asuna`\n' + '`' + prefix + 'chika`\n' + '`' + prefix + 'gojo`\n' + '`' + prefix + 'itachi`\n' + '`' + prefix + 'naruto`\n' + '`' + prefix + 'nezuko`\n' + '`' + prefix + 'zenitsu`\n' + '`' + prefix + 'zerotwo/zt`\n')
       .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
       .setFooter('• Comandos em construção: (154)')
     return message.inlineReply(embed)

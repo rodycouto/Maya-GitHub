@@ -2,13 +2,6 @@ const Discord = require('discord.js')
 
 exports.run = async (client, message, args) => {
 
-     if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-          var adm = new Discord.MessageEmbed()
-               .setColor('#FF0000')
-               .setTitle('Eu preciso da permissão "Gerenciar Mensagens" para utilizar esta função.')
-          return message.inlineReply(adm)
-     }
-
      var Thanks = new Discord.MessageEmbed()
           .setColor('GREEN')
           .setThumbnail(client.user.displayAvatarURL())
