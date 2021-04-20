@@ -2,6 +2,10 @@ const Discord = require("discord.js")
 
 exports.run = async (client, message, args) => {
 
+    if (!message.guild.me.hasPermission("MANAGE_GUILD")) {
+        return message.inlineReply("Eu preciso da permissão **Gerenciar Servidor** para obter as informações de convites.")
+    }
+
     message.guild.fetchInvites().then((invites) => {
         let inviteCounter = {}
 
@@ -30,8 +34,7 @@ exports.run = async (client, message, args) => {
             var count = inviteCounter[invite]
             replyText.description += `\n${invite} convidou ${count} membro(s).`
         }
-        message.inlineReply(replyText).catch(err => {
-            if (err) { return message.channel.send(`Ocorreu um erro.\n \n${err}`) }
-        })
+
+        message.inlineReply(replyText)
     })
 }

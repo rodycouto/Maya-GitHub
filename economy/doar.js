@@ -21,69 +21,30 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(presomax)
     } else {
 
-        if (!args[0]) {
-            var noargs = new Discord.MessageEmbed()
-                .setColor('BLUE')
-                .setTitle('💸 Comando Doar')
-                .setDescription('Doe MPoints pra galera, é simples e rápido!\n \n*MPoints perdidos não serão recuperados. Cuidado para não ser enganado*')
-                .addField('Comando', '`' + prefix + 'doar @user quantia`\n' + '`' + prefix + 'doar @user all/tudo`')
-                .setFooter('Apenas o dinheiro na carteira será válido para doações.')
-            return message.inlineReply(noargs)
-        }
-
-        if (['help', 'ajuda'].includes(args[0])) {
-            var ajuda = new Discord.MessageEmbed()
-                .setColor('BLUE')
-                .setTitle('💸 Comando Doar')
-                .setDescription('Doe MPoints pra galera, é simples e rápido!\n \n*MPoints perdidos não serão recuperados. Cuidado para não ser enganado*')
-                .addField('Comando', '`' + prefix + 'doar @user quantia`\n' + '`' + prefix + 'doar @user all/tudo`')
-                .setFooter('Apenas o dinheiro na carteira será válido para doações.')
-            return message.inlineReply(ajuda)
-        }
-
-        var incorrect = new Discord.MessageEmbed()
-            .setColor('#FF0000')
-            .setTitle('Formato incorreto')
-            .setDescription('Não sabe usar o comando doar?\n' + '`' + prefix + 'doar help`')
-
-        if (!args[1]) {
-            return message.inlineReply(incorrect)
-        }
-
+        let money = db.get(`money_${message.author.id}`)
         let user = message.mentions.members.first()
+        let bot = message.mentions.bot.first()
 
-        args[0] = message.mentions.members.first()
+        if (!db.get(`money_${message.author.id}`)) money = '0'
+        if (money === null) money = '0'
+        if (!args[0]) { return message.inlineReply('Não sabe usar o comando doar?\n' + '`' + prefix + 'help doar`') }
+        if (!args[1]) { return message.inlineReply('Não sabe usar o comando doar?\n' + '`' + prefix + 'help doar`') }
+        if (!user) { return message.inlineReply('Não sabe usar o comando doar?\n' + '`' + prefix + 'help doar`') }
+        if (user.id === "821471191578574888") { return message.inlineReply('Sorry, mas não quero seu dinheiro.') }
+        if (user.id == message.author.id) { return message.inlineReply('Você não pode doar para você mesmo.') }
+        if (bot) { return message.inlineReply('Você não pode doar para bots.') }
+
+        var confirm = new Discord.MessageEmbed()
+            .setColor('BLUE')
+            .setTitle('Confirmação...')
+            .setDescription(`Confirmar transação no valor de ${money}<:StarPoint:766794021128765469>MPoints para ${user}?`)
+
+        var confirm2 = new Discord.MessageEmbed()
+            .setColor('BLUE')
+            .setTitle('Confirmação...')
+            .setDescription(`Confirmar transação no valor de ${args[0]}<:StarPoint:766794021128765469>MPoints para ${user}?`)
 
         if (['all', 'tudo'].includes(args[1])) {
-            let money = db.get(`money_${message.author.id}`)
-            if (!db.get(`money_${message.author.id}`)) money = '0'
-
-            if (!user || !args[0]) {
-                return message.inlineReply(incorrect)
-            }
-
-            if (user.id == message.author.id) {
-                var noamout = new Discord.MessageEmbed()
-                    .setColor('#FF0000')
-                    .setTitle('Você não pode doar para você mesmo.')
-                return message.inlineReply(noamout)
-            }
-
-            if (money === null) {
-                return message.inlineReply('Você não tem dinheiro para efetuar doações.')
-            }
-
-            if (money < 0 || money === 0) {
-                var nota = new Discord.MessageEmbed()
-                    .setColor('#FF0000')
-                    .setTitle('Você não tem dinheiro para doar.')
-                return message.inlineReply(nota)
-            }
-
-            var confirm = new Discord.MessageEmbed()
-                .setColor('BLUE')
-                .setTitle('Confirmação...')
-                .setDescription(`Confirmar transação no valor de ${money}<:StarPoint:766794021128765469>MPoints para ${user}?`)
 
             return message.inlineReply(confirm).then(msg => {
                 msg.react('✅') // Check
@@ -91,23 +52,15 @@ exports.run = async (client, message, args) => {
                 msg.delete({ timeout: 120000 }).catch(err => { return })
 
                 msg.awaitReactions((reaction, user) => {
-                    let money = db.get(`money_${message.author.id}`)
 
                     if (message.author.id !== user.id) return
 
                     if (reaction.emoji.name === '✅') { // Sim
                         msg.delete().catch(err => { return })
 
-                        var embed = new Discord.MessageEmbed()
-                            .setColor('GREEN')
-                            .setTitle('Transação efetuada com sucesso!')
-
-                        message.channel.send('🔄 Efetuando a transação...').then(msg => msg.delete({ timeout: 4000 })).catch(err => { return })
-                        setTimeout(function () {
-                            db.add(`money_${message.mentions.members.first().id}`, money)
-                            db.subtract(`money_${message.author.id}`, money)
-                            message.channel.send(embed)
-                        }, 4400)
+                        db.add(`money_${message.mentions.members.first().id}`, money)
+                        db.subtract(`money_${message.author.id}`, money)
+                        return message.channel.send(`🔄 Transação efetuada com sucesso!\nQuantia: ${money}<:StarPoint:766794021128765469>MPoints`).catch(err => { return })
                     }
 
                     if (reaction.emoji.name === '❌') { // Não
@@ -118,48 +71,32 @@ exports.run = async (client, message, args) => {
             })
         }
 
-        if (!user) {
-            return message.inlineReply(incorrect)
-        }
+        if (money < args[1]) { return message.inlineReply('Você não tem todo esse dinheiro.') }
+        if (args[1] < 0) { return message.inlineReply('Diga um valor maior que 0') }
+        if (isNaN(args[1])) { return message.inlineReply('O valor que você digitou não é um número.') }
 
-        if (user.id == message.author.id) {
-            var noamout = new Discord.MessageEmbed()
-                .setColor('#FF0000')
-                .setTitle('Você não pode doar para você mesmo.')
-            return message.inlineReply(noamout)
-        }
+        return message.inlineReply(confirm2).then(msg => {
+            msg.react('✅') // Check
+            msg.react('❌') // X
+            msg.delete({ timeout: 120000 }).catch(err => { return })
 
-        let money = db.get(`money_${message.author.id}`)
-        if (money === null) money = '0'
+            msg.awaitReactions((reaction, user) => {
 
-        if (money < args[1]) {
-            var not = new Discord.MessageEmbed()
-                .setColor('#FF0000')
-                .setDescription(`Você precisa ter pelo menos ${args[1]}<:StarPoint:766794021128765469> na carteira para poder doar.`)
-            return message.inlineReply(not)
-        }
+                if (message.author.id !== user.id) return
 
-        if (args[1] < 0) {
-            var nota = new Discord.MessageEmbed()
-                .setColor('#FF0000')
-                .setTitle('Diga um valor maior que 0')
-            return message.inlineReply(nota)
-        }
+                if (reaction.emoji.name === '✅') { // Sim
+                    msg.delete().catch(err => { return })
 
-        if (isNaN(args[1])) {
-            var notnumber = new Discord.MessageEmbed()
-                .setColor('#FF0000')
-                .setTitle('Valor não reconhecido')
-                .setDescription('O valor que você digitou não é um número.')
-            return message.inlineReply(notnumber)
-        }
+                    db.add(`money_${message.mentions.members.first().id}`, args[1])
+                    db.subtract(`money_${message.author.id}`, args[1])
+                    return message.channel.send(`🔄 Transação efetuada com sucesso!\nQuantia: ${args[1]}<:StarPoint:766794021128765469>MPoints`).catch(err => { return })
+                }
 
-        db.add(`money_${user.id}`, args[1])
-        db.subtract(`money_${message.author.id}`, args[1])
-
-        var embed = new Discord.MessageEmbed()
-            .setColor('GREEN')
-            .setDescription(`${message.author} doou ${args[1]}<:StarPoint:766794021128765469>MPoints para ${user}.`)
-        return message.channel.send(embed)
+                if (reaction.emoji.name === '❌') { // Não
+                    msg.delete()
+                    msg.channel.send(`Transação cancelada.`)
+                }
+            })
+        })
     }
 }

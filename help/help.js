@@ -161,6 +161,16 @@ exports.run = async (client, message, args) => {
     return message.inlineReply(embed)
   }
 
+  if (['doar', 'donate'].includes(args[0])) {
+    var ajuda = new Discord.MessageEmbed()
+      .setColor('BLUE')
+      .setTitle('💸 Comando Doar')
+      .setDescription('Doe MPoints pra galera, é simples e rápido!\n \n*MPoints perdidos não serão recuperados. Cuidado para não ser enganado*')
+      .addField('Comando', '`' + prefix + 'doar @user quantia`\n' + '`' + prefix + 'doar @user all/tudo`')
+      .setFooter('Apenas o dinheiro na carteira será válido para doações.')
+    return message.inlineReply(ajuda)
+  }
+
   if (['perfil', 'profile'].includes(args[0])) {
     var embed = new Discord.MessageEmbed()
       .setColor('BLUE')

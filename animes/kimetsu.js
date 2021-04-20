@@ -32,20 +32,20 @@ exports.run = async (client, message, args) => {
     await message.inlineReply(kimetsu).then(msg => {
         msg.react('🔄').catch(err => { return }) // 1º Embed
         msg.react('❌').catch(err => { return })
-        setTimeout(function () { msg.reactions.removeAll() }, 30000)
+        setTimeout(function () { msg.reactions.removeAll().catch(err => { return }) }, 30000)
 
         msg.awaitReactions((reaction, user) => {
             if (message.author.id !== user.id) return;
 
             if (reaction.emoji.name === '🔄') { // 1º Embed - Principal
-                reaction.users.remove(user)
+                reaction.users.remove(user).catch(err => { return })
                 let kimetsu = new Discord.MessageEmbed()
                     .setColor('BLUE')
                     .setImage(list[Math.floor(Math.random() * list.length)])
                 msg.edit(kimetsu)
             }
             if (reaction.emoji.name === '❌') {
-                msg.delete()
+                msg.delete().catch(err => { return })
             }
         })
     })

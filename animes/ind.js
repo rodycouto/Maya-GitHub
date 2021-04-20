@@ -349,14 +349,14 @@ exports.run = async (client, message, args) => {
     )
 
   await message.inlineReply(IndEmbed).then(msg => {
-    msg.react('🔄')// 1º Embed
-    setTimeout(function () { msg.reactions.removeAll() }, 40000)
+    msg.react('🔄').catch(err => { return }) // 1º Embed
+    setTimeout(function () { msg.reactions.removeAll().catch(err => { return }) }, 40000)
 
     msg.awaitReactions((reaction, user) => {
       if (message.author.id !== user.id) return
 
       if (reaction.emoji.name === '🔄') { // 1º Embed - Principal
-        reaction.users.remove(user)
+        reaction.users.remove(user).catch(err => { return })
         var IndEmbed1 = new Discord.MessageEmbed()
           .setColor('BLUE')
           .addFields(
