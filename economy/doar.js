@@ -23,7 +23,6 @@ exports.run = async (client, message, args) => {
 
         let money = db.get(`money_${message.author.id}`)
         let user = message.mentions.members.first()
-        let bot = message.mentions.bot.first()
 
         if (!db.get(`money_${message.author.id}`)) money = '0'
         if (money === null) money = '0'
@@ -32,7 +31,7 @@ exports.run = async (client, message, args) => {
         if (!user) { return message.inlineReply('Não sabe usar o comando doar?\n' + '`' + prefix + 'help doar`') }
         if (user.id === "821471191578574888") { return message.inlineReply('Sorry, mas não quero seu dinheiro.') }
         if (user.id == message.author.id) { return message.inlineReply('Você não pode doar para você mesmo.') }
-        if (bot) { return message.inlineReply('Você não pode doar para bots.') }
+        if (message.mentions.bot) { return message.inlineReply('Você não pode doar para bots.') }
 
         var confirm = new Discord.MessageEmbed()
             .setColor('BLUE')
@@ -60,7 +59,7 @@ exports.run = async (client, message, args) => {
 
                         db.add(`money_${message.mentions.members.first().id}`, money)
                         db.subtract(`money_${message.author.id}`, money)
-                        return message.channel.send(`🔄 Transação efetuada com sucesso!\nQuantia: ${money}<:StarPoint:766794021128765469>MPoints`).catch(err => { return })
+                        return message.channel.send(`✅ Transação efetuada com sucesso!\nQuantia: ${money}<:StarPoint:766794021128765469>MPoints`).catch(err => { return })
                     }
 
                     if (reaction.emoji.name === '❌') { // Não
@@ -89,7 +88,7 @@ exports.run = async (client, message, args) => {
 
                     db.add(`money_${message.mentions.members.first().id}`, args[1])
                     db.subtract(`money_${message.author.id}`, args[1])
-                    return message.channel.send(`🔄 Transação efetuada com sucesso!\nQuantia: ${args[1]}<:StarPoint:766794021128765469>MPoints`).catch(err => { return })
+                    return message.channel.send(`✅ Transação efetuada com sucesso!\nQuantia: ${args[1]}<:StarPoint:766794021128765469>MPoints`).catch(err => { return })
                 }
 
                 if (reaction.emoji.name === '❌') { // Não

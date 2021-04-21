@@ -42,6 +42,7 @@ exports.run = async (client, message, args) => {
                     .setColor('GRAY')
                     .setTitle('🕵️‍♂️ Você está preste a entrar no mundo do crime 🕵️‍♂️ ')
                     .setDescription('O mundo do crime é um lugar perigoso, você pode ser preso e não conseguir fazer mais nada por horas.\n \nTem certeza que deseja entrar no mundo do crime?')
+                    .setFooter('Auto delete em 30 segundos.')
 
                 let timeout5 = 180000
                 let crimetime = await db.fetch(`crimetimeout_${message.author.id}`)
@@ -49,10 +50,13 @@ exports.run = async (client, message, args) => {
                     let time = ms(timeout5 - (Date.now() - crimetime))
                     return message.inlineReply(`Calminha! O mundo do crime é perigoso, volte em ${time.minutes}m, e ${time.seconds}s`)
                 } else {
+
                     db.set(`crimetimeout_${message.author.id}`, Date.now())
                     await message.inlineReply(newcrime).then(msg => {
-                        msg.react('🥷') // Check
-                        msg.react('❌') // X
+                        msg.react('🥷').catch(err => { return }) // Check
+                        msg.react('❌').catch(err => { return }) // X
+                        msg.delete({ timeout: 30000 }).catch(err => { return })
+
 
                         msg.awaitReactions((reaction, user) => {
                             if (message.author.id !== user.id) return
@@ -64,6 +68,7 @@ exports.run = async (client, message, args) => {
                                     .setColor('#FF0000')
                                     .setTitle('🔎 Qual lugar da cidade você deseja roubar? :mag:')
                                     .setDescription('🏠 Casa\n🏦 Mansão\n🏛️ Prefeitura\n🏣 Cartório\n📨 Correios\n💍 Joaleria\n🏢 Shopping\n🏭 Fabrica\n🏩 Motel\n🪙 Banco')
+                                    .setFooter('Auto delete em 1 minuto.')
 
                                 return message.inlineReply(embedcrime).then(msg => {
                                     msg.react('🏠').catch(err => { return }) // 1
@@ -76,6 +81,7 @@ exports.run = async (client, message, args) => {
                                     msg.react('🏭').catch(err => { return }) // 8
                                     msg.react('🏩').catch(err => { return }) // 9
                                     msg.react('🪙').catch(err => { return }) // 10
+                                    msg.delete({ timeout: 60000 }).catch(err => { return })
 
                                     msg.awaitReactions((reaction, user) => { // CÓDIGOS DE OPÇÕES
                                         if (message.author.id !== user.id) return

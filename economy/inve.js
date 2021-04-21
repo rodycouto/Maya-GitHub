@@ -27,6 +27,11 @@ exports.run = async (client, message, args) => {
     if (agua === null) { agua = "0" }
     if (!db.get(`agua_${user.id}`)) { agua = "0" }
 
+    let fichas = await db.get(`fichas_${user.id}`)
+    if (fichas === null) { fichas = "0" }
+    if (!db.get(`fichas_${user.id}`)) { fichas = "0" }
+
+
     let camarao = await db.get(`camarao_${user.id}`)
     if (camarao === null) { camarao = "0" }
     if (!db.get(`camarao_${user.id}`)) { camarao = "0" }
@@ -92,11 +97,11 @@ exports.run = async (client, message, args) => {
     if (mamute === null) { mamute = "" }
     if (!db.get(`mamute_${user.id}`)) { mamute = "" }
 
-    var nada = !arma && !picareta && !vara && !machado
+    let nada = !arma && !picareta && !vara && !machado
     if (nada) { nada = 'Não há nada aqui' }
     if (!nada) { nada = '' }
 
-    var nada2 = !title && !faca && !loli && !fossil && !mamute
+    let nada2 = !title && !faca && !loli && !fossil && !mamute
     if (nada2) { nada2 = 'Não há nada aqui' }
     if (!nada2) { nada2 = '' }
 
@@ -106,7 +111,7 @@ exports.run = async (client, message, args) => {
         .setDescription('📊 Bolsa de Valores | Em Breve')
         .addField('Itens Comprados', `${nada}${arma}${picareta}${vara}${machado}${cartas}`)
         .addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}`)
-        .addField('Mantimentos', `🐟 ${peixes} Peixes\n🪱 ${iscas} Iscas\n🥤 ${agua} Água\n🍤 ${camarao} Camarões\n🦴 ${ossos} Ossos\n🪵 ${madeira} Madeiras\n🍎 ${apple} Maça\n🪨 ${minerio} Minérios\n💎 ${diamond} Diamantes`)
+        .addField('Mantimentos', `🐟 ${peixes} Peixes\n🪱 ${iscas} Iscas\n🥤 ${agua} Água\n🎟️ ${fichas} Fichas\n🍤 ${camarao} Camarões\n🦴 ${ossos} Ossos\n🪵 ${madeira} Madeiras\n🍎 ${apple} Maça\n🪨 ${minerio} Minérios\n💎 ${diamond} Diamantes`)
 
     await message.inlineReply(Embed)
 }

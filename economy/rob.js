@@ -86,7 +86,7 @@ exports.run = async (client, message, args) => {
                 let moneyEmbed = new Discord.MessageEmbed()
                     .setColor("GREEN")
                     .setTitle(`🔫 Você roubou ${user.user.username} com sucesso!`)
-                    .setDescription(`${message.author} obeteve um lucro de ${amount}<:StarPoint:766794021128765469> com o roubo.`)
+                    .setDescription(`${message.author} obeteve um lucro de ${amount}<:StarPoint:766794021128765469>MPoints com o roubo.`)
 
                 message.inlineReply(moneyEmbed)
                 db.subtract(`money_${user.id}`, amount)
