@@ -14,13 +14,16 @@ exports.run = async (client, message, args) => {
   await message.inlineReply(embed).then(msg => {
     msg.react('❌').catch(err => { return }) // X
     msg.react('📨').catch(err => { return }) // Carta
-    setTimeout(function () { msg.reactions.removeAll().catch(err => { return })}, 30000)
+    setTimeout(function () { msg.reactions.removeAll().catch(err => { return }) }, 30000)
 
     msg.awaitReactions((reaction, member) => {
 
       if (reaction.emoji.name === '📨') { member.send(embed).catch(err => { return }) }
       if (message.author.id !== member.id) return
-      if (reaction.emoji.name === '❌') { msg.delete().catch(err => { return }) }
+      if (reaction.emoji.name === '❌') {
+        message.delete().catch(err => { return })
+        msg.delete().catch(err => { return })
+      }
 
     })
   })
