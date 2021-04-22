@@ -5,6 +5,10 @@ exports.run = async (client, message, args) => {
 
 	var member = message.mentions.users.first()
 
+	if (!args[0]) {
+		return message.inlineReply('Ei, me fala quem você quer convidar para sua familia.')
+	}
+
 	if (!member) {
 		return message.inlineReply('Ei, me fala quem você quer convidar para sua familia.')
 	}

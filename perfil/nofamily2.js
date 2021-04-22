@@ -9,18 +9,17 @@ exports.run = async (client, message, args) => {
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) { prefix = "-" }
 
-    var user = message.mentions.members.first()
+    let user = message.mentions.members.first()
 
     if (!args[0]) {
         return message.inlineReply('Marque o seu familiar `' + prefix + 'nofamily2 @Familiar`')
     }
 
-    var par = user.id === db.get(`family2_${message.author.id}`)
-    if (!par) {
-        return message.inlineReply(`${user} não é a pessoa que você está em um relacionamento.`)
+    if (user.id !== db.get(`family2_${message.author.id}`)) {
+        return message.inlineReply(`${user} não é seu familiar na posição 2.`)
     }
 
     await db.delete(`family2_${db.get(`family2_${message.author.id}`)}`)
     await db.delete(`family2_${message.author.id}`)
-    await message.inlineReply(`Você se separou de sua familia! Você não tem mais parentesco com ${user}.`)
+    await message.inlineReply(`Você não tem mais parentesco com ${user}.`)
 }

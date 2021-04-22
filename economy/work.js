@@ -25,11 +25,13 @@ exports.run = async (client, message, args) => {
              
             return message.inlineReply(`Você pode trabalhar novamente em ${time.minutes}m e ${time.seconds}s`)
         } else {
-            let amount = Math.floor(Math.random() * 800) + 1;
+            let amount = 33
+            let amountxp = 150
             db.add(`money_${message.author.id}`, amount)
+            db.add(`xp_${message.author.id}`, amountxp)
             db.set(`worked_${message.author.id}`, Date.now())
 
-            return message.inlineReply(`Você trabalhou e ganhou ${amount} <:StarPoint:766794021128765469>MPoints`)
+            return message.inlineReply(`Você trabalhou e ganhou ${amount} <:StarPoint:766794021128765469>MPoints e ${amountxp} XP`)
         }
     }
 }

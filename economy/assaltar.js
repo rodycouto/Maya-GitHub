@@ -4,6 +4,7 @@ const ms = require('parse-ms')
 
 exports.run = async (client, message, args) => {
 
+    return message.inlineReply('Comando fechado para reforma.\n \nAdição: Ferimento, prisão')
     let timeout1 = 6140000
     let author1 = await db.fetch(`pego_${message.author.id}`)
 
@@ -25,7 +26,7 @@ exports.run = async (client, message, args) => {
             var noargs = new Discord.MessageEmbed()
                 .setColor('BLUE')
                 .setTitle('Comando Assaltar')
-                .setDescription('O comando assaltar te garante 100% do dinheiro que o @user tem na carteira.\n \nCaso a pessoa que você assaltar também tenha uma arma, você tem a chance de ser assaltado de volta.')
+                .setDescription('O comando assaltar te garante 100% do dinheiro que o @user tem na carteira.\n \nCaso a pessoa que você assaltar também tenha uma arma, você tem a chance de ser assaltado de volta, preso, se ferir e perder dinheiro do próprio banco para tratamento.')
                 .addField('Item Obrigatório', '🔫 Arma')
             return message.inlineReply(noargs)
         }

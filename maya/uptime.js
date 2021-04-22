@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
 
     var duration = moment.duration(client.ontime)
     let u = convertMS(client.uptime)
-    let ontime = `**${u.h}**` + " Hora(s) " + `**${u.m}**` + " Minutos, " + `**${u.s}**` + " Segundos"
+    let ontime = `**${u.d}**` + " Dia(s) " + `**${u.h}**` + " Hora(s) " + `**${u.m}**` + " Minutos, " + `**${u.s}**` + " Segundos"
 
     message.inlineReply(`⏱️ Eu estou acordada a: ${ontime}`)
 

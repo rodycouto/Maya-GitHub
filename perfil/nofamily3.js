@@ -1,7 +1,7 @@
 const db = require("quick.db")
 
 exports.run = async (client, message, args) => {
- 
+
 
     if (!db.get(`family3_${message.author.id}`)) {
         return message.inlineReply("Você não tem um familiar nesta posição...")
@@ -10,15 +10,14 @@ exports.run = async (client, message, args) => {
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) { prefix = "-" }
 
-    var user = message.mentions.members.first()
+    let user = message.mentions.members.first()
 
     if (!args[0]) {
         return message.inlineReply('Marque o seu familiar `' + prefix + 'nofamily3 @Familiar`')
     }
 
-    var par = user.id === db.get(`family3_${message.author.id}`)
-    if (!par) {
-        return message.inlineReply(`${user} não é a pessoa que você está em um relacionamento.`)
+    if (user.id !== db.get(`family3_${message.author.id}`)) {
+        return message.inlineReply(`${user} não é seu familiar na posição 3.`)
     }
 
     await db.delete(`family3_${db.get(`family3_${message.author.id}`)}`)

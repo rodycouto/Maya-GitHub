@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
         .addFields(
             {
                 name: 'Disponiveis',
-                value: '🛡️ `Escudo` (Em Breve)\n🎣 `Vara de Pesca` 5.000 <:StarPoint:766794021128765469>MPoints\n🔫 `Arma` 100.000 <:StarPoint:766794021128765469>MPoints\n⛏️ `Picareta` 350 <:StarPoint:766794021128765469>MPoints\n🪓 `Machado` 400 <:StarPoint:766794021128765469>MPoints\n🎟️ `Fichas` 200 <:StarPoint:766794021128765469>MPoints\n💌 `Carta de Amor` 1000 <:StarPoint:766794021128765469>MPoints\n🪱 `Isca` 10 <:StarPoint:766794021128765469>MPoints\n🥤 `Água` 10 <:StarPoint:766794021128765469>MPoints'
+                value: '🛡️ `Escudo` (Em Breve)\n🎣 `Vara de Pesca` 140 <:StarPoint:766794021128765469>MPoints\n🔫 `Arma` 4.000 <:StarPoint:766794021128765469>MPoints\n⛏️ `Picareta` 85 <:StarPoint:766794021128765469>MPoints\n🪓 `Machado` 35 <:StarPoint:766794021128765469>MPoints\n🎫 `Ticket Loteria` 10 <:StarPoint:766794021128765469>MPoints\n🎟️ `Fichas` 2 <:StarPoint:766794021128765469>MPoints\n💌 `Carta de Amor` 1 <:StarPoint:766794021128765469>MPoints\n🪱 `Isca` 1 <:StarPoint:766794021128765469>MPoints\n🥤 `Água` 1 <:StarPoint:766794021128765469>MPoints'
             },
             {
                 name: 'Jogos',
@@ -25,13 +25,13 @@ exports.run = async (client, message, args) => {
             },
             {
                 name: 'Perfil',
-                value: '<:starM:832974891635572787> `Estrela` (Em breve)\n🔰 `Título` 10.000.000<:StarPoint:766794021128765469>MPoints'
+                value: '<:starM:832974891635572787> `Estrela` 500.000 <:StarPoint:766794021128765469>MPoints\n<:starM:832974891635572787><:starM:832974891635572787> `Estrelas` 1.000.000 <:StarPoint:766794021128765469>MPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrelas` 2.000.000 <:StarPoint:766794021128765469>MPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrelas` 4.000.000 <:StarPoint:766794021128765469>MPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrelas` 10.000.000 <:StarPoint:766794021128765469>MPoints\n🔰 `Título` 10.000<:StarPoint:766794021128765469>MPoints'
             },
             {
                 name: 'Itens Coletaveis',
                 value: '🍤 `Camarões` - Baú do Tesouro (Pesca)\n🐟 `Peixes` - Baú do Tesouro (Pesca)\n🪵 `Madeira` - Florestamento\n🍎 `Maça` - Florestamento\n🦴 `Ossos` Mineração\n🪨 `Minérios` - Mineração\n💎 `Diamantes` - Mineração'
             }
         )
-        .setFooter(`${prefix}buy Item`)
+        .setFooter(`${prefix}buy Item | ${prefix}itens (em breve)`)
     return message.inlineReply(loja)
 }

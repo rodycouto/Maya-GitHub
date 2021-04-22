@@ -29,7 +29,7 @@ exports.run = async (client, message, args) => {
 
                     var winlose = ['win', 'lose']
                     var result = winlose[Math.floor(Math.random() * winlose.length)]
-                    var din = Math.floor(Math.random() * 400) + 1
+                    var din = Math.floor(Math.random() * 200) + 1
 
                     if (result === "win") {
                         db.add(`money_${message.author.id}`, din)
