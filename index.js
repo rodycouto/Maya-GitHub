@@ -21,13 +21,13 @@ client.on("message", async (message) => {
     if (message.author.bot) return // no bots
     if (message.channel.type == "dm") {
 
-        const dmEmbed = new Discord.MessageEmbed()
+        var dmEmbed = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('💬 Nova mensagem no privado')
             .setDescription(`**Usuário:** ${message.author.tag}\n:id: ${message.author.id}\n \n` + '**Conteúdo** ```' + `${message.content}` + '```')
             .setTimestamp()
 
-        const canal = client.channels.cache.get('831154821204803634')
+        var canal = client.channels.cache.get('831154821204803634')
         if (!canal) {
             return
         } else {
@@ -35,6 +35,14 @@ client.on("message", async (message) => {
         }
     }
     xp(message)
+
+    let prefix = db.get(`prefix_${message.guild.id}`)
+    if (prefix === null) { prefix = "-" }
+    
+    if (message.content.startsWith('<')) {
+        if (message.content.endsWith('>'))
+        if (message.mentions.has(client.user.id)) { return message.inlineReply('Prefixo atual: `' + prefix + '` | `' + prefix + 'help`').then(msg => msg.delete({ timeout: 5000 })).catch(err => { return }) }
+    }
 
     if (!message.member.hasPermission("ADMINISTRATOR")) {
         if (db.get(`nolink_${message.guild.id}`)) {
@@ -44,9 +52,6 @@ client.on("message", async (message) => {
             }
         }
     }
-
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if (prefix === null) { prefix = "-" }
 
     if (db.get(`afk_${message.author.id}+${message.guild.id}`)) {
         db.delete(`afk_${message.author.id}+${message.guild.id}`)
@@ -60,12 +65,12 @@ client.on("message", async (message) => {
 
     if (message.mentions.members.first()) {
         if (db.get(`afk_${message.mentions.members.first().id}+${message.mentions.members.first().id}`)) { // AFK Sistema Global
-            const off = new Discord.MessageEmbed()
+            var off = new Discord.MessageEmbed()
                 .setColor('#B98823')
                 .setDescription('```fix\n' + `${db.get(`afk_${message.mentions.members.first().id}+${message.mentions.members.first().id}`)}` + '```')
             message.inlineReply(`🔇 ${message.mentions.members.first().user.username} está offline.`, off).then(msg => msg.delete({ timeout: 8000 })).catch(err => { return })
         } else if (db.get(`afk_${message.mentions.members.first().id}+${message.guild.id}`)) { // AFK Sistema Servidor
-            const off = new Discord.MessageEmbed()
+            var off = new Discord.MessageEmbed()
                 .setColor('#B98823')
                 .setDescription('```fix\n' + `${db.get(`afk_${message.mentions.members.first().id}+${message.guild.id}`)}` + '```')
             message.inlineReply(`🔇 ${message.mentions.members.first().user.username} está offline.`, off).then(msg => msg.delete({ timeout: 8000 })).catch(err => { return })
@@ -73,8 +78,8 @@ client.on("message", async (message) => {
     }
 
     if (!message.content.startsWith(prefix)) return
-    const args = message.content.slice(prefix.length).trim().split(/ +/g)
-    const command = args.shift().toLowerCase()
+    var args = message.content.slice(prefix.length).trim().split(/ +/g)
+    var command = args.shift().toLowerCase()
 
     if (db.get(`blacklist_${message.author.id}`)) {
         message.delete()
@@ -113,6 +118,7 @@ client.on("message", async (message) => {
 
     if (message.content.startsWith(`${prefix}check`)) { message.react("✅") }
     if (message.content.startsWith(`${prefix}inline`)) { return message.inlineReply("✅ Inline Reply funcionando corretamente") }
+
     try {
         const commandFile = require(`./afksystem/${command}.js`)
         return commandFile.run(client, message, args)
@@ -258,32 +264,23 @@ client.on("ready", () => {
     setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]}`, { type: "WATCHING" }), 7000)
 })
 
-client.on("message", async (message) => {
-    if (db.get(`prefix_${message.guild.id}`) === null) { prefix = "-" }
-    if (message.author.bot) return
-    if (message.channel.type == "dm") return
-    if (!message.content.startsWith('<')) return
-    if (!message.content.endsWith('>')) return
-    if (message.mentions.has(client.user.id)) { return message.inlineReply('Prefixo atual: `' + prefix + '` | `' + prefix + 'help`').then(msg => msg.delete({ timeout: 5000 })).catch(err => { return }) }
-})
-
 client.on('guildCreate', guild => {
-    const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
+    let channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
     var helpgit = 'https://github.com/rodycouto/MayaCommands/blob/main/README.md'
 
-    const newguild = new Discord.MessageEmbed()
+    var newguild = new Discord.MessageEmbed()
         .setColor('BLUE')
         .setTitle('Meu prefixo padrão é `-`')
         .setDescription(`:tools: [Lista de comandos](${helpgit}) | Comece com -config`)
     channel.send('**Oooopa, chegueeei!**', newguild)
 
-    const NewGuildEmbed = new Discord.MessageEmbed()
+    var NewGuildEmbed = new Discord.MessageEmbed()
         .setColor('GREEN')
         .setTitle('💬 Novo servidor')
         .setDescription(`**Servidor:** ${guild.name}\n:id: ${guild.id}\n**Membros:** ${guild.memberCount}\n🌐 **Shard** ${client.guilds.cache.size}`)
         .setTimestamp()
 
-    const canal = client.channels.cache.get('831663336776400957')
+    var canal = client.channels.cache.get('831663336776400957')
     if (!canal) {
         return
     } else {
@@ -292,13 +289,13 @@ client.on('guildCreate', guild => {
 })
 
 client.on('guildDelete', guild => {
-    const NewGuildEmbed = new Discord.MessageEmbed()
+    var NewGuildEmbed = new Discord.MessageEmbed()
         .setColor('#FF0000')
         .setTitle('💬 Um servidor me removeu')
         .setDescription(`**Servidor:** ${guild.name}\n:id: ${guild.id}\n🌐 **Shard** ${client.guilds.cache.size}`)
         .setTimestamp()
 
-    const canal = client.channels.cache.get('831663336776400957')
+    var canal = client.channels.cache.get('831663336776400957')
     if (!canal) {
         return
     } else {
@@ -307,7 +304,7 @@ client.on('guildDelete', guild => {
 })
 
 client.once("ready", () => {
-    const envi = client.channels.cache.get('830964037461344296')
+    var envi = client.channels.cache.get('830964037461344296')
     console.log(`Loguei com sucesso!`)
 
     if (!envi) {

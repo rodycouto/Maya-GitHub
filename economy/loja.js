@@ -32,6 +32,6 @@ exports.run = async (client, message, args) => {
                 value: '🍤 `Camarões` - Baú do Tesouro (Pesca)\n🐟 `Peixes` - Baú do Tesouro (Pesca)\n🪵 `Madeira` - Florestamento\n🍎 `Maça` - Florestamento\n🦴 `Ossos` Mineração\n🪨 `Minérios` - Mineração\n💎 `Diamantes` - Mineração'
             }
         )
-        .setFooter(`${prefix}buy Item | ${prefix}itens (em breve)`)
+        .setFooter(`${prefix}buy | ${prefix}itens`)
     return message.inlineReply(loja)
 }

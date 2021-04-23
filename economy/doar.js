@@ -41,7 +41,7 @@ exports.run = async (client, message, args) => {
         var confirm2 = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('Confirmação...')
-            .setDescription(`Confirmar transação no valor de ${args[0]}<:StarPoint:766794021128765469>MPoints para ${user}?`)
+            .setDescription(`Confirmar transação no valor de ${args[1]}<:StarPoint:766794021128765469>MPoints para ${user}?`)
 
         if (['all', 'tudo'].includes(args[1])) {
 

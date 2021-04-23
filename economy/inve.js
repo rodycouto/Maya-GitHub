@@ -87,6 +87,11 @@ exports.run = async (client, message, args) => {
     if (loli === null) { loli = "" }
     if (!db.get(`loli_${user.id}`)) { loli = "" }
 
+    let cachorro = db.get(`cachorro_${user.id}`)
+    if (cachorro) { cachorro = "\n🐶 Cachorro" }
+    if (cachorro === null) { cachorro = "\n🐶 Cachorro *(Em Breve)*" }
+    if (!db.get(`cachorro_${user.id}`)) { cachorro = "\n🐶 Cachorro *(Em Breve)*" }
+
     let fossil = db.get(`fossil_${user.id}`)
     if (fossil) { fossil = "\n<:fossil:831859111578173450> Fossil" }
     if (fossil === null) { fossil = "" }
@@ -109,7 +114,7 @@ exports.run = async (client, message, args) => {
         .setColor('BLUE')
         .setTitle(`📖 **Inventário de ${user.user.username}**`)
         .addField('Itens Comprados', `${nada}${arma}${picareta}${vara}${machado}${cartas}`)
-        .addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}`)
+        .addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}${cachorro}`)
         .addField('Mantimentos', `🐟 ${peixes} Peixes\n🪱 ${iscas} Iscas\n🥤 ${agua} Água\n🎟️ ${fichas} Fichas\n🍤 ${camarao} Camarões\n🦴 ${ossos} Ossos\n🪵 ${madeira} Madeiras\n🍎 ${apple} Maça\n🪨 ${minerio} Minérios\n💎 ${diamond} Diamantes`)
 
     await message.inlineReply(Embed)

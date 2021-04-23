@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const db = require('quick.db')
+const ms = require('parse-ms')
 
 exports.run = async (client, message, args) => {
 
@@ -15,7 +16,7 @@ exports.run = async (client, message, args) => {
         var presomax = new Discord.MessageEmbed()
             .setColor('#FF0000')
             .setTitle('🚨 Você está em prisão máxima!')
-            .setDescription('`Liberdade em: ' + `${time.minutes}` + 'm e ' + `${time.seconds}` + 's`')
+            .setDescription(`Liberdade em: ${time.minutes}m e ${time.seconds}s`)
 
         return message.inlineReply(presomax)
     } else {

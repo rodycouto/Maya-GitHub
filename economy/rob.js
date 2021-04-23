@@ -4,6 +4,16 @@ const ms = require('parse-ms')
 
 exports.run = async (client, message, args) => {
 
+    let prefix = db.get(`prefix_${message.guild.id}`)
+    if (prefix === null) prefix = "-"
+
+    var formato = '`' + prefix + 'rob @user`'
+    let user = message.mentions.members.first()
+    let usermoney = db.get(`mpoints_${user.id}`)
+    let autormoney = db.get(`mpoints_${message.author.id}`)
+    if (usermoney == null) usermoney = 0
+    if (autormoney == null) autormoney = 0
+
     let timeout1 = 6140000
     let author1 = await db.fetch(`pego_${message.author.id}`)
 
@@ -13,52 +23,12 @@ exports.run = async (client, message, args) => {
         var presomax = new Discord.MessageEmbed()
             .setColor('#FF0000')
             .setTitle('🚨 Você está em prisão máxima!')
-            .setDescription('`Liberdade em: ' + `${time.minutes}` + 'm e ' + `${time.seconds}` + 's`')
+            .setDescription(`Liberdade em: ${time.minutes}m e ${time.seconds}s`)
 
         return message.inlineReply(presomax)
     } else {
 
-        let prefix = db.get(`prefix_${message.guild.id}`)
-        if (prefix === null) prefix = "-"
-
-        let user = message.mentions.members.first()
-        if (!user) {
-            var nook = new Discord.MessageEmbed()
-                .setColor('#FF0000')
-                .setTitle('Siga o formato correto')
-                .setDescription('`' + prefix + 'rob @user`')
-            return message.inlineReply(nook)
-        }
-
-        if (user.id == '821471191578574888') {
-            return message.inlineReply('Você realmente quer me roubar? Tá doido é? Vou te quebrar no meio.')
-        }
-
-        if (user.id == message.author.id) {
-            return message.inlineReply(`Você não pode roubar você mesmo.`)
-        }
-
-        var usermoney = db.get(`mpoints_${user.id}`)
-        if (usermoney == null) usermoney = 0
-
-        var autormoney = db.get(`mpoints_${message.author.id}`)
-        if (autormoney == null) autormoney = 0
-
-        if (usermoney <= 0) {
-            var nomoney = new Discord.MessageEmbed()
-                .setColor('#FF0000')
-                .setTitle(`${user.user.username} não possui dinheiro.`)
-            return message.inlineReply(nomoney)
-        }
-
-        if (usermoney < 0) {
-            var nomoney = new Discord.MessageEmbed()
-                .setColor('#FF0000')
-                .setTitle(`${user.user.username} não possui dinheiro.`)
-            return message.inlineReply(nomoney)
-        }
-
-        var timeout = 6040000
+        var timeout = 6000000
         var daily = db.get(`robtime_${message.author.id}`)
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
             let time = ms(timeout - (Date.now() - daily))
@@ -69,29 +39,37 @@ exports.run = async (client, message, args) => {
             return message.inlineReply(embedtime)
         } else {
 
+            if (!user) { return message.inlineReply(formato) }
+            if (user.id === '821471191578574888') { return message.inlineReply('❓ Você realmente quer me roubar?') }
+            if (user.id === message.author.id) { return message.inlineReply(`:x: Você não pode roubar você mesmo.`) }
+            if (usermoney === 0) { return message.inlineReply(`:x: ${user.user.username} não possui dinheiro.`) }
+            if (usermoney < 0) { return message.inlineReply(`:x: ${user.user.username} está negativado.`) }
+
             var luck = ['win', 'lose']
             var result = luck[Math.floor(Math.random() * luck.length)]
+            var amount = Math.floor(Math.random() * 1000) + 1
+            var amount1 = Math.floor(Math.random() * usermoney) + 1
+
+            var LoseEmbed = new Discord.MessageEmbed()
+                .setColor('#FF0000')
+                .setTitle("🚨 A polícia te pegou e você foi preso!")
+                .setDescription(`A fiança custou ${amount}<:StarPoint:766794021128765469>MPoints`)
+
+            var WinEmbed = new Discord.MessageEmbed()
+                .setColor("GREEN")
+                .setTitle(`🔫 Você roubou ${user.user.username} com sucesso!`)
+                .setDescription(`${message.author} obteve um lucro de ${amount1}<:StarPoint:766794021128765469>MPoints com o roubo.`)
 
             if (result == 'lose') {
-                var amount = Math.floor(Math.random() * 1000) + 1
-                var embed1 = new Discord.MessageEmbed()
-                    .setColor('#FF0000')
-                    .setTitle("🚨 A polícia te pegou e você foi preso!")
-                    .setDescription(`A fiança custou ${amount}<:StarPoint:766794021128765469>`)
-                message.inlineReply(embed1)
                 db.subtract(`mpoints_${message.author.id}`, amount)
+                db.add(`mpoints_${client.user.id}`, amount)
                 db.set(`robtime_${message.author.id}`, Date.now())
+                message.inlineReply(LoseEmbed)
             } else if (result == 'win') {
-                let amount = Math.floor(Math.random() * usermoney) + 1
-                let moneyEmbed = new Discord.MessageEmbed()
-                    .setColor("GREEN")
-                    .setTitle(`🔫 Você roubou ${user.user.username} com sucesso!`)
-                    .setDescription(`${message.author} obeteve um lucro de ${amount}<:StarPoint:766794021128765469>MPoints com o roubo.`)
-
-                message.inlineReply(moneyEmbed)
-                db.subtract(`mpoints_${user.id}`, amount)
-                db.add(`mpoints_${message.author.id}`, amount)
+                db.subtract(`mpoints_${user.id}`, amount1)
+                db.add(`mpoints_${message.author.id}`, amount1)
                 db.set(`robtime_${message.author.id}`, Date.now())
+                message.inlineReply(WinEmbed)
             }
         }
     }

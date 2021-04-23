@@ -3,7 +3,7 @@ const db = require('quick.db')
 const ms = require('parse-ms')
 
 exports.run = async (client, message, args) => {
-return message.inlineReply('Comando fechado para reajuste nos valores.')
+
     // 🏠 1  Casa - 🏦 2 Mansão - 🏛️ 3 Prefeitura - 🏣 4 Cartório - 📨 5 Correios - 💍 6 Joaleria - 🏢 7 Shopping - 🏭 8 Fabrica - 🏩 9 Motel - 🪙 10 Banco
 
     let user = message.author

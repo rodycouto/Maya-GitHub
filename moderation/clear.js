@@ -1,6 +1,8 @@
 const Discord = require("discord.js")
+const db = require('quick.db')
 
 exports.run = async (client, message, args) => {
+  message.delete().catch(err => { return })
 
   if (!message.member.permissions.has("MANAGE_MESSAGES")) {
     var perms = new Discord.MessageEmbed()
@@ -15,7 +17,7 @@ exports.run = async (client, message, args) => {
       .setTitle('Eu preciso da permissão "Manusear Mensagens" para utilizar esta função.')
     return message.channel.send(adm)
   }
-  
+
   var clearembed = new Discord.MessageEmbed()
     .setColor("BLUE")
     .setTitle("🧹 Comando Clear 🧹")
@@ -27,18 +29,15 @@ exports.run = async (client, message, args) => {
       }
     )
 
-  if (!args[0]) {
-    return message.inlineReply(clearembed).catch(err => { return })
-  }
+  if (!args[0]) { return message.inlineReply(clearembed).catch(err => { return }) }
 
   if (message.mentions.members.first()) {
     let amountToDelete = args[1]
 
-    if (!args[1]) {
-      return message.inlineReply('`clear @user` Quantidade de mensagens para apagar. Máx: 100')
-    }
-
+    if (!args[1]) { return message.inlineReply('`' + prefix + 'clear @user Quantidade` Máx: 100') }
+    if (isNaN(args[1])) { return message.inlineReply('`' + prefix + 'clear @user Quantidade` Máx: 100') }
     if (args[1] > 100) return message.channel.send('Me fala um número até 100, ok?')
+
     let userMessages = await message.channel.messages.fetch({ limit: parseInt(amountToDelete) })
     let userFilter = userMessages.filter(obj => obj.author.id === message.mentions.users.first().id)
 
@@ -51,21 +50,18 @@ exports.run = async (client, message, args) => {
     let botFilter = awaitBotMessages.filter(obj => obj.author.bot)
 
     message.channel.bulkDelete(botFilter).catch(err => { return })
-    message.channel.send('Feito. | Mensagens acima de 14 dias não podem ser apagadas. (Limitações do Discord)').then(msg => msg.delete({ timeout: 5000 })).catch(err => { return })
+    return message.channel.send('Feito. | Mensagens acima de 14 dias não podem ser apagadas. (Limitações do Discord)').then(msg => msg.delete({ timeout: 5000 })).catch(err => { return })
 
-    return
   }
 
   if (['images', "imagens", "fotos", "foto", "imagem", "midia"].includes(args[0])) {
     let awaitImageMessages = await message.channel.messages.fetch({ limit: 100 })
-    if (args[1] > 100) {
-      return message.channel.send('O número de mensagens não pode passar de 100.')
-    }
+    if (args[1] > 100) { return message.channel.send('O número de mensagens não pode passar de 100.') }
     let imageFilter = awaitImageMessages.filter(obj => obj.attachments.size > 0)
 
     message.channel.bulkDelete(imageFilter).catch(err => { return })
-    message.channel.send('Feito. | Mensagens acima de 14 dias não podem ser apagadas. (Limitações do Discord)').then(msg => msg.delete({ timeout: 5000 })).catch(err => { return })
-    return
+    return message.channel.send('Feito. | Mensagens acima de 14 dias não podem ser apagadas. (Limitações do Discord)').then(msg => msg.delete({ timeout: 5000 })).catch(err => { return })
+
   }
 
   if (args[0] === "all") {
