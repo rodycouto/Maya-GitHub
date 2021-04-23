@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) { prefix = "-" }
 
-    if (args[1]) { return message.inlineReply('Por favor, digite apenas `' + prefix + 'roll`')}
+    if (args[1]) { return message.inlineReply('Por favor, digite apenas `' + prefix + 'dado`')}
 
     if (!args[0]) {
         var dados = new Discord.MessageEmbed()
