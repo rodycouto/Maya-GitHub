@@ -1,11 +1,9 @@
 const Discord = require('discord.js')
-const quiz = require('./quiz.json')
+const quiz = require('./onepiece.json')
 
 exports.run = async (client, message, args) => {
     var item = quiz[Math.floor(Math.random() * quiz.length)]
-    var filter = response => {
-        return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase())
-    }
+    var filter = response => { return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase()) }
 
     var pergunta = new Discord.MessageEmbed()
         .setColor('#DCDCDC')
@@ -13,7 +11,7 @@ exports.run = async (client, message, args) => {
         .setFooter('Responda em até 15 segundos.')
 
     var quiztime = new Discord.MessageEmbed()
-        .setColor('#DCDCDC')
+        .setColor('GRAY')
         .setTitle(`MAYA QUIZ TIME!`)
         .setDescription('Prepare-se! Você tem apenas 15 segundos.')
 

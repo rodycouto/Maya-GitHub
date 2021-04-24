@@ -201,7 +201,7 @@ exports.run = async (client, message, args) => {
             .setColor('BLUE')
             .setTitle('✍️ Você é inteligente?')
             .setDescription('Aqui você pode responder perguntas ou não responder né?')
-            .addField('• Comandos Online', '`' + prefix + 'quiz`\n' + '`' + prefix + 'quiznaruto`')
+            .addField('• Comandos Online', '`' + prefix + 'quiz`\n' + '`' + prefix + 'quiznaruto`\n' + '`' + prefix + 'quizonepiece/op`')
             .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
             .setFooter('• Comandos em construção: (54)')
         return message.inlineReply(embed)
