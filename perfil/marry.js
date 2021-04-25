@@ -3,8 +3,8 @@ const db = require('quick.db')
 
 exports.run = async (client, message, args) => {
 
-	var user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member || message.mentions.users.first()
-	var bot = user.bot
+	var member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member || message.mentions.users.first()
+	var bot = member.bot
 
 	let prefix = db.get(`prefix_${message.guild.id}`)
 	if (prefix === null) prefix = "-"
@@ -23,7 +23,7 @@ exports.run = async (client, message, args) => {
 		return message.inlineReply(noargs)
 	}
 
-	var level = await db.get(`level_${user.id}`)
+	var level = await db.get(`level_${member.id}`)
 	if (level === null) level = 0
 
 	if (level < 10) {
@@ -34,19 +34,19 @@ exports.run = async (client, message, args) => {
 	}
 
 	if (db.get(`marry_${message.author.id}`)) { return message.inlineReply(":x: Você já está em um relacionamento sério, o que você quer por aqui?") }
-	if (db.get(`marry_${user.id}`)) { return message.inlineReply(`:x: ${user} está em um relacionamento.`) }
-	if (!user) { return message.inlineReply(':question: Por favor mencione alguém para se casar.') }
-	if (user.id === '821471191578574888') { return message.inlineReply('É... Não sei se meu pai me deixaria casar contigo. Acho melhor a gente ser apenas amigos. :)') }
+	if (db.get(`marry_${member.id}`)) { return message.inlineReply(`:x: ${member} está em um relacionamento.`) }
+	if (!member) { return message.inlineReply(':question: Por favor mencione alguém para se casar.') }
+	if (member.id === '821471191578574888') { return message.inlineReply('É... Não sei se meu pai me deixaria casar contigo. Acho melhor a gente ser apenas amigos. :)') }
 
 	if (bot) { return message.inlineReply('Você não pode se casar com um bot.') }
 
-	if (user.id === message.author.id) { return message.inlineReply('Você não pode se casar com você mesmo.') }
+	if (member.id === message.author.id) { return message.inlineReply('Você não pode se casar com você mesmo.') }
 
 	let gif = 'https://imgur.com/Ush7ZDy.gif'
 	let casar = new Discord.MessageEmbed()
 		.setColor('BLUE')
 		.setTitle('💍Novo Pedido de Casamento💍')
-		.setDescription(`${message.author.username} está pedindo a mão de ${user.username} em casamento.\n\n${user}, você aceita se casar com ${message.author}?`)
+		.setDescription(`${message.author.username} está pedindo a mão de ${member.username} em casamento.\n\n${member}, você aceita se casar com ${message.author}?`)
 		.setThumbnail(gif)
 		.setFooter('Clique no anel para aceitar o pedido de casamento.')
 
@@ -54,20 +54,20 @@ exports.run = async (client, message, args) => {
 		msg.react('💍')
 
 		let reactions = (reaction, user) =>
-			reaction.emoji.name === '💍' && user.id === user.id
+			reaction.emoji.name === '💍' && user.id === member.id
 
 		let coletor = msg.createReactionCollector(reactions)
 
 		coletor.on('collect', cp => {
 			msg.delete().catch(err => { return })
 
-			db.set(`marry_${message.author.id}`, user.id)
-			db.set(`marry_${user.id}`, message.author.id)
+			db.set(`marry_${message.author.id}`, member.id)
+			db.set(`marry_${member.id}`, message.author.id)
 
 			let casados = new Discord.MessageEmbed()
 				.setColor('BLUE')
 				.setTitle(':heart: Um novo casal acaba de se formar :heart:')
-				.setDescription(`${user} aceitou o pedido de casamento de ${message.author}`)
+				.setDescription(`${member} aceitou o pedido de casamento de ${message.author}`)
 			message.channel.send(casados)
 		})
 	})
