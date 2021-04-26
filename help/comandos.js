@@ -4,7 +4,7 @@ const db = require('quick.db')
 exports.run = async (client, message, args) => {
 
   var linkgithub = 'https://github.com/rodycouto/MayaCommands/blob/main/README.md'
-  var linksupport = 'https://forms.gle/vtJ5qBqFDd9rL5JU8'
+  var linksupport = 'https://discord.gg/TC26m4ZRV3'
   var linkservidor = 'https://discord.gg/YpFWgJuuUV'
   var mercadopago = 'https://mpago.la/2jYiNDg'
   var invitebot = 'https://discord.com/api/oauth2/authorize?client_id=821471191578574888&permissions=8&scope=bot'
@@ -16,10 +16,9 @@ exports.run = async (client, message, args) => {
       .setColor('#CD853F')
       .setTitle('⭐ Centralzinha de Ajuda da Maya ⭐')
       .setDescription('Use `' + `${prefix}comandos categoria` + '` para as pastas de comandos')
-      .addField('Acesso rápido', `:tools: [Lista de Comandos](${linkgithub})\n☎️ [Suporte](${linksupport})\n🧩 [Meu servidor](${linkservidor})\n:heart: [Me adicione](${invitebot})`)
-      .addField('Me ajude a ficar online', `<a:MoneyWings:834899137991540797> [Doar R$1,00](${mercadopago})`, true)
-      .addField('💰 Loteria Maya', `Prêmio Atual: ${db.get('loteria')} <:StarPoint:766794021128765469>MPoints`, true)
-      .setFooter(`${prefix}gif | ${prefix}ideiamaya`)
+      .addField('Acesso rápido', `<a:engrenagem:836101651331940383> [Lista de Comandos](${linkgithub})\n<a:support:836302810495713301> [Suporte](${linksupport})\n<a:pin:836305960385249280> [Meu servidor](${linkservidor})\n<a:setinha:836308178190729256> [Me adicione](${invitebot})`)
+      .addField('Me ajude a ficar online', `<a:MoneyWings:834899137991540797> [Doar R$1,00](${mercadopago})\n <a:moneyjump:836308674506129408> Loteria: ${db.get('loteria')} <:StarPoint:766794021128765469>MPoints`, true)
+      .setFooter(`${prefix}gif | ${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(`Heey! Tudo bem ${message.author}?`, newhelp)
   }
 
@@ -28,8 +27,7 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('📑 Todos os comandos sob categorias')
       .setDescription('❓ **O que são categorias?**\nCategorias são como caixas, dentro de cada caixa tem os comandos que a ela pertence.\n \nDentro de cada categoria, tem comandos disponiveis. Começe a explorar!')
-      .addField('• Categorias Disponiveis (17)', '`' + prefix + 'help afksystem`\n' + '`' + prefix + 'help animes`\n' + '`' + prefix + 'help commands`\n' + '`' + prefix + 'help discordjs`\n' + '`' + prefix + 'help economy`\n' + '`' + prefix + 'help games`\n' + '`' + prefix + 'help interação`\n' + '`' + prefix + 'help levelsystem`\n' + '`' + prefix + 'help maya`\n' + '`' + prefix + 'help moderation`\n' + '`' + prefix + 'help owner`\n' + '`' + prefix + 'help perfil`\n' + '`' + prefix + 'help personagens`\n' + '`' + prefix + 'help quiz`\n' + '`' + prefix + 'help random`\n' + '`' + prefix + 'help reações`')
-      .addField('• Categorias Privadas (2)', `:tools: [Lista de Comandos](${linkgithub})`)
+      .addField('• Categorias Disponiveis (17)', '`' + prefix + 'ajuda afksystem`\n' + '`' + prefix + 'ajuda animes`\n' + '`' + prefix + 'ajuda commands`\n' + '`' + prefix + 'ajuda discordjs`\n' + '`' + prefix + 'ajuda economy`\n' + '`' + prefix + 'ajuda games`\n' + '`' + prefix + 'ajuda interação`\n' + '`' + prefix + 'ajuda levelsystem`\n' + '`' + prefix + 'ajuda maya`\n' + '`' + prefix + 'ajuda moderation`\n' + '`' + prefix + 'ajuda owner`\n' + '`' + prefix + 'ajuda perfil`\n' + '`' + prefix + 'ajuda personagens`\n' + '`' + prefix + 'ajuda quiz`\n' + '`' + prefix + 'ajuda random`\n' + '`' + prefix + 'ajuda reações`\n' + `:tools: [Lista de Comandos](${linkgithub})`)
     return message.inlineReply(catego)
   }
 
@@ -57,21 +55,19 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('📺 Anime Place')
       .setDescription('Os comandos de animes da Maya ainda está sendo produzidos.')
-      .addField('• Comandos Online: (3)', '`' + prefix + 'ind` Indicações de Animes\n' + '`' + prefix + 'sao` Meu anime favorito\n' + '`' + prefix + 'kimetsu` no yaibaaaaa\n' + '`' + prefix + 'senpai` Meu senpai', true)
-      .addField('• Comandos Offline: (1)', `\n:tools: [Lista de Comandos](${linkgithub})`, true)
+      .addField('• Comandos Online:', '`' + prefix + 'ind` Indicações de Animes\n' + '`' + prefix + 'sao` Meu anime favorito\n' + '`' + prefix + 'kimetsu` no yaibaaaaa\n' + '`' + prefix + 'senpai` Meu senpai' + `\n:tools: [Lista de Comandos](${linkgithub})`, true)
+      .addField('• Categoria Recomendada', '`' + prefix + 'comandos personagens`', true)
       .addField('• Mande Gifs para os comandos', '`' + prefix + 'gif`', true)
-      .setFooter('Comandos em construção: (62)')
     return message.inlineReply(embed)
   }
 
   if (['comandos', 'commands'].includes(args[0])) {
     var embed1 = new Discord.MessageEmbed()
       .setColor('BLUE')
-      .setTitle('✅ Comandos livres para todos usarem')
+      .setTitle('<a:Check:836347816036663309> Comandos livres para todos usarem')
       .setDescription('Comandos presentes nesta lista, é disponivel para qualquer um usa-los')
-      .addField('• Comando Online: (21)', '<opicional> [obrigatório]\n \n' + '`' + prefix + 'avatar <@user>` Veja o avatar de alguém\n' + '`' + prefix + 'cal` Calculadora - BETA\n' + '`' + prefix + 'clima [Sua Cidade]` Veja o clima\n' + '`' + prefix + 'covid <Sua Cidade>` Status da Covid-19\n' + '`' + prefix + 'dono/owner` Dono do servidor\n' + '`' + prefix + 'id <@user>` Mostra o ID\n' + '`' + prefix + 'ideia/sugestao [sua ideia em diante]` Coloque suas ideias para votação\n' + '`' + prefix + 'imc [peso] [altura]` Indice de Massa Corporal - BETA\n' + '`' + prefix + 'invites` Convites do Servidor\n' + '`' + prefix + 'j/jokenpo <pedra> <papel> <tesoura>` Jokenpo\n' + '`' + prefix + 'report <@user> [Motivo e blá blá]` Denúncie os meliantes para os adms\n' + '`' + prefix + 'serverinfo` Informações do Servidor\n' + '`' + prefix + 'spotify <@user>` Veja que música alguém está escutando\n' + '`' + prefix + 't/translate <pt/en/fr> [Palavra/Texto]`\n' + '`' + prefix + 'user <@user>` Nome de usuário\n' + '`' + prefix + 'userinfo <@user>` Informações sobre alguém')
-      .addField('• Comandos Offline: (1)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .setFooter('Comandos em construção: (19)')
+      .addField('• Comando Online: (21)', '<opicional> [obrigatório]\n \n' + '`' + prefix + 'avatar <@user>` Veja o avatar de alguém\n' + '`' + prefix + 'cal` Calculadora - BETA\n' + '`' + prefix + 'clima [Sua Cidade]` Veja o clima\n' + '`' + prefix + 'covid <Sua Cidade>` Status da Covid-19\n' + '`' + prefix + 'dono/owner` Dono do servidor\n' + '`' + prefix + 'id <@user>` Mostra o ID\n' + '`' + prefix + 'ideia/sugestao [sua ideia em diante]` Coloque suas ideias para votação\n' + '`' + prefix + 'imc [peso] [altura]` Indice de Massa Corporal - BETA\n' + '`' + prefix + 'invites` Convites do Servidor\n' + '`' + prefix + 'j/jokenpo <pedra> <papel> <tesoura>` Jokenpo\n' + '`' + prefix + 'report <@user> [Motivo e blá blá]` Denúncie os meliantes para os adms\n' + '`' + prefix + 'serverinfo` Informações do Servidor\n' + '`' + prefix + 'spotify <@user>` Veja que música alguém está escutando\n' + '`' + prefix + 't/translate <pt/en/fr> [Palavra/Texto]`\n' + '`' + prefix + 'user <@user>` Nome de usuário\n' + '`' + prefix + 'userinfo <@user>` Informações sobre alguém\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed1)
   }
 
@@ -80,9 +76,8 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('👨‍💻 Maya GitHub - BETA COMMAND')
       .setDescription('Aqui você pode pegar os código que eu uso, siiim, eu sou open source e todos podem ajudar e copiar se quiser')
-      .addField('• Comandos Online: (4)', '`' + prefix + 'github` GitHub\n' + '`' + prefix + 'commandfile` Pegar comandos em pastas pela Index\n' + '`' + prefix + 'levelsystem` Sistema de Level\n' + '`' + prefix + 'random` resultado aleatório')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .setFooter('• Comandos em construção: (421)')
+      .addField('• Comandos Online:', '`' + prefix + 'github` GitHub\n' + '`' + prefix + 'commandfile` Pegar comandos em pastas pela Index\n' + '`' + prefix + 'levelsystem` Sistema de Level\n' + '`' + prefix + 'random` resultado aleatório\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -91,20 +86,18 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('🎮 Link para acesso rápido a jogos')
       .setDescription('Aqui você pode pegar os links de jogos e ir direto pra eles sem ter que ficar pesquisando no Google')
-      .addField('• Comandos Online: (31)', '`' + prefix + 'amongus`\n' + '`' + prefix + 'brawl`\n' + '`' + prefix + 'brawlhalla`\n' + '`' + prefix + 'brawlstars`\n' + '`' + prefix + 'clash/clashroyale`\n' + '`' + prefix + 'counterstrike/cs`\n' + '`' + prefix + 'ddtank`\n' + '`' + prefix + 'freefire/ff`\n' + '`' + prefix + 'gartic`\n' + '`' + prefix + 'genshinimpact/genshin`\n' + '`' + prefix + 'gta`\n' + '`' + prefix + 'habbo`\n' + '`' + prefix + 'leagueoflegends/lol`\n' + '`' + prefix + 'mario`\n' + '`' + prefix + 'mobilelegends/mbl`\n' + '`' + prefix + 'minecraft/mine`\n' + '`' + prefix + 'paladins`\n' + '`' + prefix + 'rocketleague`\n' + '`' + prefix + 'summoners`\n' + '`' + prefix + 'sumwar`\n' + '`' + prefix + 'transformice/tfm`\n' + '`' + prefix + 'uno`\n' + '`' + prefix + 'valorant`')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .setFooter('• Comandos em construção: (15)')
+      .addField('• Comandos Online:', '`' + prefix + 'amongus`\n' + '`' + prefix + 'brawl`\n' + '`' + prefix + 'brawlhalla`\n' + '`' + prefix + 'brawlstars`\n' + '`' + prefix + 'clash/clashroyale`\n' + '`' + prefix + 'counterstrike/cs`\n' + '`' + prefix + 'ddtank`\n' + '`' + prefix + 'freefire/ff`\n' + '`' + prefix + 'gartic`\n' + '`' + prefix + 'genshinimpact/genshin`\n' + '`' + prefix + 'gta`\n' + '`' + prefix + 'habbo`\n' + '`' + prefix + 'leagueoflegends/lol`\n' + '`' + prefix + 'mario`\n' + '`' + prefix + 'mobilelegends/mbl`\n' + '`' + prefix + 'minecraft/mine`\n' + '`' + prefix + 'paladins`\n' + '`' + prefix + 'rocketleague`\n' + '`' + prefix + 'summoners`\n' + '`' + prefix + 'sumwar`\n' + '`' + prefix + 'transformice/tfm`\n' + '`' + prefix + 'uno`\n' + '`' + prefix + 'valorant`\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
-  if (['help', 'h', 'ajuda'].includes(args[0])) {
+  if (['help', 'h', 'ajuda', 'comandos'].includes(args[0])) {
     var embed = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle('❓ Ué? Help no Help?')
-      .setDescription('Bom, vou deixar comandos do help aqui')
-      .addField('• Comandos Online: (9)', '`' + prefix + 'help`\n' + '`' + prefix + 'ajuda`\n' + '`' + prefix + 'h`\n' + '`' + prefix + 'thanks`\n' + '`' + prefix + 'bjhelp/blackjackhelp`')
-      .addField('• Comandos Offline: (0)',)
-      .setFooter('• Comandos em construção: (361)')
+      .setDescription('Bom, vou deixar comandos de ajuda aqui')
+      .addField('• Comandos Online:', '`' + prefix + 'comandos`\n' + '`' + prefix + 'ajuda`\n' + '`' + prefix + 'help`\n' + '`' + prefix + 'h`\n' + '`' + prefix + 'thanks`\n' + '`' + prefix + 'bjhelp/blackjackhelp`')
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -113,10 +106,8 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('💞 Comandos Interativos')
       .setDescription('Interaja com a galera com os melhores comandos e gifs incriveis')
-      .addField('• Comandos Online: (48)', 'Não cabe todos os comandos aqui, então você precisa acessar a lista de comandos.')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .addField('• Comandos em construção: (25)', 'Teve alguma ideia? `' + prefix + 'ideiamaya`')
-      .setFooter('Quase todos os comandos também estão disponiveis em inglês')
+      .addField('• Comandos Online:', `Não cabe todos os comandos aqui, então você precisa acessar a [lista de comandos](${linkgithub}).`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -125,9 +116,8 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('🌐 Level Global System')
       .setDescription(`O meu sistema de level é global. Se você não sabe o que quer dizer, você pode [ver aqui](${linkgithub}) sobre do que eu estou falando`)
-      .addField('• Comandos Online: (3)', '`' + prefix + 'level`\n' + '`' + prefix + 'dailyxp`\n' + '`' + prefix + 'rank xp`')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .setFooter('• Comandos em construção: (4)')
+      .addField('• Comandos Online:', '`' + prefix + 'level`\n' + '`' + prefix + 'dailyxp`\n' + '`' + prefix + 'rank xp`\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -136,20 +126,18 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('<:starM:832974891635572787> Meus comandos lindinhos')
       .setDescription(`Aqui tem alguns comandos ligados a mim`)
-      .addField('• Comandos Online', '`' + prefix + 'botinfo` Informações sobre mim\n' + '`' + prefix + 'carta <@user> [mensagem de amor]` Mande cartas romanticas\n' + '`' + prefix + 'inv/invite/convidar` Me convida pro servidor\n' + '`' + prefix + 'criarcomando [nome] [resposta]` Crie comando\n' + '`' + prefix + 'deletarcomando [nome]` Delete comandos criados\n' + '`' + prefix + 'dm/pv` Blocked\n' + '`' + prefix + 'gif` Mande gifs para seus gifs entrar nos meus comandos\n' + '`' + prefix + 'ideiamaya` Mande ideais diretamente pro servidor da Maya pra votação\n' + '`' + prefix + 'lockcommands` Trave meus comandos em canais especificos\n' + '`' + prefix + 'unlockcommands` Destrave meus comandos em canais bloqueados\n' + '`' + prefix + 'ping` Pong\n' + '`' + prefix + 'prefix` Informações sobre meu prefixo\n' + '`' + prefix + 'setprefix` Mude meu prefixo\n' + '`' + prefix + 'resetprefix` Reste meu prefixo pra (-)\n' + '`' + prefix + 'sup/support/suporte` Meu suporte\n' + '`' + prefix + 'uptime` Tempo que estou acordada\n')
-      .addField('• Comandos Offline', `:tools: [Lista de Comandos](${linkgithub})`)
-      .setFooter('• Comandos em construção: (34)')
+      .addField('• Comandos Online', '`' + prefix + 'botinfo` Informações sobre mim\n' + '`' + prefix + 'carta <@user> [mensagem de amor]` Mande cartas romanticas\n' + '`' + prefix + 'inv/invite/convidar` Me convida pro servidor\n' + '`' + prefix + 'criarcomando [nome] [resposta]` Crie comando\n' + '`' + prefix + 'deletarcomando [nome]` Delete comandos criados\n' + '`' + prefix + 'dm/pv` Blocked\n' + '`' + prefix + 'gif` Mande gifs para seus gifs entrar nos meus comandos\n' + '`' + prefix + 'ideiamaya` Mande ideais diretamente pro servidor da Maya pra votação\n' + '`' + prefix + 'lockcommands` Trave meus comandos em canais especificos\n' + '`' + prefix + 'unlockcommands` Destrave meus comandos em canais bloqueados\n' + '`' + prefix + 'ping` Pong\n' + '`' + prefix + 'prefix` Informações sobre meu prefixo\n' + '`' + prefix + 'setprefix` Mude meu prefixo\n' + '`' + prefix + 'resetprefix` Resete meu prefixo pra (-)\n' + '`' + prefix + 'sup/support/suporte` Meu suporte\n' + '`' + prefix + 'uptime` Tempo que estou acordada\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
   if (['moderation', 'moderação', 'mod', 'administração', 'adm', 'administration'].includes(args[0])) {
     var embed = new Discord.MessageEmbed()
       .setColor('BLUE')
-      .setTitle('⚙️Espaço para os Adms/Mods')
+      .setTitle('⚙️ Espaço para os Adms/Mods')
       .setDescription('Aqui você pode ver alguns dos meus comandos administrativos')
-      .addField('• Comandos Online: (63)', 'Não cabe todos os comandos aqui, então você precisa acessar a lista de comandos.')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .addField('• Comandos em construção: (11)', 'Teve alguma ideia? `' + prefix + 'ideiamaya`')
+      .addField('• Opss', `Não cabe todos os comandos aqui, então você precisa acessar a [lista de comandos](${linkgithub}).`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -157,10 +145,8 @@ exports.run = async (client, message, args) => {
     var embed = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle(':coin: Economia Global System')
-      .setDescription('Ganhe e perca dinheiro, tem coisa melhor?')
-      .addField('• Comandos Online: (54)', 'Não cabe todos os comandos aqui, então você precisa acessar a lista de comandos.')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .addField('• Comandos em construção: (51)', 'Teve alguma ideia? `' + prefix + 'ideiamaya`')
+      .addField('• Opss', `Não cabe todos os comandos aqui, então você precisa acessar a [lista de comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -168,9 +154,9 @@ exports.run = async (client, message, args) => {
     var ajuda = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle('💸 Comando Doar')
-      .setDescription('Doe MPoints pra galera, é simples e rápido!\n \n*MPoints perdidos não serão recuperados. Cuidado para não ser enganado*')
-      .addField('Comando', '`' + prefix + 'doar @user quantia`\n' + '`' + prefix + 'doar @user all/tudo`')
-      .setFooter('Apenas o dinheiro na carteira será válido para doações.')
+      .setDescription('Doe dinheiro e itens pra galera, é simples e rápido!\n \n*Itens/Dinheiro perdidos não serão recuperados. Cuidado para não ser enganado*\n \n')
+      .addField('Comandos', '`' + prefix + 'doar money @user quantia`\n' + '`' + prefix + 'doar money @user all/tudo`\n' + '`' + prefix + 'doar rosas @user quantidade`\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(ajuda)
   }
 
@@ -179,9 +165,8 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('👩‍💻 Monte o seu Perfil')
       .setDescription('Crie seu perfil aqui comigo :hearts:\nLembrando que alguns comandos, tipo estrela e título, são adquiridos na loja')
-      .addField('• Comandos Online: (17)', '`' + prefix + 'marry @user` Se case com alguém\n' + '`' + prefix + 'divorce @user` Se divorcie\n' + '`' + prefix + 'family1/2/3` Chame pessoas pra sua familia\n' + '`' + prefix + 'nofamily1/2/3` Remova pessoas da sua familia\n' + '`' + prefix + 'setstatus` Coloque um status maneiro\n' + '`' + prefix + 'rp` Dê reputação\n' + '`' + prefix + 'setsigno` Escolha seu signo\n' + '`' + prefix + 'settitulo` Escolha seu título\n' + '`' + prefix + 'setniver` Coloque seu aniversário')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .setFooter('• Comandos em construção: (11)')
+      .addField('• Comandos Online:', '`' + prefix + 'marry @user` Se case com alguém\n' + '`' + prefix + 'divorce @user` Se divorcie\n' + '`' + prefix + 'family1/2/3` Chame pessoas pra sua familia\n' + '`' + prefix + 'nofamily1/2/3` Remova pessoas da sua familia\n' + '`' + prefix + 'setstatus` Coloque um status maneiro\n' + '`' + prefix + 'rp` Dê reputação\n' + '`' + prefix + 'setsigno` Escolha seu signo\n' + '`' + prefix + 'settitulo` Escolha seu título\n' + '`' + prefix + 'setniver` Coloque seu aniversário\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -190,9 +175,8 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle(':gear: Comandos exclusivos do Owner')
       .setDescription('Comandos exclusivos do meu criador')
-      .addField('• Comandos Online: (8)', '`' + prefix + 'add <item> [@user]` Adiciona algo\n' + '`' + prefix + 'datasorteio` Define uma data pro sorteio da loteria\n' + '`' + prefix + 'del <item> [@user]` Deleta algo\n' + '`' + prefix + 'give <item> [@user]` Dá algo\n' + '`' + prefix + 'remove <item> [@user]` Retira algo\n' + '`' + prefix + 'reboot` Me reinicia\n' + '`' + prefix + 'servers 1/2/3...` Lista de servidores\n' + '`' + prefix + 'sortearticket` Sorteia a loteria\n' + '`' + prefix + 'status [argumento]` Muda meu status\n' + '`' + prefix + 'whitelist` Mostra quem está na Whitelist')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .setFooter('• Comandos em construção: (4)')
+      .addField('• Comandos Online:', '`' + prefix + 'add <item> [@user]` Adiciona algo\n' + '`' + prefix + 'datasorteio` Define uma data pro sorteio da loteria\n' + '`' + prefix + 'del <item> [@user]` Deleta algo\n' + '`' + prefix + 'give <item> [@user]` Dá algo\n' + '`' + prefix + 'remove <item> [@user]` Retira algo\n' + '`' + prefix + 'reboot` Me reinicia\n' + '`' + prefix + 'servers 1/2/3...` Lista de servidores\n' + '`' + prefix + 'sortearticket` Sorteia a loteria\n' + '`' + prefix + 'status [argumento]` Muda meu status\n' + '`' + prefix + 'whitelist` Mostra quem está na Whitelist')
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -201,9 +185,8 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('✍️ Você é inteligente?')
       .setDescription('Aqui você pode responder perguntas ou não responder né?')
-      .addField('• Comandos Online', '`' + prefix + 'quiz`\n' + '`' + prefix + 'quiznaruto`\n' + '`' + prefix + 'quizonepiece/op`')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .setFooter('• Comandos em construção: (54)')
+      .addField('• Comandos Online', '`' + prefix + 'quiz`\n' + '`' + prefix + 'quiznaruto`\n' + '`' + prefix + 'quizonepiece/op`\n' + '`' + prefix + 'quizkimetsu`\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -216,7 +199,7 @@ exports.run = async (client, message, args) => {
       .addField('❓ Como funciona?', 'Simples! o membro só precisa escrever `' + prefix + 'report blá blá blá` e o report será encaminhado para o canal definido. As mensagens serão deletadas na hora do envio, tornando o report anônimo e seguro, os únicos que verão o report, serão as pessoas que tem permissão para ver o canal definido.')
       .addField('Comando de Ativação', '`' + prefix + 'setreportchannel #Canal`')
       .addField('Comando de Desativação', '`' + prefix + 'setreportchannel off`')
-      .setFooter('A Maya não se responsabiliza pelo conteúdo enviado atráves deste sistema.')
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -225,10 +208,9 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('📜 Comandos Aleatório')
       .setDescription('Comandos aleatório e divertidos, garanto')
-      .addField('• Comandos Online: (25)', '`' + prefix + 'advice/conselho` Conselhos\n' + '`' + prefix + 'ascci` Daora\n' + '`' + prefix + 'boom` Booom\n' + '`' + prefix + 'coinflip <cara/coroa>` Cara ou coroa?\n' + '`' + prefix + 'cu` Tem coragem?\n' + '`' + prefix + 'ecchi` Eu não usaria esse comando\n' + '`' + prefix + 'frase` Filosofia\n' + '`' + prefix + 'explosion` Megumiiin\n' + '`' + prefix + 'history` História do pessoal do Discord\n' + '`' + prefix + 'invisivel/invisible` Invisivel\n' + '`' + prefix + 'livia` Gay\n' + '`' + prefix + 'loli` ?\n' + '`' + prefix + 'piada` kkkkkk só piada boa\n' + '`' + prefix + 'servidores` Servidores tops\n' + '`' + prefix + 'trig` aaaaaaaaaaa\n' + '`' + prefix + 'cat` Miaaaw\n' + '`' + prefix + 'puppy` Filhotinhooo\n' + '`' + prefix + 'dado/roll <1...4>` Role dados\n' + '`' + prefix + 'feet` Vai um pézinho?\n' + '`' + prefix + 'nota` Hum.. que nota?\n' + '`' + prefix + 'stonks/notstonks` Stonks')
+      .addField('• Comandos Online:', '`' + prefix + 'advice/conselho` Conselhos\n' + '`' + prefix + 'ascci` Daora\n' + '`' + prefix + 'boom` Booom\n' + '`' + prefix + 'coinflip <cara/coroa>` Cara ou coroa?\n' + '`' + prefix + 'cu` Tem coragem?\n' + '`' + prefix + 'ecchi` Eu não usaria esse comando\n' + '`' + prefix + 'frase` Filosofia\n' + '`' + prefix + 'explosion` Megumiiin\n' + '`' + prefix + 'history` História do pessoal do Discord\n' + '`' + prefix + 'invisivel/invisible` Invisivel\n' + '`' + prefix + 'livia` Gay\n' + '`' + prefix + 'loli` ?\n' + '`' + prefix + 'piada` kkkkkk só piada boa\n' + '`' + prefix + 'servidores` Servidores tops\n' + '`' + prefix + 'trig` aaaaaaaaaaa\n' + '`' + prefix + 'cat` Miaaaw\n' + '`' + prefix + 'puppy` Filhotinhooo\n' + '`' + prefix + 'dado/roll <1...4>` Role dados\n' + '`' + prefix + 'feet` Vai um pézinho?\n' + '`' + prefix + 'nota` Hum.. que nota?\n' + '`' + prefix + 'stonks/notstonks` Stonks')
       .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .addField('• Mande a sua ideia de comando aleatório', '`' + prefix + 'ideiamaya`')
-      .setFooter('• Comandos em construção: (154)')
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -237,9 +219,8 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('<:zeroheart:833378638475821088> Personagens de animes')
       .setDescription('Gifs dos melhores personagens dos melhores animes, mande seus gifs também, vai ajudar muito! `' + prefix + 'gif`')
-      .addField('• Comandos Online: (1)', '`' + prefix + 'asuna`\n' + '`' + prefix + 'chika`\n' + '`' + prefix + 'gojo`\n' + '`' + prefix + 'itachi`\n' + '`' + prefix + 'naruto`\n' + '`' + prefix + 'nezuko`\n' + '`' + prefix + 'zenitsu`\n' + '`' + prefix + 'zerotwo/zt`\n')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .setFooter('• Comandos em construção: (154)')
+      .addField('• Comandos Online:', '`' + prefix + 'asuna`\n' + '`' + prefix + 'chika`\n' + '`' + prefix + 'gojo`\n' + '`' + prefix + 'itachi`\n' + '`' + prefix + 'naruto`\n' + '`' + prefix + 'nezuko`\n' + '`' + prefix + 'zenitsu`\n' + '`' + prefix + 'zerotwo/zt`\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}gif | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -248,10 +229,8 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('💕 É bom mostrar como você se sente')
       .setDescription('Mostre a todos em formato de gif como você se sente, é incrivel')
-      .addField('• Comandos Online: (124)', 'Não cabe todos os comandos aqui, então você precisa acessar a lista de comandos.')
-      .addField('• Comandos Offline: (0)', `:tools: [Lista de Comandos](${linkgithub})`)
-      .addField('• Comandos em construção: (21)', 'Teve alguma ideia? `' + prefix + 'ideiamaya`')
-      .addField('• Mande Gifs para os comandos de reações', '`' + prefix + 'gif`')
+      .addField('• Opss', 'Não cabe todos os comandos aqui, então você precisa acessar a lista de comandos.\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .setFooter(`${prefix}ideiamaya | ${prefix}gif | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -263,6 +242,7 @@ exports.run = async (client, message, args) => {
       .addField('• Comando de ativação', '`' + prefix + 'setautorole @cargo`', true)
       .addField('• Comando de desativação', '`' + prefix + 'setautorole off`', true)
       .addField('• Veja o status', '`' + prefix + 'autorole`', true)
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
 
@@ -274,9 +254,10 @@ exports.run = async (client, message, args) => {
       .addField('• Crie cargos', '`' + prefix + 'role create Nome Do Cargo`')
       .addField('• Exclua cargos', '`' + prefix + 'role delete Nome do Cargo`')
       .addField('• Veja informações', '`' + prefix + 'role info @cargo`')
-      .addField('• Autorole System', '`' + prefix + 'help autorole`')
+      .addField('• Autorole System', '`' + prefix + 'comandos autorole`')
+      .setFooter(`${prefix}ideiamaya | ${prefix}bug`)
     return message.inlineReply(embed)
   } else {
-    return message.inlineReply('Esta categoria não foi encontrada. use `' + prefix + 'help categoria` e veja as categorias disponiveis.')
+    return message.inlineReply('Esta categoria não foi encontrada. use `' + prefix + 'comandos categoria` e veja as categorias disponiveis.')
   }
 }
