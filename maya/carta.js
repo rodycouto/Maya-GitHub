@@ -69,8 +69,7 @@ exports.run = async (client, message, args) => {
                         return msg.channel.send(errorembed)
                     }
                 })
-                setTimeout(function () { message.inlineReply('<a:Check:836347816036663309> Carta enviada com sucesso.') }, 3100)
-                return message.inlineReply('<a:carregando:836101628083437608> Enviando carta...').then(msg => msg.delete({ timeout: 3000 }))
+                message.inlineReply('<a:Check:836347816036663309> Carta enviada com sucesso.')
             }
             if (reaction.emoji.name === '❌') { // Não
                 msg.delete().catch(err => { return })
