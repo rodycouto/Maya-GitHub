@@ -218,12 +218,12 @@ client.on("message", async (message) => {
 }) // Fim do Client.on('Message')
 
 client.on("guildMemberRemove", (member) => {
-    const canal = db.get(`leavechannel_${member.guild.id}`)
+    let canal = db.get(`leavechannel_${member.guild.id}`)
     if (canal === null) { return }
 
     if (!client.channels.cache.get(canal)) { return }
 
-    const msgleave = db.get(`msgleave_${member.guild.id}`)
+    let msgleave = db.get(`msgleave_${member.guild.id}`)
     if (msgleave === null) { msgleave = 'saiu do servidor.' }
 
     if (canal) {
@@ -232,25 +232,25 @@ client.on("guildMemberRemove", (member) => {
 })
 
 client.on("guildMemberAdd", (member) => {
-    const canal = db.get(`welcomechannel_${member.guild.id}`)
+    let canal = db.get(`welcomechannel_${member.guild.id}`)
     if (canal === null) { return }
 
     if (!client.channels.cache.get(canal)) { return }
 
-    const msgwelcome = db.get(`msgwelcome_${member.guild.id}`)
+    let msgwelcome = db.get(`msgwelcome_${member.guild.id}`)
     if (msgwelcome === null) { msgwelcome = 'entrou no servidor.' }
 
     if (canal) {
         return client.channels.cache.get(canal).send(`📢 ${member} ${msgwelcome}`)
     }
 
-    const role = db.get(`autorole_${member.guild.id}`)
+    let role = db.get(`autorole_${member.guild.id}`)
     if (role === null) { return }
     return member.roles.add(role)
 })
 
 client.on("guildMemberAdd", (member) => {
-    const role = db.get(`autorole_${member.guild.id}`)
+    let role = db.get(`autorole_${member.guild.id}`)
     if (role === null) { return }
     return member.roles.add(role)
 })
@@ -263,7 +263,7 @@ client.on("ready", () => {
 
 client.on('guildCreate', guild => {
     let channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
-    const helpgit = 'https://github.com/rodycouto/MayaCommands/blob/main/README.md'
+    let helpgit = 'https://github.com/rodycouto/MayaCommands/blob/main/README.md'
 
     const newguild = new Discord.MessageEmbed()
         .setColor('BLUE')
@@ -277,7 +277,7 @@ client.on('guildCreate', guild => {
         .setDescription(`**Servidor:** ${guild.name}\n:id: ${guild.id}\n**Membros:** ${guild.memberCount}\n🌐 **Shard** ${client.guilds.cache.size}`)
         .setTimestamp()
 
-    const canal = client.channels.cache.get('831663336776400957')
+        let canal = client.channels.cache.get('831663336776400957')
     if (!canal) {
         return
     } else {
@@ -292,7 +292,7 @@ client.on('guildDelete', guild => {
         .setDescription(`**Servidor:** ${guild.name}\n:id: ${guild.id}\n🌐 **Shard** ${client.guilds.cache.size}`)
         .setTimestamp()
 
-    const canal = client.channels.cache.get('831663336776400957')
+        let canal = client.channels.cache.get('831663336776400957')
     if (!canal) {
         return
     } else {
@@ -301,7 +301,7 @@ client.on('guildDelete', guild => {
 })
 
 client.once("ready", () => {
-    const envi = client.channels.cache.get('830964037461344296')
+    let envi = client.channels.cache.get('830964037461344296')
     console.log(`Loguei com sucesso!`)
 
     if (!envi) {
