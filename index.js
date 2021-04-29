@@ -116,6 +116,11 @@ client.on("message", async (message) => {
     } catch (err) { }
 
     try {
+        const commandFile = require(`./vip/${command}.js`)
+        return commandFile.run(client, message, args)
+    } catch (err) { }
+
+    try {
         const commandFile = require(`./registro/${command}.js`)
         return commandFile.run(client, message, args)
     } catch (err) { }
