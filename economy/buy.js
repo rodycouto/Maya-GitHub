@@ -411,6 +411,9 @@ exports.run = async (client, message, args) => {
 
         if (['estrela5', 'Estrela5'].includes(args[0].toLowerCase())) {
 
+            let vip = db.get(`vip_${message.author.id}`)
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Este é um comando exclusivo para vips.\nSaiba mais em `' + prefix + 'vip`') }
+
             if (!db.get(`estrela4_${message.author.id}`)) { return message.inlineReply(`<:xis:835943511932665926> Você precisa da Estrela 4 para comprar a Estrela 5.`) }
             if (db.get(`estrela5_${message.author.id}`)) { return message.inlineReply(`<:xis:835943511932665926> Você já possui este item.`) }
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar este item.`) }

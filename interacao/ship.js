@@ -23,7 +23,9 @@ exports.run = async (client, message, args) => {
   if (args[1]) {
     let user2 = message.mentions.members.last()
     if (user2.id === '837147659898191902') { return message.inlineReply("Foi maaal, eu não tenho a capacidade de amar ninguém. *(ainda)*") }
-    
+    if (user2.id === message.author.id) { return message.inlineReply('Você não pode usar este comando com você mesmo.') }
+    if (user2.id === user.id) { return message.inlineReply('Marque pessoas diferentes poxa...') }
+
     if (user && user2) {
       let love = Math.random() * 100
       let loveIndex = Math.floor(love / 10)
