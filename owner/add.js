@@ -203,7 +203,7 @@ exports.run = async (client, message, args) => {
 
     if (['blacklist'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'add blacklist @user `') }
+        if (!user) { return message.channel.send('`' + prefix + 'add blacklist @user`') }
 
         db.add(`blacklist_${user.id}`, user.id)
         return message.channel.send(`${user} foi adicionado a blacklist com sucesso!`)
@@ -229,9 +229,27 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`${user} foi adicionado a whitelist com sucesso!`)
     }
 
+    if (['vip'].includes(args[0])) {
+
+        if (!user) { return message.channel.send('`' + prefix + 'add vip @user`') }
+
+        db.add(`vip_${user.id}`, user.id)
+        return message.channel.send(`${user} foi adicionado a lista vip com sucesso!`)
+    }
+
+    if (['vipid'].includes(args[0])) {
+
+        if (args[1]) { return message.channel.send('`' + prefix + 'add vipid ID`') }
+        if (args[1].length < 17) { return message.channel.send("Isso não é um ID") }
+        if (isNaN(args[1])) { return message.channel.send("Isso não é um número.") }
+
+        db.add(`whitelist_${user.id}`, args[1])
+        return message.channel.send(`${user} foi adicionado a list vip com sucesso!`)
+    }
+
     if (['whitelist'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'add whitelist @user Valor`') }
+        if (!user) { return message.channel.send('`' + prefix + 'add whitelist @user`') }
 
         db.add(`whitelist_${user.id}`, user.id)
         return message.channel.send(`${user} foi adicionado a whitelist com sucesso!`)

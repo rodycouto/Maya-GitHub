@@ -47,6 +47,7 @@ exports.run = async (client, message, args) => {
 
     let estrela = '<:starM:832974891635572787>'
     let noestrela = '<:nostar:832972978009538591>'
+    let vip = db.get(`vip_${user.id}`)
 
     let star1 = db.get(`estrela1_${user.id}`)
     let star2 = db.get(`estrela2_${user.id}`)
@@ -56,8 +57,8 @@ exports.run = async (client, message, args) => {
 
     if (user.id === '837147659898191902') {
         let perfil = new Discord.MessageEmbed()
-            .setDescription(`📃 **Perfil Pessoal de ${user.user.username}** ${estrela}${estrela}${estrela}${estrela}${estrela}`)
-            .setColor('#BF3BFC')
+            .setDescription(`<a:vip:837441854332338227> **Perfil Pessoal de ${user.user.username}** ${estrela}${estrela}${estrela}${estrela}${estrela}`)
+            .setColor('#FDFF00')
             .addFields(
                 {
                     name: `👤 Pessoal`,
@@ -119,12 +120,25 @@ exports.run = async (client, message, args) => {
         .setThumbnail(user.user.displayAvatarURL({ dynamic: true }))
         .setFooter(`${prefix}help perfil`)
 
-    if (!star1) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${noestrela}${noestrela}${noestrela}${noestrela}${noestrela}`) }
-    if (star1) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${estrela}${noestrela}${noestrela}${noestrela}${noestrela}`) }
-    if (star2) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${estrela}${estrela}${noestrela}${noestrela}${noestrela}`) }
-    if (star3) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${estrela}${estrela}${estrela}${noestrela}${noestrela}`) }
-    if (star4) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${estrela}${estrela}${estrela}${estrela}${noestrela}`) }
-    if (star5) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${estrela}${estrela}${estrela}${estrela}${estrela}`) }
+    if (!vip) {
+        if (!star1) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${noestrela}${noestrela}${noestrela}${noestrela}${noestrela}`) }
+        if (star1) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${estrela}${noestrela}${noestrela}${noestrela}${noestrela}`) }
+        if (star2) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${estrela}${estrela}${noestrela}${noestrela}${noestrela}`) }
+        if (star3) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${estrela}${estrela}${estrela}${noestrela}${noestrela}`) }
+        if (star4) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${estrela}${estrela}${estrela}${estrela}${noestrela}`) }
+        if (star5) { perfilembed.setDescription(`📃 **Perfil de ${user.user.username}** ${estrela}${estrela}${estrela}${estrela}${estrela}`) }
+    }
+
+    if (vip) {
+        perfilembed.setColor('#FDFF00')
+        if (!star1) { perfilembed.setDescription(`<a:vip:837441854332338227> **Perfil de ${user.user.username}** ${noestrela}${noestrela}${noestrela}${noestrela}${noestrela}`) }
+        if (star1) { perfilembed.setDescription(`<a:vip:837441854332338227> **Perfil de ${user.user.username}** ${estrela}${noestrela}${noestrela}${noestrela}${noestrela}`) }
+        if (star2) { perfilembed.setDescription(`<a:vip:837441854332338227> **Perfil de ${user.user.username}** ${estrela}${estrela}${noestrela}${noestrela}${noestrela}`) }
+        if (star3) { perfilembed.setDescription(`<a:vip:837441854332338227> **Perfil de ${user.user.username}** ${estrela}${estrela}${estrela}${noestrela}${noestrela}`) }
+        if (star4) { perfilembed.setDescription(`<a:vip:837441854332338227> **Perfil de ${user.user.username}** ${estrela}${estrela}${estrela}${estrela}${noestrela}`) }
+        if (star5) { perfilembed.setDescription(`<a:vip:837441854332338227> **Perfil de ${user.user.username}** ${estrela}${estrela}${estrela}${estrela}${estrela}`) }
+        perfilembed.setFooter(`${prefix}help perfil | ${prefix}vip`)
+    }
 
     await message.inlineReply(perfilembed)
 

@@ -231,6 +231,24 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(`Você removeu <@${user}> da blacklist.`)
     }
 
+    if (['vip'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'remove vipid ID`') }
+
+        db.delete(`vip_${id}`, id)
+        return message.inlineReply(`Você removeu <@${user}> da lista vip.`)
+    }
+
+    if (['vip'].includes(args[0])) {
+
+        if (!user) { return message.inlineReply('`' + prefix + 'remove vip @user`') }
+
+        db.delete(`vip_${user.id}`, user.id)
+        return message.inlineReply(`Você removeu ${user} da lista vip.`)
+    }
+
+
     if (['whitelist'].includes(args[0])) {
 
         if (!user) { return message.inlineReply('`' + prefix + 'remove whitelist @user`') }

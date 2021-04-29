@@ -74,7 +74,7 @@ exports.run = async (client, message, args) => {
                value: 'É extremamente importe que o meu cargo, "Naya" esteja acima de todas as outras roles, para que eu possa efetuar meus comandos com maestria.'
             }
          )
-         .setTimestamp()
+         .setFooter('Suba o cargo Muted para cima dos cargos comum e abaixos dos administrativos.')
 
       return message.inlineReply(embeddetail)
    }

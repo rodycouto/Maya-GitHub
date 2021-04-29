@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
         .setColor("#8B0000")
         .setTitle("Blacklist Naya blocksystem")
     lb.forEach(d => {
-        embed.addField(`${d.user.tag}`, `ID: ${d.user.id}`)
+        embed.addField(`${d.user.tag}`, `🆔 ${d.user.id}`)
     })
     return message.inlineReply(embed)
 }
