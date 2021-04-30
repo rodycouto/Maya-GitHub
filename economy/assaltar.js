@@ -102,9 +102,9 @@ exports.run = async (client, message, args) => {
                     if (result == 'win') {
                         setTimeout(function () {
                             db.add(`mpoints_${message.author.id}`, cache)
-                            db.delete(`cacheassalto_${message.author.id}`)
                             db.set(`assaltotime_${message.author.id}`, Date.now())
                             message.inlineReply(WinEmbed)
+                            db.delete(`cacheassalto_${message.author.id}`)
                         }, 4500)
                         message.inlineReply(assaltando).then(msg => msg.delete({ timeout: 4000 }))
                     }
@@ -114,8 +114,8 @@ exports.run = async (client, message, args) => {
                             db.subtract(`mpoints_${message.author.id}`, amount)
                             db.add(`mpoints_${user.id}`, cache + amount)
                             db.set(`assaltotime_${message.author.id}`, Date.now())
-                            db.delete(`cacheassalto_${message.author.id}`)
                             message.inlineReply(LoseEmbed)
+                            db.delete(`cacheassalto_${message.author.id}`)
                         }, 4500)
                         message.inlineReply(assaltando).then(msg => msg.delete({ timeout: 4000 }))
                     }
@@ -125,8 +125,8 @@ exports.run = async (client, message, args) => {
                             db.set(`preso_${message.author.id}`, Date.now())
                             db.delete(`cacheassalto_${message.author.id}`)
                             db.add(`mpoints_${user.id}`, cache)
-                            db.delete(`cacheassalto_${message.author.id}`)
                             message.inlineReply(PresoEmbed)
+                            db.delete(`cacheassalto_${message.author.id}`)
                         }, 4500)
                         message.inlineReply(assaltando).then(msg => msg.delete({ timeout: 4000 }))
                     }
@@ -137,8 +137,8 @@ exports.run = async (client, message, args) => {
                             db.add(`banco_${client.user.id}`, tratamento)
                             db.set(`assaltotime_${message.author.id}`, Date.now())
                             db.add(`mpoints_${user.id}`, cache)
-                            db.delete(`cacheassalto_${message.author.id}`)
                             message.inlineReply(FeridoEmbed)
+                            db.delete(`cacheassalto_${message.author.id}`)
                         }, 4500)
                         message.inlineReply(assaltando).then(msg => msg.delete({ timeout: 4000 }))
                     }
