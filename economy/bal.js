@@ -3,6 +3,9 @@ const Discord = require('discord.js')
 
 exports.run = async (client, message, args) => {
 
+  let prefix = db.get(`prefix_${message.guild.id}`)
+  if (prefix === null) prefix = "-"
+
   let user = message.mentions.members.first() || message.member
 
   if (!args[0] === user) user === message.author
@@ -12,6 +15,8 @@ exports.run = async (client, message, args) => {
 
   let bank = db.get(`banco_${user.id}`)
   if (bank === null) bank = 0
+
+  let vip = db.get(`vip_${user.id}`)
 
   let list = [
     'Pessoas podem te roubar, tenha cuidado.',
@@ -30,27 +35,32 @@ exports.run = async (client, message, args) => {
     'Já pescou hoje?',
     'Já minerou hoje?',
     'A loteria é um bom lugar para os sortudos',
-    'Já apostou na loteria hoje?'
+    'Já apostou na loteria hoje?',
   ]
 
   let frase = list[Math.floor(Math.random() * list.length)]
 
   const embed = new Discord.MessageEmbed()
-    .setColor('#efff00')
+    .setColor('BLUE')
     .setAuthor(`Finanças de ${user.user.tag}`, user.user.displayAvatarURL())
     .setThumbnail(user.user.displayAvatarURL({ dynamic: true }))
     .setDescription(frase)
     .addFields(
       {
-        name: '💸 Carteira:',
+        name: '💸 Carteira',
         value: `<:NPoints:837666759389347910>${bal}`,
         inline: true
       },
       {
-        name: '🏦 Banco:',
+        name: '🏦 Banco',
         value: `<:NPoints:837666759389347910>${bank}`,
         inline: true
       }
     )
+  if (vip) {
+    embed.setColor('#EFFF00')
+    embed.setDescription(`<a:vip:837441854332338227> ${frase}`)
+    embed.setFooter(`${user.user.username} é um membro vip. | ${prefix}vip`)
+  }
   return message.inlineReply(embed)
 }
