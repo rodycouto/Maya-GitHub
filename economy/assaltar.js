@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
         .setTitle('🥷 Comando Assaltar')
         .setDescription('O comando assaltar te garante 100% do dinheiro que o @user tem na carteira.\n \nCaso a pessoa que você assaltar também tenha uma arma, você tem a chance de ser assaltado de volta, preso, se ferir e perder dinheiro do próprio banco para tratamento.')
         .addField('Comando', '`' + prefix + 'assaltar @user`')
-        .addField('Item Necessário', '🔫 Arma')
+        .addField('Item Necessário', '🔫 `Arma`')
 
     if (!args[0]) { return message.inlineReply(noargs1) }
     let user = message.mentions.members.first()
