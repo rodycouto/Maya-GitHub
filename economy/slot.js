@@ -125,11 +125,11 @@ exports.run = async (client, message, args) => {
     if (mamute === null) { mamute = "" }
     if (!db.get(`mamute_${user.id}`)) { mamute = "" }
 
-    let nada = !arma && !picareta && !vara && !machado
+    let nada = !arma && !picareta && !vara && !machado && !cartas
     if (nada) { nada = 'Não há nada aqui' }
     if (!nada) { nada = '' }
 
-    let nada2 = !title && !faca && !loli && !fossil && !mamute && !bola && !cachorro && !dogname
+    let nada2 = !title && !faca && !loli && !fossil && !mamute && !bola && !cachorro && !remedio
     if (nada2) { nada2 = 'Não há nada aqui' }
     if (!nada2) { nada2 = '' }
 

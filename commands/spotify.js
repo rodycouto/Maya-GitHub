@@ -48,16 +48,18 @@ exports.run = async (client, message, args) => {
 
     await message.inlineReply(embed).then(msg => {
       msg.react('📨').catch(err => { return })
-      setTimeout(function () { msg.reactions.removeAll() }, 30000)
+      setTimeout(function () { msg.reactions.removeAll().catch(err => { return }) }, 30000)
 
       msg.awaitReactions((reaction, member) => {
+
+        if (client.user.id === member.id) return
 
         if (reaction.emoji.name === '📨') {
           let PrivadoDesativado = db.get(`privadooff_${member.id}`)
           if (PrivadoDesativado) {
             return message.inlineReply(`<:xis:835943511932665926> ${member}, você desativou minhas mensagens no seu privado. Este recurso está bloqueado para você.`)
           } else {
-            member.send(embed).catch(err => { return })
+            member.send(embed).catch(err => { return message.channel.send(`<:xis:835943511932665926> ${member}, você desativou as mensagens privadas.`) })
           }
         }
       })

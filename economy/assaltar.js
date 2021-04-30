@@ -70,6 +70,9 @@ exports.run = async (client, message, args) => {
                     let luck = ['win', 'lose', 'preso', 'win', 'ferido']
                     let result = luck[Math.floor(Math.random() * luck.length)]
                     let tratamento = Math.floor(Math.random() * 5000) + 1
+                    db.add(`cacheassalto_${message.author.id}`, usermoney)
+                    db.subtract(`mpoints_${user.id}`, usermoney)
+                    let cache = db.get(`cacheassalto_${message.author.id}`)
 
                     const assaltando = new Discord.MessageEmbed()
                         .setColor('BLUE')
@@ -98,8 +101,8 @@ exports.run = async (client, message, args) => {
 
                     if (result == 'win') {
                         setTimeout(function () {
-                            db.add(`mpoints_${message.author.id}`, usermoney)
-                            db.subtract(`mpoints_${user.id}`, usermoney)
+                            db.add(`mpoints_${message.author.id}`, cache)
+                            db.delete(`cacheassalto_${message.author.id}`)
                             db.set(`assaltotime_${message.author.id}`, Date.now())
                             message.inlineReply(WinEmbed)
                         }, 4500)
@@ -109,8 +112,9 @@ exports.run = async (client, message, args) => {
                     if (result == 'lose') {
                         setTimeout(function () {
                             db.subtract(`mpoints_${message.author.id}`, amount)
-                            db.add(`mpoints_${user.id}`, amount)
+                            db.add(`mpoints_${user.id}`, cache + amount)
                             db.set(`assaltotime_${message.author.id}`, Date.now())
+                            db.delete(`cacheassalto_${message.author.id}`)
                             message.inlineReply(LoseEmbed)
                         }, 4500)
                         message.inlineReply(assaltando).then(msg => msg.delete({ timeout: 4000 }))
@@ -119,6 +123,9 @@ exports.run = async (client, message, args) => {
                     if (result == 'preso') {
                         setTimeout(function () {
                             db.set(`preso_${message.author.id}`, Date.now())
+                            db.delete(`cacheassalto_${message.author.id}`)
+                            db.add(`mpoints_${user.id}`, cache)
+                            db.delete(`cacheassalto_${message.author.id}`)
                             message.inlineReply(PresoEmbed)
                         }, 4500)
                         message.inlineReply(assaltando).then(msg => msg.delete({ timeout: 4000 }))
@@ -126,9 +133,11 @@ exports.run = async (client, message, args) => {
 
                     if (result == 'ferido') {
                         setTimeout(function () {
-                            db.subtract(`mpoints_${message.author.id}`, tratamento)
-                            db.add(`mpoints_${client.user.id}`, tratamento)
+                            db.subtract(`banco_${message.author.id}`, tratamento)
+                            db.add(`banco_${client.user.id}`, tratamento)
                             db.set(`assaltotime_${message.author.id}`, Date.now())
+                            db.add(`mpoints_${user.id}`, cache)
+                            db.delete(`cacheassalto_${message.author.id}`)
                             message.inlineReply(FeridoEmbed)
                         }, 4500)
                         message.inlineReply(assaltando).then(msg => msg.delete({ timeout: 4000 }))
