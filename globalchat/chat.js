@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
 
     if (author1 !== null && timeout1 - (Date.now() - author1) > 0) {
         let time = ms(timeout1 - (Date.now() - author1))
-        return message.inlineReply(`<:xis:835943511932665926> Espere o sistema global esfriar os motores... ${time.minutes}m e ${time.seconds}s`)
+        return message.channel.send(`${message.author}, <:xis:835943511932665926> Espere o sistema global esfriar os motores... ${time.minutes}m e ${time.seconds}s`)
     } else {
 
         let prefix = db.get(`prefix_${message.guild.id}`)
@@ -57,15 +57,13 @@ exports.run = async (client, message, args) => {
             let avatar = message.author.displayAvatarURL({ format: 'png' })
             let Mensagem = message.content.split(" ").slice(1)
             let MensagemGlobal = Mensagem.join(" ")
+            let vip = db.get(`vip_${message.author.id}`)
 
             if (!MensagemGlobal) return message.inlineReply("<:xis:835943511932665926> Você precisa dizer algo para ser enviado no Global Chat.")
             if (MensagemGlobal.length > 150) { return message.inlineReply('<:xis:835943511932665926> Heeey! A mensagem não pode ter mais que **150 caracteres**.') }
             if (MensagemGlobal.length < 10) { return message.inlineReply('<:xis:835943511932665926> Heeey! A mensagem não pode ter menos que **10 caracteres**.') }
             if (AchaLink(MensagemGlobal) === true) { return message.inlineReply(`${message.author}, Por favor, não envie links no Global Chat.`) }
-            if (['xvideos', 'pornhub', 'redtube'].includes(MensagemGlobal)) {
-                message.delete().catch(err => { return }).then(msg => msg.channel.send('<:xis:835943511932665926> Eu nem preciso dizer o motivo desta mensagem ser bloqueada, não é?'))
-
-            }
+            if (['xvideos', 'pornhub', 'redtube'].includes(MensagemGlobal)) { message.delete().catch(err => { return }).then(msg => msg.channel.send('<:xis:835943511932665926> Eu nem preciso dizer o motivo desta mensagem ser bloqueada, não é?')) }
 
             client.guilds.cache.forEach(guild => {
 
@@ -75,9 +73,14 @@ exports.run = async (client, message, args) => {
                 if (!CanaisValidos) return
                 const GlobalChatEmbedMensagem = new Discord.MessageEmbed()
                     .setColor('BLUE')
-                    .setAuthor(`${message.author.tag} | ${message.author.id}`, avatar)
-                    .setDescription(`🌐 Servidor: ${message.guild.name}\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
-                    .setFooter(`${prefix}chat sua mensagem`)
+                    .setAuthor(`${message.author.tag} | ${message.guild.name}`, avatar)
+                    .setDescription(`\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
+                    .setFooter(`${prefix}chat sua mensagem | ${message.author.id}`)
+                if (vip) {
+                    GlobalChatEmbedMensagem.setColor('#FDFF00')
+                    GlobalChatEmbedMensagem.setDescription(`<a:vip:837441854332338227> Membro VIP\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
+                    GlobalChatEmbedMensagem.setFooter(`${prefix}chat sua mensagem | ${prefix}vip | ${message.author.id}`)
+                }
 
                 return CanaisValidos.send(GlobalChatEmbedMensagem)
             })

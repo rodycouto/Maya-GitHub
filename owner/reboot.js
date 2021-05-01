@@ -5,5 +5,16 @@ exports.run = async (client, message, args) => {
         message.delete().catch(err => { return })
         return message.inlineReply('⚠️ Este é um comando restrito.')
     }
-    return message.inlineReply('Rebooting...').then(msg => msg.delete({ timeout: 15000 }))
+
+    client.guilds.cache.forEach(guild => {
+
+        let CanaisValidos = guild.channels.cache.find(ch => ch.name === "naya-global-chat")
+
+        if (!CanaisValidos) return
+
+        return CanaisValidos.send('Rebooting...')
+    })
+
+    client.user.setActivity(`Rebooting...`, { type: "WATCHING" })
+    return message.inlineReply('Rebooting...')
 }

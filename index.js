@@ -35,7 +35,7 @@ client.on("message", async (message) => {
 
     if (message.content.startsWith('<')) {
         if (message.content.endsWith('>'))
-        if (message.mentions.has(client.user.id)) { return message.inlineReply('Prefixo atual: `' + prefix + '` | `' + prefix + 'help`').then(msg => msg.delete({ timeout: 5000 })).catch(err => { return }) }
+            if (message.mentions.has(client.user.id)) { return message.inlineReply('Prefixo atual: `' + prefix + '` | `' + prefix + 'help`').then(msg => msg.delete({ timeout: 5000 })).catch(err => { return }) }
     }
 
     if (!message.member.hasPermission("ADMINISTRATOR")) {
@@ -295,6 +295,16 @@ client.on('guildDelete', guild => {
 client.once("ready", () => {
     let envi = client.channels.cache.get('837408099781836849')
     console.log(`Loguei com sucesso!`)
+
+    client.guilds.cache.forEach(guild => {
+
+        let CanaisValidos = guild.channels.cache.find(ch => ch.name === "naya-global-chat")
+
+        if (!CanaisValidos) return
+
+        return CanaisValidos.send('Estou online 💞')
+    })
+
     if (!envi) { return } else if (envi) { return envi.send(`Cheguei ( ͡° ͜ʖ ͡°)`) }
 })
 
