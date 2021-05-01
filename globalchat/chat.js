@@ -5,6 +5,11 @@ const ms = require('parse-ms')
 exports.run = async (client, message, args) => {
     message.delete({ timeout: 10000 }).catch(err => { return })
 
+    if (db.get(`noglobalchat_${message.author.id}`)) {
+        message.delete().catch(err => { return })
+        return message.channel.send(`<:xis:835943511932665926> ${message.author}, você foi banido do chat global! Acha que foi um engano? \`` + prefix + 'support`').then(msg => msg.delete({ timeout: 6000 })).catch(err => { return })
+    }
+
     let timeout1 = 120000
     let author1 = db.fetch(`globaltiming_${message.author.id}`)
 
@@ -27,7 +32,7 @@ exports.run = async (client, message, args) => {
                 .addField('Valide o canal', '`' + prefix + 'setglobalchat #naya-global-chat`')
                 .addField('Desative o Canal', '`' + prefix + 'setglobalchat off` ou `' + prefix + 'deletechannel #naya-global-chat`')
 
-            return message.inlineReply('<:xis:835943511932665926> O canal Global Chat não existe neste servidor!', SetGlobalChatEmbed)
+            return message.channel.send('<:xis:835943511932665926> O canal Global Chat não existe neste servidor!', SetGlobalChatEmbed)
         }
 
         let CanalDoGlobalChat = db.get(`globalchat_${message.guild.id}`)
@@ -40,13 +45,13 @@ exports.run = async (client, message, args) => {
             .addField('Valide o canal', '`' + prefix + 'setglobalchat #canal`')
             .addField('Desative o Canal', '`' + prefix + 'setglobalchat off` ou `' + prefix + 'deletechannel #naya-global-chat`')
 
-        if (CanalDoGlobalChat === null) { return message.inlineReply('<:xis:835943511932665926> O canal não foi autenticado!', SemCanalDefinido) }
+        if (CanalDoGlobalChat === null) { return message.channel.send('<:xis:835943511932665926> O canal não foi autenticado!', SemCanalDefinido) }
 
         let ConfirmaCanal = message.channel.id === db.get(`globalchat_${message.guild.id}`)
-        if (!ConfirmaCanal) { return message.inlineReply(`<:xis:835943511932665926> Este não é o Global Chat! Vem cá, é aqui: ${client.channels.cache.get(CanalDoGlobalChat)}`).then(msg => msg.delete({ timeout: 7000 }).catch(err => { return })) }
+        if (!ConfirmaCanal) { return message.channel.send(`<:xis:835943511932665926> Este não é o Global Chat! Vem cá, é aqui: ${client.channels.cache.get(CanalDoGlobalChat)}`).then(msg => msg.delete({ timeout: 7000 }).catch(err => { return })) }
 
         if (!db.get(`globalchat_${message.guild.id}`)) {
-            return message.inlineReply('<:xis:835943511932665926> Parece que o Global Chat foi excluido... Use `' + prefix + 'setglobalchat` Para mais informações.')
+            return message.channel.send('<:xis:835943511932665926> Parece que o Global Chat foi excluido... Use `' + prefix + 'setglobalchat` Para mais informações.')
         } else {
 
             function AchaLink(str) {
@@ -58,28 +63,52 @@ exports.run = async (client, message, args) => {
             let Mensagem = message.content.split(" ").slice(1)
             let MensagemGlobal = Mensagem.join(" ")
             let vip = db.get(`vip_${message.author.id}`)
+            let moderador = db.get(`moderadoreschatglobal_${message.author.id}`)
+            let rody = message.author.id === '451619591320371213'
+            let ModeradorServidor = db.get(`modserver_${message.author.id}`)
 
-            if (!MensagemGlobal) return message.inlineReply("<:xis:835943511932665926> Você precisa dizer algo para ser enviado no Global Chat.")
-            if (MensagemGlobal.length > 150) { return message.inlineReply('<:xis:835943511932665926> Heeey! A mensagem não pode ter mais que **150 caracteres**.') }
-            if (MensagemGlobal.length < 10) { return message.inlineReply('<:xis:835943511932665926> Heeey! A mensagem não pode ter menos que **10 caracteres**.') }
-            if (AchaLink(MensagemGlobal) === true) { return message.inlineReply(`${message.author}, Por favor, não envie links no Global Chat.`) }
-            if (['xvideos', 'pornhub', 'redtube'].includes(MensagemGlobal)) { message.delete().catch(err => { return }).then(msg => msg.channel.send('<:xis:835943511932665926> Eu nem preciso dizer o motivo desta mensagem ser bloqueada, não é?')) }
+            if (!MensagemGlobal) { return message.channel.send("<:xis:835943511932665926> Você precisa dizer algo para ser enviado no Global Chat.").then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
+            if (MensagemGlobal.length > 150) { return message.channel.send('<:xis:835943511932665926> Heeey! A mensagem não pode ter mais que **150 caracteres**.').then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
+            if (MensagemGlobal.length < 4) { return message.channel.send('<:xis:835943511932665926> Heeey! A mensagem não pode ter menos que **4 caracteres**.').then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
+            if (AchaLink(MensagemGlobal) === true) { return message.channel.send(`${message.author}, Por favor, não envie links no Global Chat.`).then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
+            if (['xvideos', 'pornhub', 'redtube'].includes(MensagemGlobal)) { message.delete().catch(err => { return }).then(msg => msg.channel.send('<:xis:835943511932665926> Eu nem preciso dizer o motivo desta mensagem ser bloqueada, não é?')).then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
 
             client.guilds.cache.forEach(guild => {
 
-                db.set(`globaltiming_${message.author.id}`, Date.now())
+                if (!rody) { db.set(`globaltiming_${message.author.id}`, Date.now()) }
                 let CanaisValidos = guild.channels.cache.find(ch => ch.name === "naya-global-chat")
 
                 if (!CanaisValidos) return
-                const GlobalChatEmbedMensagem = new Discord.MessageEmbed()
+
+                let GlobalChatEmbedMensagem = new Discord.MessageEmbed()
                     .setColor('BLUE')
                     .setAuthor(`${message.author.tag} | ${message.guild.name}`, avatar)
                     .setDescription(`\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
                     .setFooter(`${prefix}chat sua mensagem | ${message.author.id}`)
+
                 if (vip) {
                     GlobalChatEmbedMensagem.setColor('#FDFF00')
                     GlobalChatEmbedMensagem.setDescription(`<a:vip:837441854332338227> Membro VIP\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
                     GlobalChatEmbedMensagem.setFooter(`${prefix}chat sua mensagem | ${prefix}vip | ${message.author.id}`)
+                }
+
+                if (moderador) {
+                    GlobalChatEmbedMensagem.setColor('#FF7D00')
+                    GlobalChatEmbedMensagem.setDescription(`🎖️ Moderador\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
+                    GlobalChatEmbedMensagem.setFooter('Staff Global Chat Naya')
+                }
+
+                if (ModeradorServidor) {
+                    GlobalChatEmbedMensagem.setColor('#00FF1A')
+                    GlobalChatEmbedMensagem.setDescription(`✨ Staff Servidor Central\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
+                    GlobalChatEmbedMensagem.setFooter("Staff Naya's House")
+                }
+
+                if (rody) {
+                    GlobalChatEmbedMensagem.setColor('#FF0000')
+                    GlobalChatEmbedMensagem.setAuthor(`${message.author.tag} | Desenvolvedor da Naya`, avatar)
+                    GlobalChatEmbedMensagem.setDescription(`\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
+                    GlobalChatEmbedMensagem.setFooter(`CEO Naya`)
                 }
 
                 return CanaisValidos.send(GlobalChatEmbedMensagem)
