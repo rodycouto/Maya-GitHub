@@ -13,12 +13,12 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`<:xis:835943511932665926> ${message.author}, você foi banido do chat global! Acha que foi um engano? \`` + prefix + 'support`').then(msg => msg.delete({ timeout: 6000 })).catch(err => { return })
     }
 
-    let timeout1 = 120000
+    let timeout1 = 10000
     let author1 = db.fetch(`globaltiming_${message.author.id}`)
 
     if (author1 !== null && timeout1 - (Date.now() - author1) > 0) {
         let time = ms(timeout1 - (Date.now() - author1))
-        return message.channel.send(`${message.author}, <:xis:835943511932665926> Espere o sistema global esfriar os motores... ${time.minutes}m e ${time.seconds}s`)
+        return message.channel.send(`${message.author}, <:xis:835943511932665926> Espere o sistema global esfriar os motores... ${time.minutes}m e ${time.seconds}s`).then(msg => msg.delete({ timeout: 5000 }).catch(err => { return }))
     } else {
 
         let CanalServer = message.guild.channels.cache.find(ch => ch.name === "naya-global-chat")
@@ -68,7 +68,7 @@ exports.run = async (client, message, args) => {
             let ModeradorServidor = db.get(`modserver_${message.author.id}`)
 
             if (!MensagemGlobal) { return message.channel.send("<:xis:835943511932665926> Você precisa dizer algo para ser enviado no Global Chat.").then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
-            if (MensagemGlobal.length > 150) { return message.channel.send('<:xis:835943511932665926> Heeey! A mensagem não pode ter mais que **150 caracteres**.').then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
+            if (MensagemGlobal.length > 200) { return message.channel.send('<:xis:835943511932665926> Heeey! A mensagem não pode ter mais que **200 caracteres**.').then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
             if (MensagemGlobal.length < 4) { return message.channel.send('<:xis:835943511932665926> Heeey! A mensagem não pode ter menos que **4 caracteres**.').then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
             if (AchaLink(MensagemGlobal) === true) { return message.channel.send(`${message.author}, Por favor, não envie links no Global Chat.`).then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
             if (['xvideos', 'pornhub', 'redtube'].includes(MensagemGlobal)) { message.delete().catch(err => { return }).then(msg => msg.channel.send('<:xis:835943511932665926> Eu nem preciso dizer o motivo desta mensagem ser bloqueada, não é?')).then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })) }
@@ -94,21 +94,17 @@ exports.run = async (client, message, args) => {
 
                 if (moderador) {
                     GlobalChatEmbedMensagem.setColor('#FF7D00')
-                    GlobalChatEmbedMensagem.setDescription(`🎖️ Moderador\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
-                    GlobalChatEmbedMensagem.setFooter('Staff Global Chat Naya')
+                    GlobalChatEmbedMensagem.setDescription(`🎖️ Moderador Global Chat Naya\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
                 }
 
                 if (ModeradorServidor) {
                     GlobalChatEmbedMensagem.setColor('#00FF1A')
-                    GlobalChatEmbedMensagem.setDescription(`✨ Staff Servidor Central\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
-                    GlobalChatEmbedMensagem.setFooter("Staff Naya's House")
+                    GlobalChatEmbedMensagem.setDescription(`✨ Staff Servidor Naya's House\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
                 }
 
                 if (rody) {
                     GlobalChatEmbedMensagem.setColor('#FF0000')
-                    GlobalChatEmbedMensagem.setAuthor(`${message.author.tag} | Desenvolvedor da Naya`, avatar)
-                    GlobalChatEmbedMensagem.setDescription(`\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
-                    GlobalChatEmbedMensagem.setFooter(`CEO Naya`)
+                    GlobalChatEmbedMensagem.setDescription(`<a:engrenagem:836101651331940383> Criador da Naya\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
                 }
 
                 return CanaisValidos.send(GlobalChatEmbedMensagem)

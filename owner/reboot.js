@@ -16,5 +16,5 @@ exports.run = async (client, message, args) => {
     })
 
     client.user.setActivity(`Rebooting...`, { type: "WATCHING" })
-    return message.inlineReply('Rebooting...')
+    return message.inlineReply('<a:carregando:836101628083437608> Rebooting...')
 }
