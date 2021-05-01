@@ -20,7 +20,7 @@ exports.run = async (client, message, args) => {
     'Já jogou blackjack hoje?',
     'O banco é impossivel de roubar.',
     'A loteria é um bom lugar para investir',
-    'Jogares com arma podem pegar todo dinheiro da carteira',
+    'Jogadores com arma podem pegar todo dinheiro da carteira',
     'Tem vários meio de se obter dinheiro',
     'Na loja tem vários itens legais para se comprar',
     'Os melhores players tem mais estrelas no perfil',
