@@ -199,6 +199,16 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`Feito!`)
     }
 
+    if (['commandsdaily'].includes(args[0])) {
+        
+        let amount = args[1]
+        if (!amount) { return message.channel.send('`' + prefix + 'add commandsdaily Valor`') }
+        if (isNaN(amount)) { return message.channel.send(`**${args[1]}** não é um número.`) }
+
+        db.add('CommandCountDaily', amount)
+        return message.channel.send(`Feito!`)
+    }
+
     if (['camarão', 'camarao'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'add camarão @user Valor`') }
