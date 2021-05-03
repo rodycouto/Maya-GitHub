@@ -5,6 +5,8 @@ exports.run = async (client, message, args) => {
 
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) { prefix = "-" }
+    
+    if (['help', 'ajuda', 'comandos'].includes(args[0])) { return message.inlineReply('Erooou, é `' + prefix + 'help perfil`') }
 
     let user = message.mentions.members.first() || message.member
 
@@ -42,6 +44,9 @@ exports.run = async (client, message, args) => {
     let signo = await `⠀\n${db.get(`signo_${user.id}`)}`
     if (signo === `⠀\nnull`) { signo = "⠀\n<:xis:835943511932665926> Sem signo definido" }
 
+    let sexo = await `⠀\n${db.get(`sexo_${user.id}`)}`
+    if (sexo === `⠀\nnull`) { sexo = "⠀\n<:xis:835943511932665926> Sem sexo definido" }
+
     let niver = await `⠀\n🎉 ${db.get(`aniversario_${user.id}`)}`
     if (niver === `⠀\n🎉 null`) { niver = "⠀\n:tada: Sem aniversário definido" }
 
@@ -62,7 +67,7 @@ exports.run = async (client, message, args) => {
             .addFields(
                 {
                     name: `👤 Pessoal`,
-                    value: `🔰 Princesa do Discord\n♓ Peixes\n:tada: 15/03/2007`
+                    value: `🔰 Princesa do Discord\n♓ Peixes\n:tada: 15/03/2007\n<:02zero:832667759800352838> Deusa`
                 },
                 {
                     name: '❤️ Familia',
@@ -94,7 +99,7 @@ exports.run = async (client, message, args) => {
         .addFields(
             {
                 name: '👤 Pessoal',
-                value: `${titulo}${signo}${niver}`
+                value: `${titulo}${signo}${niver}${sexo}`
             },
             {
                 name: `❤️ Familia`,
@@ -141,6 +146,4 @@ exports.run = async (client, message, args) => {
     }
 
     await message.inlineReply(perfilembed)
-
-    if (['help', 'ajuda', 'comandos'].includes(args[0])) { return message.inlineReply('Quase pronto') }
 }

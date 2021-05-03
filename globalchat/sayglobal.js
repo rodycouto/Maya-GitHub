@@ -10,6 +10,7 @@ exports.run = async (client, message, args) => {
     }
 
     let Mensagem = args.join(" ")
+    if (!Mensagem) { return message.inlineReply('Escreva algo')}
 
     let ServidoresAtivados = db.fetch(`globalchat_${message.guild.id}`)
     if (message.channel.id === ServidoresAtivados) {

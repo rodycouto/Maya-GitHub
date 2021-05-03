@@ -102,7 +102,7 @@ exports.run = async (client, message, args) => {
     return message.inlineReply(embed)
   }
 
-  if (['ajuda', 'ajuda', 'ajuda', 'comandos'].includes(args[0].toLowerCase())) {
+  if (['ajuda', 'h', 'help', 'comandos'].includes(args[0].toLowerCase())) {
     const embed = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle('❓ Ué? Help no Help?')
@@ -174,7 +174,7 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('👩‍💻 Monte o seu Perfil')
       .setDescription('Crie seu perfil aqui comigo :hearts:\nLembrando que alguns comandos, tipo estrela e título, são adquiridos na loja')
-      .addField('• Comandos Online:', '`' + prefix + 'marry @user` Se case com alguém\n' + '`' + prefix + 'divorce @user` Se divorcie\n' + '`' + prefix + 'family1/2/3` Chame pessoas pra sua familia\n' + '`' + prefix + 'nofamily1/2/3` Remova pessoas da sua familia\n' + '`' + prefix + 'setstatus` Coloque um status maneiro\n' + '`' + prefix + 'rp` Dê reputação\n' + '`' + prefix + 'setsigno` Escolha seu signo\n' + '`' + prefix + 'settitulo` Escolha seu título\n' + '`' + prefix + 'setniver` Coloque seu aniversário\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .addField('• Comandos Online:', '`' + prefix + 'marry @user` Se case com alguém\n' + '`' + prefix + 'divorce @user` Se divorcie\n' + '`' + prefix + 'family1/2/3` Chame pessoas pra sua familia\n' + '`' + prefix + 'nofamily1/2/3` Remova pessoas da sua familia\n' + '`' + prefix + 'setstatus` Coloque um status maneiro\n' + '`' + prefix + 'rp` Dê reputação\n' + '`' + prefix + 'setsigno` Escolha seu signo\n' + '`' + prefix + 'settitulo` Escolha seu título\n' + '`' + prefix + 'setniver` Coloque seu aniversário\n' + '`' + prefix + 'setsexo` Defina seu sexo\n' + `:tools: [Lista de Comandos](${linkgithub})`)
       .setFooter(`${prefix}ideianaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
