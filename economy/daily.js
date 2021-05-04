@@ -5,8 +5,6 @@ const Discord = require("discord.js")
 exports.run = async (client, message, args) => {
 
   let timeout = 86400000 // 24hrs
-  let amountmoney = 5
-  let amountxp = 300
 
   let timeout1 = 9140000
   let author1 = await db.fetch(`pego_${message.author.id}`)
@@ -28,14 +26,14 @@ exports.run = async (client, message, args) => {
       return message.inlineReply(`Você já pegou seus pontos hoje. Volte em ${time.hours}h, ${time.minutes}m, e ${time.seconds}s`)
     } else {
 
-      let money = db.fetch(`mpoints_${message.author.id}`)
-      if (money === null) { money = 0 }
+      const amountnp = Math.floor(Math.random() * 1000) + 1
+      const amountxp = Math.floor(Math.random() * 1000) + 1
 
-      db.add(`mpoints_${message.author.id}`, amountmoney)
+      db.add(`mpoints_${message.author.id}`, amountnp)
       db.add(`xp_${message.author.id}`, amountxp)
       db.set(`daily_${message.author.id}`, Date.now())
 
-      message.inlineReply(`Você adquiriu ${amountmoney} <:NPoints:837666759389347910>NPoints e ${amountxp} <:level:766847577416138772>XP.`)
+      message.inlineReply(`Você adquiriu ${amountnp} <:NPoints:837666759389347910>NPoints e ${amountxp} <:level:766847577416138772>XP.`)
     }
   }
 }
