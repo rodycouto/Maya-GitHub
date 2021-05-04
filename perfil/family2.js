@@ -29,7 +29,7 @@ exports.run = async (client, message, args) => {
 	let family2 = await db.fetch(`family2_${member.id}`)
 
 	if (family === null && family2 === null) {
-		let familyembed = new discord.MessageEmbed()
+		let familyembed = new Discord.MessageEmbed()
 			.setColor('BLUE')
 			.setTitle('❤️ Novo Pedido de Family')
 			.setDescription(`${message.author} está pedindo para ${member} entrar em sua familia.\n \nClique no coração para aceitar o pedido.`)
@@ -49,7 +49,7 @@ exports.run = async (client, message, args) => {
 				db.set(`family2_${message.author.id}`, member.id)
 				db.set(`family2_${member.id}`, message.author.id)
 
-				let familyembed = new discord.MessageEmbed()
+				let familyembed = new Discord.MessageEmbed()
 					.setColor('GREEN')
 					.setDescription(`<a:Check:836347816036663309> ${member} aceitou o pedido de ${message.author} e agora são uma familia!`)
 				setTimeout(function () { message.inlineReply(familyembed) }, 4650)
