@@ -114,7 +114,7 @@ exports.run = async (client, message, args) => {
                                                 const win = new Discord.MessageEmbed()
                                                     .setColor('GREEN')
                                                     .setTitle(`${message.author.username} efetuou o roubo com sucesso!`)
-                                                    .setDescription(`Com o roubo da casa, você obteve ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Com o roubo da casa, você obteve ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(win))
                                             } else if (result === "fugiu") {
@@ -128,7 +128,7 @@ exports.run = async (client, message, args) => {
                                                 const lose = new Discord.MessageEmbed()
                                                     .setColor('#8B0000')
                                                     .setTitle('🚨 Preso!')
-                                                    .setDescription(`Você foi preso e perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Você foi preso e perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(fugindo)).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(lose))
                                             }
@@ -161,7 +161,7 @@ exports.run = async (client, message, args) => {
                                                 const win = new Discord.MessageEmbed()
                                                     .setColor('GREEN')
                                                     .setTitle(`${message.author.username} efetuou o roubo com sucesso!`)
-                                                    .setDescription(`Com o roubo da mansão, você obteve ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Com o roubo da mansão, você obteve ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(win))
                                             } else if (result === "fugiu") {
@@ -175,7 +175,7 @@ exports.run = async (client, message, args) => {
                                                 const lose = new Discord.MessageEmbed()
                                                     .setColor('#8B0000')
                                                     .setTitle('🚨 Preso!')
-                                                    .setDescription(`Você foi preso e perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Você foi preso e perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(fugindo)).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(lose))
                                             }
@@ -208,7 +208,7 @@ exports.run = async (client, message, args) => {
                                                 const win = new Discord.MessageEmbed()
                                                     .setColor('GREEN')
                                                     .setTitle(`${message.author.username} efetuou o roubo com sucesso!`)
-                                                    .setDescription(`Com o roubo da prefeitura, você obteve ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Com o roubo da prefeitura, você obteve ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(win))
                                             } else if (result === "fugiu") {
@@ -222,7 +222,7 @@ exports.run = async (client, message, args) => {
                                                 const lose = new Discord.MessageEmbed()
                                                     .setColor('#8B0000')
                                                     .setTitle('🚨 Preso!')
-                                                    .setDescription(`Você foi preso e perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Você foi preso e perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(fugindo)).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(lose))
                                             }
@@ -255,7 +255,7 @@ exports.run = async (client, message, args) => {
                                                 const win = new Discord.MessageEmbed()
                                                     .setColor('GREEN')
                                                     .setTitle(`${message.author.username} efetuou o roubo com sucesso!`)
-                                                    .setDescription(`Com o roubo do cartório, você obteve ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Com o roubo do cartório, você obteve ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(win))
                                             } else if (result === "fugiu") {
@@ -269,7 +269,7 @@ exports.run = async (client, message, args) => {
                                                 const lose = new Discord.MessageEmbed()
                                                     .setColor('#8B0000')
                                                     .setTitle('🚨 Preso!')
-                                                    .setDescription(`Você foi preso e perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Você foi preso e perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(fugindo)).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(lose))
                                             }
@@ -302,7 +302,7 @@ exports.run = async (client, message, args) => {
                                                 const win = new Discord.MessageEmbed()
                                                     .setColor('GREEN')
                                                     .setTitle(`${message.author.username} efetuou o roubo com sucesso!`)
-                                                    .setDescription(`Com o roubo do correios, você obteve ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Com o roubo do correios, você obteve ${amount}<:RPoints:837666759389347910>RPoints`)
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(win))
                                             } else if (result === "fugiu") {
                                                 db.set(`procurado_${message.author.id}`, Date.now())
@@ -315,7 +315,7 @@ exports.run = async (client, message, args) => {
                                                 const lose = new Discord.MessageEmbed()
                                                     .setColor('#8B0000')
                                                     .setTitle('🚨 Preso!')
-                                                    .setDescription(`Você foi preso e perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Você foi preso e perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(fugindo)).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(lose))
                                             }
@@ -348,7 +348,7 @@ exports.run = async (client, message, args) => {
                                                 const win = new Discord.MessageEmbed()
                                                     .setColor('GREEN')
                                                     .setTitle(`${message.author.username} efetuou o roubo com sucesso!`)
-                                                    .setDescription(`Com o roubo da joaleria, você obteve ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Com o roubo da joaleria, você obteve ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(win))
                                             } else if (result === "fugiu") {
@@ -362,7 +362,7 @@ exports.run = async (client, message, args) => {
                                                 const lose = new Discord.MessageEmbed()
                                                     .setColor('#8B0000')
                                                     .setTitle('🚨 Preso!')
-                                                    .setDescription(`Você foi preso e perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Você foi preso e perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(fugindo)).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(lose))
                                             }
@@ -395,7 +395,7 @@ exports.run = async (client, message, args) => {
                                                 const win = new Discord.MessageEmbed()
                                                     .setColor('GREEN')
                                                     .setTitle(`${message.author.username} efetuou o roubo com sucesso!`)
-                                                    .setDescription(`Com o roubo do shopping, você obteve ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Com o roubo do shopping, você obteve ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(win))
                                             } else if (result === "fugiu") {
@@ -409,7 +409,7 @@ exports.run = async (client, message, args) => {
                                                 const lose = new Discord.MessageEmbed()
                                                     .setColor('#8B0000')
                                                     .setTitle('🚨 Preso!')
-                                                    .setDescription(`Você foi preso e perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Você foi preso e perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(fugindo)).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(lose))
                                             }
@@ -442,7 +442,7 @@ exports.run = async (client, message, args) => {
                                                 const win = new Discord.MessageEmbed()
                                                     .setColor('GREEN')
                                                     .setTitle(`${message.author.username} efetuou o roubo com sucesso!`)
-                                                    .setDescription(`Com o roubo da fabrica, você obteve ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Com o roubo da fabrica, você obteve ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(win))
                                             } else if (result === "fugiu") {
@@ -456,7 +456,7 @@ exports.run = async (client, message, args) => {
                                                 const lose = new Discord.MessageEmbed()
                                                     .setColor('#8B0000')
                                                     .setTitle('🚨 Preso!')
-                                                    .setDescription(`Você foi preso e perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Você foi preso e perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(fugindo)).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(lose))
                                             }
@@ -489,7 +489,7 @@ exports.run = async (client, message, args) => {
                                                 const win = new Discord.MessageEmbed()
                                                     .setColor('GREEN')
                                                     .setTitle(`${message.author.username} efetuou o roubo com sucesso!`)
-                                                    .setDescription(`Com o roubo do motel, você obteve ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Com o roubo do motel, você obteve ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(win))
                                             } else if (result === "fugiu") {
@@ -503,7 +503,7 @@ exports.run = async (client, message, args) => {
                                                 const lose = new Discord.MessageEmbed()
                                                     .setColor('#8B0000')
                                                     .setTitle('🚨 Preso!')
-                                                    .setDescription(`Você foi preso e perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Você foi preso e perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(fugindo)).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(lose))
                                             }
@@ -536,7 +536,7 @@ exports.run = async (client, message, args) => {
                                                 const win = new Discord.MessageEmbed()
                                                     .setColor('GREEN')
                                                     .setTitle(`${message.author.username} efetuou o roubo com sucesso!`)
-                                                    .setDescription(`Com o roubo do banco, você obteve ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Com o roubo do banco, você obteve ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(win))
                                             } else if (result === "fugiu") {
@@ -550,7 +550,7 @@ exports.run = async (client, message, args) => {
                                                 const lose = new Discord.MessageEmbed()
                                                     .setColor('#8B0000')
                                                     .setTitle('🚨 Preso!')
-                                                    .setDescription(`Você foi preso e perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                                                    .setDescription(`Você foi preso e perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                                                 return message.inlineReply(embedcrime).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(fugindo)).then(msg => msg.delete({ timeout: 6000 })).then(msg => msg.channel.send(lose))
                                             }

@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
         let noargs = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('💸 Sistema de Pagamento')
-            .setDescription('Page a galera, é simples e rápido!\n \n*NPoints perdidos não serão recuperados. Cuidado para não ser enganado*')
+            .setDescription('Page a galera, é simples e rápido!\n \n*RPoints perdidos não serão recuperados. Cuidado para não ser enganado*')
             .addField('Comando', '`' + prefix + 'pagar @user quantia`\n' + '`' + prefix + 'pagar @user all/tudo`')
             .setFooter('Apenas o dinheiro na carteira será válido para pagamentos.')
 
@@ -44,7 +44,7 @@ exports.run = async (client, message, args) => {
         if (!args[1]) { return message.inlineReply(formato) }
         if (user === message.author) { return message.inlineReply('Você não pode pagar você mesmo.') }
         if (bot) { return message.inlineReply('Você não pode pagar bots.') }
-        if (money < args[1]) { return message.inlineReply(`Você precisa ter ${args[1]}<:NPoints:837666759389347910> na carteira para poder pagar ${user.user.username}.`) }
+        if (money < args[1]) { return message.inlineReply(`Você precisa ter ${args[1]}<:RPoints:837666759389347910> na carteira para poder pagar ${user.user.username}.`) }
         if (args[1] < 0) { return message.inlineReply(nomoney) }
         if (isNaN(args[1])) { return message.inlineReply('Valor digitado não é um número.') }
         db.add(`cachepay_${message.author.id}`, args[1])
@@ -56,7 +56,7 @@ exports.run = async (client, message, args) => {
             .setColor('BLUE')
             .setTitle('Você confirma os dados a baixo?')
             .setDescription('O dinheiro pago não retornará para você a menos que te devolvam.')
-            .addField('Informações', `Pagar **${args[1]}<:NPoints:837666759389347910>NPoints** para ${user} ?`)
+            .addField('Informações', `Pagar **${args[1]}<:RPoints:837666759389347910>RPoints** para ${user} ?`)
             .setFooter('Auto delete em 30 segundos.')
 
         await message.inlineReply('A Raphy não se responsabiliza por dinheiro perdido.', confirm).then(msg => {
@@ -74,7 +74,7 @@ exports.run = async (client, message, args) => {
 
                     let embed = new Discord.MessageEmbed()
                         .setColor('#efff00')
-                        .setDescription(`${message.author} pagou ${args[1]}<:NPoints:837666759389347910>NPoints para ${message.mentions.members.first()}`)
+                        .setDescription(`${message.author} pagou ${args[1]}<:RPoints:837666759389347910>RPoints para ${message.mentions.members.first()}`)
                     return message.inlineReply(embed)
                 }
                 if (reaction.emoji.name === '❌') { // Não

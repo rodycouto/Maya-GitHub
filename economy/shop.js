@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(presomax)
     } else {
 
-        let star = '<:NPoints:837666759389347910>'
+        let star = '<:RPoints:837666759389347910>'
         let loli = '<:Loli:831571527744356422>'
         let StarM = '<:starM:832974891635572787>'
         let loteria = db.get(`loteria`)
@@ -38,11 +38,11 @@ exports.run = async (client, message, args) => {
                 .addFields(
                     {
                         name: 'Cores',
-                        value: '🟥 `Vermelho` 10000 <:NPoints:837666759389347910>NPoints\n🟧 `Laranja` 10000 <:NPoints:837666759389347910>NPoints\n⬜ `Branco` 10000 <:NPoints:837666759389347910>NPoints'
+                        value: '🟥 `Vermelho` 10000 <:RPoints:837666759389347910>RPoints\n🟧 `Laranja` 10000 <:RPoints:837666759389347910>RPoints\n⬜ `Branco` 10000 <:RPoints:837666759389347910>RPoints'
                     },
                     {
                         name: 'Perfil',
-                        value: '<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela5` 10.000.000 <:NPoints:837666759389347910>NPoints'
+                        value: '<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela5` 10.000.000 <:RPoints:837666759389347910>RPoints'
                     }
                 )
                 .setFooter(`${prefix}buy | ${prefix}itens | ${prefix}setcolor | ${prefix}slot`)
@@ -57,15 +57,15 @@ exports.run = async (client, message, args) => {
                 .addFields(
                     {
                         name: 'Disponiveis',
-                        value: '🎣 `Vara de Pesca` 140 <:NPoints:837666759389347910>NPoints\n🔫 `Arma` 4.000 <:NPoints:837666759389347910>NPoints\n⛏️ `Picareta` 85 <:NPoints:837666759389347910>NPoints\n🪓 `Machado` 35 <:NPoints:837666759389347910>NPoints\n🎟️ `Fichas` 2 <:NPoints:837666759389347910>NPoints\n💌 `Carta de Amor` 1 <:NPoints:837666759389347910>NPoints\n🥘 `Comida` 2 <:NPoints:837666759389347910>NPoints\n🪱 `Isca` 1 <:NPoints:837666759389347910>NPoints\n🥤 `Água` 1 <:NPoints:837666759389347910>NPoints'
+                        value: '🎣 `Vara de Pesca` 140 <:RPoints:837666759389347910>RPoints\n🔫 `Arma` 4.000 <:RPoints:837666759389347910>RPoints\n⛏️ `Picareta` 85 <:RPoints:837666759389347910>RPoints\n🪓 `Machado` 35 <:RPoints:837666759389347910>RPoints\n🎟️ `Fichas` 2 <:RPoints:837666759389347910>RPoints\n💌 `Carta de Amor` 1 <:RPoints:837666759389347910>RPoints\n🥘 `Comida` 2 <:RPoints:837666759389347910>RPoints\n🪱 `Isca` 1 <:RPoints:837666759389347910>RPoints\n🥤 `Água` 1 <:RPoints:837666759389347910>RPoints'
                     },
                     {
                         name: 'Loteria',
-                        value: '🎫 `Ticket Loteria` 10 <:NPoints:837666759389347910>NPoints' + `\nPrêmio Atual: ${loteria} <:NPoints:837666759389347910>NPoints`
+                        value: '🎫 `Ticket Loteria` 10 <:RPoints:837666759389347910>RPoints' + `\nPrêmio Atual: ${loteria} <:RPoints:837666759389347910>RPoints`
                     },
                     {
                         name: 'Perfil',
-                        value: '<:starM:832974891635572787> `Estrela1` 500.000 <:NPoints:837666759389347910>NPoints\n<:starM:832974891635572787><:starM:832974891635572787> `Estrela2` 1.000.000 <:NPoints:837666759389347910>NPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela3` 2.000.000 <:NPoints:837666759389347910>NPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela4` 4.000.000 <:NPoints:837666759389347910>NPoints\n🔰 `Título` 10.000<:NPoints:837666759389347910>NPoints'
+                        value: '<:starM:832974891635572787> `Estrela1` 500.000 <:RPoints:837666759389347910>RPoints\n<:starM:832974891635572787><:starM:832974891635572787> `Estrela2` 1.000.000 <:RPoints:837666759389347910>RPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela3` 2.000.000 <:RPoints:837666759389347910>RPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela4` 4.000.000 <:RPoints:837666759389347910>RPoints\n🔰 `Título` 10.000<:RPoints:837666759389347910>RPoints'
                     }
                 )
                 .setFooter(`${prefix}buy | ${prefix}itens | ${prefix}vender | ${prefix}slot | ${prefix}loja vip`)

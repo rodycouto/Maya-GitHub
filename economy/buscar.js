@@ -90,7 +90,7 @@ exports.run = async (client, message, args) => {
                             const FlorestaEmbed = new Discord.MessageEmbed()
                                 .setColor('GREEN')
                                 .setTitle('⭐ Você adquiriu um item de Classe Especial')
-                                .addField('Classe Especial: 🥎 Bola do Brown', `Você obteve: ${dinh}<:NPoints:837666759389347910>NPoints, ${apple} 🍎 Maças, ${comidas} 🥘 Comidas e ${rosas} 🌹 Rosas`)
+                                .addField('Classe Especial: 🥎 Bola do Brown', `Você obteve: ${dinh}<:RPoints:837666759389347910>RPoints, ${apple} 🍎 Maças, ${comidas} 🥘 Comidas e ${rosas} 🌹 Rosas`)
                             return message.inlineReply(FlorestaEmbed)
                         } else if (!db.get(`bola_${message.author.id}`)) {
                             let dinh = Math.floor(Math.random() * 30) + 1
@@ -105,7 +105,7 @@ exports.run = async (client, message, args) => {
                             const FlorestaEmbed = new Discord.MessageEmbed()
                                 .setColor('GREEN')
                                 .setTitle('⭐ Você adquiriu um item de Classe Especial')
-                                .addField('Classe Especial: 🥎 Bola do Brown', `Você obteve: ${dinh}<:NPoints:837666759389347910>NPoints, ${apple} 🍎 Maças, ${comidas} 🥘 Comidas e ${rosas} 🌹 Rosas`)
+                                .addField('Classe Especial: 🥎 Bola do Brown', `Você obteve: ${dinh}<:RPoints:837666759389347910>RPoints, ${apple} 🍎 Maças, ${comidas} 🥘 Comidas e ${rosas} 🌹 Rosas`)
                             return message.inlineReply(FlorestaEmbed)
                         } else {
 
@@ -120,7 +120,7 @@ exports.run = async (client, message, args) => {
                             const FlorestaEmbed = new Discord.MessageEmbed()
                                 .setColor('GREEN')
                                 .setTitle('🌲 Você achou um baú perdido!')
-                                .addField('<:NPoints:837666759389347910> <:NPoints:837666759389347910> Você achou um baú perdido! <:NPoints:837666759389347910> <:NPoints:837666759389347910>', `Você obteve: ${dinh}<:NPoints:837666759389347910>NPoints, ${apple} 🍎 Maças, ${comidas} 🥘 Comidas e ${rosas} 🌹 Rosas`)
+                                .addField('<:RPoints:837666759389347910> <:RPoints:837666759389347910> Você achou um baú perdido! <:RPoints:837666759389347910> <:RPoints:837666759389347910>', `Você obteve: ${dinh}<:RPoints:837666759389347910>RPoints, ${apple} 🍎 Maças, ${comidas} 🥘 Comidas e ${rosas} 🌹 Rosas`)
                             return message.inlineReply(FlorestaEmbed)
                         }
                     }
@@ -138,7 +138,7 @@ exports.run = async (client, message, args) => {
                         const FlorestaEmbed = new Discord.MessageEmbed()
                             .setColor('GREEN')
                             .setTitle('🌲 Você achou um baú perdido!')
-                            .addField('<:NPoints:837666759389347910> <:NPoints:837666759389347910> Você achou um baú perdido! <:NPoints:837666759389347910> <:NPoints:837666759389347910>', `Você obteve: ${dinh}<:NPoints:837666759389347910>NPoints, ${apple} 🍎 Maças, ${comidas} 🥘 Comidas e ${rosas} 🌹 Rosas`)
+                            .addField('<:RPoints:837666759389347910> <:RPoints:837666759389347910> Você achou um baú perdido! <:RPoints:837666759389347910> <:RPoints:837666759389347910>', `Você obteve: ${dinh}<:RPoints:837666759389347910>RPoints, ${apple} 🍎 Maças, ${comidas} 🥘 Comidas e ${rosas} 🌹 Rosas`)
                         return message.inlineReply(FlorestaEmbed)
                     }
 

@@ -45,7 +45,7 @@ exports.run = async (client, message, args) => {
 
             const LanceEmbed = new Discord.MessageEmbed()
                 .setColor('GREEN')
-                .setDescription(`<a:MoneyWings:834899137991540797> ${message.author} lançou ${args[0]} <:NPoints:837666759389347910>NPoints no chat.`)
+                .setDescription(`<a:MoneyWings:834899137991540797> ${message.author} lançou ${args[0]} <:RPoints:837666759389347910>RPoints no chat.`)
 
             if (!args[0]) { return message.inlineReply(embed) }
 
@@ -59,7 +59,7 @@ exports.run = async (client, message, args) => {
 
                 const LanceEmbedAll = new Discord.MessageEmbed()
                     .setColor('GREEN')
-                    .setDescription(`<a:MoneyWings:834899137991540797> ${message.author} lançou ${cache} <:NPoints:837666759389347910>NPoints no chat.`)
+                    .setDescription(`<a:MoneyWings:834899137991540797> ${message.author} lançou ${cache} <:RPoints:837666759389347910>RPoints no chat.`)
 
                 let m = await message.channel.send(LanceEmbedAll)
                 m.react("✅")
@@ -74,7 +74,7 @@ exports.run = async (client, message, args) => {
 
                     let winembed = new Discord.MessageEmbed()
                         .setColor('GREEN')
-                        .setDescription(`<a:MoneyWings:834899137991540797> ${winner} pegou o dinheiro lançado por ${message.author}.\n${cache} <:NPoints:837666759389347910>NPoints`)
+                        .setDescription(`<a:MoneyWings:834899137991540797> ${winner} pegou o dinheiro lançado por ${message.author}.\n${cache} <:RPoints:837666759389347910>RPoints`)
 
                     db.add(`mpoints_${winner.id}`, cache)
                     db.delete(`lancechache_${message.author.id}`)
@@ -84,7 +84,7 @@ exports.run = async (client, message, args) => {
 
                 if (args[1]) { return message.inlineReply(FormatoCorreto) }
                 if (isNaN(args[0])) { return message.inlineReply(`${FormatoCorreto}\n**${args[0]}** não é um número.`) }
-                if (money < args[0]) { return message.inlineReply(`<:xis:835943511932665926> Você não tem ${args[0]} <:NPoints:837666759389347910>NPoints na cateira.`) }
+                if (money < args[0]) { return message.inlineReply(`<:xis:835943511932665926> Você não tem ${args[0]} <:RPoints:837666759389347910>RPoints na cateira.`) }
                 if (money === '0') { return message.inlineReply(`<:xis:835943511932665926> Você não tem dinheiro pra fazer lances no chat.`) }
                 db.add(`lancechache_${message.author.id}`, args[0])
                 db.subtract(`mpoints_${message.author.id}`, args[0])
@@ -110,7 +110,7 @@ exports.run = async (client, message, args) => {
 
                     let winembed = new Discord.MessageEmbed()
                         .setColor('GREEN')
-                        .setDescription(`<a:MoneyWings:834899137991540797> ${winner} pegou o dinheiro lançado por ${message.author}.\n${args[0]} <:NPoints:837666759389347910>NPoints`)
+                        .setDescription(`<a:MoneyWings:834899137991540797> ${winner} pegou o dinheiro lançado por ${message.author}.\n${args[0]} <:RPoints:837666759389347910>RPoints`)
 
                     db.add(`mpoints_${winner.id}`, cache)
                     db.delete(`lancechache_${message.author.id}`)

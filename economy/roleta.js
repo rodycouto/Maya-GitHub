@@ -76,7 +76,7 @@ exports.run = async (client, message, args) => {
                 let winembed = new Discord.MessageEmbed()
                     .setColor('GREEN')
                     .setTitle('💰 GANHOU!')
-                    .setDescription(`${message.author} apostou tudo na roleta e faturou ${winprize}<:NPoints:837666759389347910>NPoints`)
+                    .setDescription(`${message.author} apostou tudo na roleta e faturou ${winprize}<:RPoints:837666759389347910>RPoints`)
 
                 let loseembed = new Discord.MessageEmbed()
                     .setColor('#8B0000')
@@ -148,12 +148,12 @@ exports.run = async (client, message, args) => {
             let winembed = new Discord.MessageEmbed()
                 .setColor('GREEN')
                 .setTitle('💰 GANHOU!')
-                .setDescription(`${message.author} apostou ${args[0]} na roleta e faturou ${winprize}<:NPoints:837666759389347910>NPoints`)
+                .setDescription(`${message.author} apostou ${args[0]} na roleta e faturou ${winprize}<:RPoints:837666759389347910>RPoints`)
 
             let loseembed = new Discord.MessageEmbed()
                 .setColor('#8B0000')
                 .setTitle('❌ PERDEU!')
-                .setDescription(`${message.author} jogou na roleta e perdeu ${valor}<:NPoints:837666759389347910>NPoints`)
+                .setDescription(`${message.author} jogou na roleta e perdeu ${valor}<:RPoints:837666759389347910>RPoints`)
 
             let empateembed = new Discord.MessageEmbed()
                 .setColor('YELLOW')

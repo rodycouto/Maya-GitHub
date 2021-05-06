@@ -91,7 +91,7 @@ exports.run = async (client, message, args) => {
                             let pescaembed = new Discord.MessageEmbed()
                                 .setColor('GREEN')
                                 .setTitle('⭐ Você adquiriu um item de Classe Especial')
-                                .addField('Classe Especial: 🔪 Faca', `Você obteve: ${dinh}<:NPoints:837666759389347910>NPoints, ${peixes} 🐟 peixes, ${iiscas} 🪱 Iscas e ${camarao} 🍤 Camarões`)
+                                .addField('Classe Especial: 🔪 Faca', `Você obteve: ${dinh}<:RPoints:837666759389347910>RPoints, ${peixes} 🐟 peixes, ${iiscas} 🪱 Iscas e ${camarao} 🍤 Camarões`)
                             return message.inlineReply(pescaembed)
                         } else if (!db.get(`faca_${message.author.id}`)) {
                             let dinh = Math.floor(Math.random() * 30) + 1
@@ -108,7 +108,7 @@ exports.run = async (client, message, args) => {
                             let pescaembed = new Discord.MessageEmbed()
                                 .setColor('GREEN')
                                 .setTitle('⭐ Você adquiriu um item de Classe Especial')
-                                .addField('Classe Especial: 🔪 Faca', `Você obteve: ${dinh}<:NPoints:837666759389347910>NPoints, ${peixes} 🐟 peixes, ${iiscas} 🪱 Iscas e ${camarao} 🍤 Camarões`)
+                                .addField('Classe Especial: 🔪 Faca', `Você obteve: ${dinh}<:RPoints:837666759389347910>RPoints, ${peixes} 🐟 peixes, ${iiscas} 🪱 Iscas e ${camarao} 🍤 Camarões`)
                             return message.inlineReply(pescaembed)
                         } else {
 
@@ -125,7 +125,7 @@ exports.run = async (client, message, args) => {
                             let pescaembed = new Discord.MessageEmbed()
                                 .setColor('GREEN')
                                 .setTitle('🎣 Você pescou com sucesso!')
-                                .addField('<:NPoints:837666759389347910> <:NPoints:837666759389347910> Você achou um baú do tesouro! <:NPoints:837666759389347910> <:NPoints:837666759389347910>', `Você obteve: ${dinh}<:NPoints:837666759389347910>NPoints, ${peixes} 🐟 peixes, ${iiscas} 🪱 Iscas e ${camarao} 🍤 Camarões`)
+                                .addField('<:RPoints:837666759389347910> <:RPoints:837666759389347910> Você achou um baú do tesouro! <:RPoints:837666759389347910> <:RPoints:837666759389347910>', `Você obteve: ${dinh}<:RPoints:837666759389347910>RPoints, ${peixes} 🐟 peixes, ${iiscas} 🪱 Iscas e ${camarao} 🍤 Camarões`)
                             return message.inlineReply(pescaembed)
                         }
                     }
@@ -144,7 +144,7 @@ exports.run = async (client, message, args) => {
                         let pescaembed = new Discord.MessageEmbed()
                             .setColor('GREEN')
                             .setTitle('🎣 Você pescou com sucesso')
-                            .addField('<:NPoints:837666759389347910> <:NPoints:837666759389347910> Você achou um baú do tesouro! <:NPoints:837666759389347910> <:NPoints:837666759389347910>', `Você obteve: ${din}<:NPoints:837666759389347910>NPoints, ${peixes} 🐟 peixes, ${iiscas} 🪱 Iscas e ${camarao} 🍤 Camarões `)
+                            .addField('<:RPoints:837666759389347910> <:RPoints:837666759389347910> Você achou um baú do tesouro! <:RPoints:837666759389347910> <:RPoints:837666759389347910>', `Você obteve: ${din}<:RPoints:837666759389347910>RPoints, ${peixes} 🐟 peixes, ${iiscas} 🪱 Iscas e ${camarao} 🍤 Camarões `)
                         return message.inlineReply(pescaembed)
                     }
 

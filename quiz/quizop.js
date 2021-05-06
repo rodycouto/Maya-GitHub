@@ -26,7 +26,7 @@ exports.run = async (client, message, args) => {
                 let resposta = new Discord.MessageEmbed()
                     .setColor('GREEN')
                     .setTitle(`${collected.first().author.username} acertou a pergunta!`)
-                    .setDescription(`${collected.first().author} ganhou ${amount} <:NPoints:837666759389347910>NPoints`)
+                    .setDescription(`${collected.first().author} ganhou ${amount} <:RPoints:837666759389347910>RPoints`)
                 message.channel.send(resposta)
             })
             .catch(collected => {

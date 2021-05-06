@@ -33,7 +33,7 @@ exports.run = async (client, message, args) => {
       db.add(`xp_${message.author.id}`, amountxp)
       db.set(`daily_${message.author.id}`, Date.now())
 
-      message.inlineReply(`Você adquiriu ${amountnp} <:NPoints:837666759389347910>NPoints e ${amountxp} <:level:766847577416138772>XP.`)
+      message.inlineReply(`Você adquiriu ${amountnp} <:RPoints:837666759389347910>RPoints e ${amountxp} <:level:766847577416138772>XP.`)
     }
   }
 }

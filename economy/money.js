@@ -43,12 +43,12 @@ exports.run = async (client, message, args) => {
     .addFields(
       {
         name: '💸 Carteira:',
-        value: `<:NPoints:837666759389347910>${bal}`,
+        value: `<:RPoints:837666759389347910>${bal}`,
         inline: true
       },
       {
         name: '🏦 Banco:',
-        value: `<:NPoints:837666759389347910>${bank}`,
+        value: `<:RPoints:837666759389347910>${bank}`,
         inline: true
       }
     )

@@ -34,12 +34,12 @@ exports.run = async (client, message, args) => {
                 let amount = (Math.floor(Math.random() * 500) + 1)
                 db.add(`mpoints_${message.author.id}`, amount)
                 db.set(`slut_${message.author.id}`, Date.now())
-                message.inlineReply(`Você se prostituiu e obteve ${amount} <:NPoints:837666759389347910>NPoints`)
+                message.inlineReply(`Você se prostituiu e obteve ${amount} <:RPoints:837666759389347910>RPoints`)
             } else if (result === "lose") {
                 let amount = (Math.floor(Math.random() * 500) + 1)
                 db.subtract(`mpoints_${message.author.id}`, amount)
                 db.set(`slut_${message.author.id}`, Date.now())
-                message.inlineReply(`Você prostituiu e perdeu ${amount} <:NPoints:837666759389347910>NPoints`)
+                message.inlineReply(`Você prostituiu e perdeu ${amount} <:RPoints:837666759389347910>RPoints`)
             }
         }
     }

@@ -20,7 +20,7 @@ exports.run = async (client, message, args) => {
         const NoArgsEmbed = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('⚔️ Duelo Raphy Arena')
-            .setDescription('O Duelo é um dos comandos da Classe Arena, onde você disputa com outros membros do servidor por alguma recompensa.\nCom o Duelo, você aposta uma quantia em <:NPoints:837666759389347910>NPoints, e o vencedor que tiver mais sorte ganha.')
+            .setDescription('O Duelo é um dos comandos da Classe Arena, onde você disputa com outros membros do servidor por alguma recompensa.\nCom o Duelo, você aposta uma quantia em <:RPoints:837666759389347910>RPoints, e o vencedor que tiver mais sorte ganha.')
             .addField('Comando', '`' + prefix + 'duelar @user quantia`')
             .setFooter('A Raphy não se responsabiliza por dinheiro perdido.')
 
@@ -46,7 +46,7 @@ exports.run = async (client, message, args) => {
         if (isNaN(Valor)) { return message.inlineReply(`<:xis:835943511932665926> | **${Valor}** não é um número, siga o formato correto, por favor. ` + '`' + prefix + 'duelar @user quantia a ser apostada`') }
 
         if (AuthorMoney < '0') { return message.inlineReply(`<:xis:835943511932665926> Você não pode duelar estando negativado.`) }
-        if (AuthorMoney < Valor) { return message.inlineReply(`<:xis:835943511932665926> Você não tem **${Valor}**<:NPoints:837666759389347910>NPoints na carteira. Saque o valor desejado usando ` + '`' + prefix + 'sacar valor`') }
+        if (AuthorMoney < Valor) { return message.inlineReply(`<:xis:835943511932665926> Você não tem **${Valor}**<:RPoints:837666759389347910>RPoints na carteira. Saque o valor desejado usando ` + '`' + prefix + 'sacar valor`') }
 
         if (UserMoney < '0') { return message.inlineReply(`<:xis:835943511932665926> ${user} está negativado. Tenha piedade!`) }
         if (UserBank + UserMoney < Valor) { return message.inlineReply('<:xis:835943511932665926> Não tem todo esse dinheiro.') }
@@ -55,7 +55,7 @@ exports.run = async (client, message, args) => {
             .setColor('BLUE')
             .setTitle('⚔️ Desafio Arena - Duelo')
             .setDescription(`${user}, você está sendo desafiado por ${message.author} para um duelo!`)
-            .addField('Valor apostado', `${Valor}<:NPoints:837666759389347910>NPoints`)
+            .addField('Valor apostado', `${Valor}<:RPoints:837666759389347910>RPoints`)
             .setFooter('Cancelamento em 30 segundos.')
 
         return message.inlineReply(ConfirmBattle).then(msg => {
@@ -97,13 +97,13 @@ exports.run = async (client, message, args) => {
                         let result = winlose[Math.floor(Math.random() * winlose.length)]
 
                         if (result === 'win') {
-                            WinEmbed.setDescription(`${message.author} recebeu: ${cache}<:NPoints:837666759389347910>NPoints`)
+                            WinEmbed.setDescription(`${message.author} recebeu: ${cache}<:RPoints:837666759389347910>RPoints`)
                             db.add(`mpoints_${message.author.id}`, cache)
                             return message.inlineReply(WinEmbed).then(() => db.delete(`cachebattle_${message.author.id}`))
                         }
 
                         if (result === 'lose') {
-                            WinEmbed.setDescription(`${user} recebeu: ${cache}<:NPoints:837666759389347910>NPoints`)
+                            WinEmbed.setDescription(`${user} recebeu: ${cache}<:RPoints:837666759389347910>RPoints`)
                             db.add(`mpoints_${message.mentions.members.first().id}`, cache)
                             return message.inlineReply(WinEmbed).then(() => db.delete(`cachebattle_${message.author.id}`))
                         }

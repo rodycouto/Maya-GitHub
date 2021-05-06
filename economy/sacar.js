@@ -63,7 +63,7 @@ exports.run = async (client, message, args) => {
 
             const nota = new Discord.MessageEmbed()
                 .setColor('GREEN')
-                .setDescription(`Você sacou ${money}<:NPoints:837666759389347910> do banco`)
+                .setDescription(`Você sacou ${money}<:RPoints:837666759389347910> do banco`)
             return message.inlineReply(nota)
         }
 
@@ -80,7 +80,7 @@ exports.run = async (client, message, args) => {
 
         const embed = new Discord.MessageEmbed()
             .setColor('#efff00')
-            .setDescription(`${message.author} sacou ${args[0]}<:NPoints:837666759389347910> do banco.`)
+            .setDescription(`${message.author} sacou ${args[0]}<:RPoints:837666759389347910> do banco.`)
         message.inlineReply(embed)
     }
 }

@@ -81,12 +81,12 @@ exports.run = async (client, message, args) => {
                     const LoseEmbed = new Discord.MessageEmbed()
                         .setColor('#8B0000')
                         .setTitle("🔫 O assalto falhou!!")
-                        .setDescription(`${user} reagiu mais rápido que você e te assaltou!\n \nVocê perdeu ${amount}<:NPoints:837666759389347910>NPoints`)
+                        .setDescription(`${user} reagiu mais rápido que você e te assaltou!\n \nVocê perdeu ${amount}<:RPoints:837666759389347910>RPoints`)
 
                     const WinEmbed = new Discord.MessageEmbed()
                         .setColor("GREEN")
                         .setTitle(`🔫 Você assaltou ${user.user.username} com sucesso!`)
-                        .setDescription(`${message.author} assaltou todo o dinheiro de ${user} e obteve ${cache}<:NPoints:837666759389347910>NPoints`)
+                        .setDescription(`${message.author} assaltou todo o dinheiro de ${user} e obteve ${cache}<:RPoints:837666759389347910>RPoints`)
 
                     const PresoEmbed = new Discord.MessageEmbed()
                         .setColor('#8B0000')
@@ -97,7 +97,7 @@ exports.run = async (client, message, args) => {
                         .setColor('#8B0000')
                         .setTitle('🚑 Você levou um tiro!')
                         .setDescription(`${user} atirou em você! Você está ferido e precisa de tratamentos rápido!`)
-                        .addField('🏥 Raphy Hospital', `Debitamos ${tratamento}<:NPoints:837666759389347910>NPoints de sua conta do banco para salvar sua vida.`)
+                        .addField('🏥 Raphy Hospital', `Debitamos ${tratamento}<:RPoints:837666759389347910>RPoints de sua conta do banco para salvar sua vida.`)
 
                     if (result == 'win') {
                         setTimeout(function () {
@@ -152,7 +152,7 @@ exports.run = async (client, message, args) => {
                     const AssaltEmbed = new Discord.MessageEmbed()
                         .setColor("GREEN")
                         .setTitle(`🔫 Você assaltou ${user.user.username} com sucesso!`)
-                        .setDescription(`${message.author} assaltou todo o dinheiro de ${user} e obteve ${usermoney}<:NPoints:837666759389347910>NPoints`)
+                        .setDescription(`${message.author} assaltou todo o dinheiro de ${user} e obteve ${usermoney}<:RPoints:837666759389347910>RPoints`)
 
                     const PresoEmbed = new Discord.MessageEmbed()
                         .setColor('#8B0000')

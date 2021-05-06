@@ -25,8 +25,8 @@ exports.run = async (client, message, args) => {
         if (!args[0]) {
             let noargs = new Discord.MessageEmbed()
                 .setColor('BLUE')
-                .setTitle('<:NPoints:837666759389347910> Sistema de Vendas Raphy')
-                .setDescription('Aqui você pode vender seus itens em troca de NPoints. É muito simples, basta usar o comando, assim você pode vender os itens obtidos.\n \nDigite o nome do item com meu prefixo que eu te falo mais informações sobre ele.')
+                .setTitle('<:RPoints:837666759389347910> Sistema de Vendas Raphy')
+                .setDescription('Aqui você pode vender seus itens em troca de RPoints. É muito simples, basta usar o comando, assim você pode vender os itens obtidos.\n \nDigite o nome do item com meu prefixo que eu te falo mais informações sobre ele.')
                 .addField('Comando', '`' + prefix + 'vender NomeDoItem Quantidade`')
                 .addField('Todos os itens', '`' + prefix + 'loja`')
             return message.inlineReply(noargs)
@@ -76,7 +76,7 @@ exports.run = async (client, message, args) => {
                 let buyarma = new Discord.MessageEmbed()
                     .setColor('GREEN')
                     .setTitle('<a:Check:836347816036663309> Venda aprovada')
-                    .setDescription(`${message.author} vendeu 🐟 ${args[1]} peixes e obteve ${args[1] * 3}<:NPoints:837666759389347910>NPoints`)
+                    .setDescription(`${message.author} vendeu 🐟 ${args[1]} peixes e obteve ${args[1] * 3}<:RPoints:837666759389347910>RPoints`)
                 return message.inlineReply(buyarma)
             }
         }
@@ -95,7 +95,7 @@ exports.run = async (client, message, args) => {
                 let buyarma = new Discord.MessageEmbed()
                     .setColor('GREEN')
                     .setTitle('<a:Check:836347816036663309> Venda aprovada')
-                    .setDescription(`${message.author} vendeu 🦴 ${args[1]} ossos e obteve ${args[1] * 2}<:NPoints:837666759389347910>NPoints`)
+                    .setDescription(`${message.author} vendeu 🦴 ${args[1]} ossos e obteve ${args[1] * 2}<:RPoints:837666759389347910>RPoints`)
                 return message.inlineReply(buyarma)
             }
         }
@@ -114,7 +114,7 @@ exports.run = async (client, message, args) => {
                 let buyarma = new Discord.MessageEmbed()
                     .setColor('GREEN')
                     .setTitle('<a:Check:836347816036663309> Venda aprovada')
-                    .setDescription(`${message.author} vendeu 🍤 ${args[1]} camarões e obteve ${args[1] * 4}<:NPoints:837666759389347910>NPoints`)
+                    .setDescription(`${message.author} vendeu 🍤 ${args[1]} camarões e obteve ${args[1] * 4}<:RPoints:837666759389347910>RPoints`)
                 return message.inlineReply(buyarma)
             }
         }
@@ -133,7 +133,7 @@ exports.run = async (client, message, args) => {
                 let buyarma = new Discord.MessageEmbed()
                     .setColor('GREEN')
                     .setTitle('<a:Check:836347816036663309> Venda aprovada')
-                    .setDescription(`${message.author} vendeu 🪨 ${args[1]} minerios e obteve ${args[1] * 4}<:NPoints:837666759389347910>NPoints`)
+                    .setDescription(`${message.author} vendeu 🪨 ${args[1]} minerios e obteve ${args[1] * 4}<:RPoints:837666759389347910>RPoints`)
                 return message.inlineReply(buyarma)
             }
         }
@@ -154,7 +154,7 @@ exports.run = async (client, message, args) => {
                 let buyarma = new Discord.MessageEmbed()
                     .setColor('GREEN')
                     .setTitle('<a:Check:836347816036663309> Venda aprovada')
-                    .setDescription(`${message.author} vendeu 💎 ${args[1]} diamantes e obteve ${args[1] * amoutrand}<:NPoints:837666759389347910>NPoints`)
+                    .setDescription(`${message.author} vendeu 💎 ${args[1]} diamantes e obteve ${args[1] * amoutrand}<:RPoints:837666759389347910>RPoints`)
                 return message.inlineReply(buyarma)
             }
         }
@@ -174,7 +174,7 @@ exports.run = async (client, message, args) => {
                 let buyarma = new Discord.MessageEmbed()
                     .setColor('GREEN')
                     .setTitle('<a:Check:836347816036663309> Venda aprovada')
-                    .setDescription(`${message.author} vendeu 🌹 ${args[1]} rosas e obteve ${args[1] * 3}<:NPoints:837666759389347910>NPoints`)
+                    .setDescription(`${message.author} vendeu 🌹 ${args[1]} rosas e obteve ${args[1] * 3}<:RPoints:837666759389347910>RPoints`)
                 return message.inlineReply(buyarma)
             }
         }
@@ -193,7 +193,7 @@ exports.run = async (client, message, args) => {
                 let buyarma = new Discord.MessageEmbed()
                     .setColor('GREEN')
                     .setTitle('<a:Check:836347816036663309> Venda aprovada')
-                    .setDescription(`${message.author} vendeu 🍎 ${args[1]} maças e obteve ${args[1] * 2}<:NPoints:837666759389347910>NPoints`)
+                    .setDescription(`${message.author} vendeu 🍎 ${args[1]} maças e obteve ${args[1] * 2}<:RPoints:837666759389347910>RPoints`)
                 return message.inlineReply(buyarma)
             }
         } else {

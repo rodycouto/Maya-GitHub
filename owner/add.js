@@ -538,7 +538,7 @@ exports.run = async (client, message, args) => {
         if (isNaN(valor)) { return message.channel.send(`**${valor}** não é um número.`) }
 
         db.add(`loteria`, valor)
-        return message.channel.send(`${valor}<:NPoints:837666759389347910>NPoints foram adicionados a loteria com sucesso!.`)
+        return message.channel.send(`${valor}<:RPoints:837666759389347910>RPoints foram adicionados a loteria com sucesso!.`)
     }
 
     return message.channel.send('Comando não encontrado no registro.')

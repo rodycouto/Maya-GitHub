@@ -71,7 +71,7 @@ exports.run = async (client, message, args) => {
                 },
                 {
                     name: 'Valor cobrado',
-                    value: `${args[1]} <:NPoints:837666759389347910>NPoints`,
+                    value: `${args[1]} <:RPoints:837666759389347910>RPoints`,
                     inline: true
                 }
             )
@@ -103,7 +103,7 @@ exports.run = async (client, message, args) => {
                     let embed2 = new Discord.MessageEmbed()
                         .setColor('GREEN')
                         .setTitle('<a:Check:836347816036663309> Transação concluida!')
-                        .setDescription(`${user} pagou ${args[1]}<:NPoints:837666759389347910>NPoints para ${message.author}`)
+                        .setDescription(`${user} pagou ${args[1]}<:RPoints:837666759389347910>RPoints para ${message.author}`)
 
                     return message.inlineReply(embed2)
                 }

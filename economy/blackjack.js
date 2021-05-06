@@ -46,7 +46,7 @@ exports.run = async (client, message, args) => {
       const nomumber = new Discord.MessageEmbed()
         .setColor('#8B0000')
         .setTitle('Qual o valor que deseja apostar?')
-        .setDescription('Dinheiro disponivel: ' + moneydb + '<:NPoints:837666759389347910>')
+        .setDescription('Dinheiro disponivel: ' + moneydb + '<:RPoints:837666759389347910>')
         .setFooter(`${prefix}sacar`)
       message.inlineReply(nomumber)
       return

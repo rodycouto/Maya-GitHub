@@ -38,7 +38,7 @@ exports.run = async (client, message, args) => {
       const embed = new Discord.MessageEmbed()
         .setColor('BLUE')
         .setTitle(`${message.author.username} está pedindo um pouco de dinheiro`)
-        .setDescription(`Clique no emoji para doar 50 <:NPoints:837666759389347910>NPoints`)
+        .setDescription(`Clique no emoji para doar 50 <:RPoints:837666759389347910>RPoints`)
         .setFooter('Comando será desativado em 30 segundos.')
 
       await message.inlineReply(embed).then(msg => {
@@ -51,10 +51,10 @@ exports.run = async (client, message, args) => {
             let money = db.get(`mpoints_${member.id}`)
             if (member.id === '837147659898191902') { return }
             if (member.id === message.author.id) { return }
-            if (money < 50) { return message.channel.send(`${member}, você não tem 50 <:NPoints:837666759389347910>NPoints na carteira para ajudar ${message.author}`) }
+            if (money < 50) { return message.channel.send(`${member}, você não tem 50 <:RPoints:837666759389347910>RPoints na carteira para ajudar ${message.author}`) }
             db.subtract(`mpoints_${member.id}`, 50)
             db.add(`mpoints_${message.author.id}`, 50)
-            message.channel.send(`${member} ajudou ${message.author} com 50 <:NPoints:837666759389347910>NPoint`)
+            message.channel.send(`${member} ajudou ${message.author} com 50 <:RPoints:837666759389347910>NPoint`)
           }
         })
       })

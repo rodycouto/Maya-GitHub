@@ -78,7 +78,7 @@ exports.run = async (client, message, args) => {
                 },
                 {
                     name: '💸 Dinheiro Total',
-                    value: `${money} <:NPoints:837666759389347910> NPoints`,
+                    value: `${money} <:RPoints:837666759389347910> RPoints`,
                 },
                 {
                     name: '🌐 Level',
@@ -110,7 +110,7 @@ exports.run = async (client, message, args) => {
             },
             {
                 name: '💸 Dinheiro Total',
-                value: `${money} <:NPoints:837666759389347910> NPoints`,
+                value: `${money} <:RPoints:837666759389347910> RPoints`,
             },
             {
                 name: '🌐 Level',
