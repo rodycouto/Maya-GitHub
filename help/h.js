@@ -36,6 +36,7 @@ exports.run = async (client, message, args) => {
       .setColor('BLUE')
       .setTitle('💬 Raphy Global Chat System')
       .setDescription('Fale com os outros servidores em um único chat. Isso é um experiência única!')
+      .addField('Fale no chat', '`' + prefix + 'chat Sua mensagem em diante`')
       .addField('Crie o canal', '`' + prefix + 'channel create text NomeDoCanal`')
       .addField('Valide o canal', '`' + prefix + 'setglobalchat #canal`')
       .addField('Desative o Canal', '`' + prefix + 'setglobalchat off` ou `' + prefix + 'deletechannel #canal`')

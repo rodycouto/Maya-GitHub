@@ -31,38 +31,8 @@ exports.run = async (client, message, args) => {
 
     const linksupport = 'https://discord.gg/YpFWgJuuUV'
     const member = message.guild.members.cache.get(user.id)
-    member.setNickname(nick).catch(err => {
-
-      if (err) {
-        const erro = new Discord.MessageEmbed()
-          .setColor('#8B0000')
-          .setTitle('<a:attention:836101248183959562> Ocorreu um erro')
-          .setDescription('\n \n`' + err + '`')
-          .addFields(
-            {
-              name: 'Missing Permissions',
-              value: 'Eu não tenho cargo suficiente, suba meu cargo.',
-              inline: true
-            },
-            {
-              name: 'Unknow Member',
-              value: 'O usuário saiu do servidor.',
-              inline: true
-            },
-            {
-              name: 'API Connect Problem Asking',
-              value: 'Tente novamente, o servidor reconectou.',
-              inline: true
-            },
-            {
-              name: 'Algum outro erro?',
-              value: `[Support Raphy](${linksupport})`
-            }
-          )
-
-        return message.inlineReply(erro)
-      }
-    })
+    member.setNickname(nick).catch(err => { return })
+    message.channel.send('<a:Check:836347816036663309> Seu nickname foi alterado com sucesso!')
 
     const sucess = new Discord.MessageEmbed()
       .setColor('GREEN')

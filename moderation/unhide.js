@@ -14,5 +14,5 @@ exports.run = async (client, message, args) => {
 
     canal.updateOverwrite(message.guild.roles.cache.find(e => e.name.toLowerCase().trim() == "@everyone"), { VIEW_CHANNEL: true })
 
-    return message.channel.send(`🔒 ${message.author} escondeu o canal ${canal}! | Para mostrar o canal, use ` + '`' + prefix + 'unhide`')
+    return message.channel.send(`🔓 ${message.author} deixou o canal ${canal} visivel! | Para esconder o canal, use ` + '`' + prefix + 'unhide`')
 }

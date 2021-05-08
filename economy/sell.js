@@ -64,11 +64,12 @@ exports.run = async (client, message, args) => {
 
         if (['peixe', 'peixes', 'fish'].includes(args[0])) {
 
-            if (peixes === null) { return message.inlineReply(`❌ ${message.author}, você não tem peixes para vender.`) }
+            if (peixes === null) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem peixes para vender.`) }
             if (!args[1]) { return message.inlineReply('Quantos peixes você quer vender? `' + prefix + 'sell peixes quantidade`') }
-            if (peixes < args[1]) { return message.inlineReply(`❌ ${message.author}, você não tem tudo isso de peixes para vender.`) }
-            if (peixes == 0) { return message.inlineReply(`❌ ${message.author}, você não tem peixes para vender.`) }
-            if (peixes < 0) { return message.inlineReply(`❌ ${message.author}, você não tem peixes para vender.`) }
+            if (isNaN(args[1])) { return message.inlineReply(`<:xis:835943511932665926> | **${args[1]}** não é um número.`) }
+            if (peixes < args[1]) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem tudo isso de peixes para vender.`) }
+            if (peixes == 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem peixes para vender.`) }
+            if (peixes < 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem peixes para vender.`) }
 
             if (peixes = args[1] || peixes > args[1]) {
                 db.subtract(`peixes_${message.author.id}`, args[1])
@@ -83,11 +84,12 @@ exports.run = async (client, message, args) => {
 
         if (['ossos', 'bone', 'osso'].includes(args[0])) {
 
-            if (ossos === null) { return message.inlineReply(`❌ ${message.author}, você não tem ossos para vender.`) }
+            if (ossos === null) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem ossos para vender.`) }
             if (!args[1]) { return message.inlineReply('Quantos ossos você quer vender? `' + prefix + 'sell peixes quantidade`') }
-            if (ossos < args[1]) { return message.inlineReply(`❌ ${message.author}, você não tem tudo isso de ossos para vender.`) }
-            if (ossos == 0) { return message.inlineReply(`❌ ${message.author}, você não tem ossos para vender.`) }
-            if (ossos < 0) { return message.inlineReply(`❌ ${message.author}, você não tem ossos para vender.`) }
+            if (isNaN(args[1])) { return message.inlineReply(`<:xis:835943511932665926> | **${args[1]}** não é um número.`) }
+            if (ossos < args[1]) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem tudo isso de ossos para vender.`) }
+            if (ossos == 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem ossos para vender.`) }
+            if (ossos < 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem ossos para vender.`) }
 
             if (ossos = args[1] || ossos > args[1]) {
                 db.subtract(`ossos_${message.author.id}`, args[1])
@@ -102,11 +104,12 @@ exports.run = async (client, message, args) => {
 
         if (['camaroes', 'camarões', 'camarao', 'camarão'].includes(args[0])) {
 
-            if (camarao === null) { return message.inlineReply(`❌ ${message.author}, você não tem camarões para vender.`) }
+            if (camarao === null) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem camarões para vender.`) }
             if (!args[1]) { return message.inlineReply('Quantos camarões você quer vender? `' + prefix + 'sell camarões quantidade`') }
-            if (camarao < args[1]) { return message.inlineReply(`❌ ${message.author}, você não tem tudo isso de camarões para vender.`) }
-            if (camarao == 0) { return message.inlineReply(`❌ ${message.author}, você não tem camarões para vender.`) }
-            if (camarao < 0) { return message.inlineReply(`❌ ${message.author}, você não tem camarões para vender.`) }
+            if (isNaN(args[1])) { return message.inlineReply(`<:xis:835943511932665926> | **${args[1]}** não é um número.`) }
+            if (camarao < args[1]) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem tudo isso de camarões para vender.`) }
+            if (camarao == 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem camarões para vender.`) }
+            if (camarao < 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem camarões para vender.`) }
 
             if (camarao = args[1] || camarao > args[1]) {
                 db.subtract(`camarao_${message.author.id}`, args[1])
@@ -121,11 +124,12 @@ exports.run = async (client, message, args) => {
 
         if (['minerio', 'min', 'minerios', 'pedra', 'ferro', 'minérios', 'minério'].includes(args[0])) {
 
-            if (minerio === null) { return message.inlineReply(`❌  ${message.author}, você não tem minerios para vender.`) }
+            if (minerio === null) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem minerios para vender.`) }
             if (!args[1]) { return message.inlineReply('Quantos minerios você quer vender? `' + prefix + 'sell minerios quantidade`') }
-            if (minerio < args[1]) { return message.inlineReply(`❌ ${message.author}, você não tem tudo isso de minerios para vender.`) }
-            if (minerio == 0) { return message.inlineReply(`❌ ${message.author}, você não tem minerios para vender.`) }
-            if (minerio < 0) { return message.inlineReply(`❌ ${message.author}, você não tem minerios para vender.`) }
+            if (isNaN(args[1])) { return message.inlineReply(`<:xis:835943511932665926> | **${args[1]}** não é um número.`) }
+            if (minerio < args[1]) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem tudo isso de minerios para vender.`) }
+            if (minerio == 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem minerios para vender.`) }
+            if (minerio < 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem minerios para vender.`) }
 
             if (minerio = args[1] || minerio > args[1]) {
                 db.subtract(`minerio_${message.author.id}`, args[1])
@@ -140,11 +144,12 @@ exports.run = async (client, message, args) => {
 
         if (['diamantes', 'diamante', 'diamond'].includes(args[0])) {
 
-            if (diamond === null) { return message.inlineReply(`❌ ${message.author}, você não tem diamantes para vender.`) }
+            if (diamond === null) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem diamantes para vender.`) }
             if (!args[1]) { return message.inlineReply('Quantos diamantes você quer vender? `' + prefix + 'sell diamantes quantidade`') }
-            if (diamond < args[1]) { return message.inlineReply(`❌ ${message.author}, você não tem tudo isso de diamantes para vender.`) }
-            if (diamond == 0) { return message.inlineReply(`❌ ${message.author}, você não tem diamantes para vender.`) }
-            if (diamond < 0) { return message.inlineReply(`❌ ${message.author}, você não tem diamantes para vender.`) }
+            if (isNaN(args[1])) { return message.inlineReply(`<:xis:835943511932665926> | **${args[1]}** não é um número.`) }
+            if (diamond < args[1]) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem tudo isso de diamantes para vender.`) }
+            if (diamond == 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem diamantes para vender.`) }
+            if (diamond < 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem diamantes para vender.`) }
 
             let amoutrand = Math.floor(Math.random() * 6000) + 1
 
@@ -161,12 +166,12 @@ exports.run = async (client, message, args) => {
 
         if (['rosas', 'rosa'].includes(args[0])) {
 
-            if (rosas === null) { return message.inlineReply(`❌ ${message.author}, você não tem rosas para vender.`) }
+            if (rosas === null) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem rosas para vender.`) }
             if (!args[1]) { return message.inlineReply('Quantas rosas você quer vender? `' + prefix + 'sell rosas quantidade`') }
-            if (isNaN(args[1])) { return message.inlineReply(`**${args[1]}** não é um número!`) }
-            if (rosas < args[1]) { return message.inlineReply(`❌ ${message.author}, você não tem tudo isso de rosas para vender.`) }
-            if (rosas == 0) { return message.inlineReply(`❌ ${message.author}, você não tem rosas para vender.`) }
-            if (rosas < 0) { return message.inlineReply(`❌ ${message.author}, você não tem rosas para vender.`) }
+            if (isNaN(args[1])) { return message.inlineReply(`<:xis:835943511932665926> | **${args[1]}** não é um número.`) }
+            if (rosas < args[1]) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem tudo isso de rosas para vender.`) }
+            if (rosas == 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem rosas para vender.`) }
+            if (rosas < 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem rosas para vender.`) }
 
             if (rosas = args[1] || rosas > args[1]) {
                 db.subtract(`rosas_${message.author.id}`, args[1])
@@ -181,11 +186,12 @@ exports.run = async (client, message, args) => {
 
         if (['maças', 'apple', 'maça', 'apples', 'maçã', 'maçãs'].includes(args[0])) {
 
-            if (apple === null) { return message.inlineReply(`❌ ${message.author}, você não tem maças para vender.`) }
+            if (apple === null) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem maças para vender.`) }
             if (!args[1]) { return message.inlineReply('Quantas rosas você quer vender? `' + prefix + 'sell maças quantidade`') }
-            if (apple < args[1]) { return message.inlineReply(`❌ ${message.author}, você não tem tudo isso de maças para vender.`) }
-            if (apple == 0) { return message.inlineReply(`❌ ${message.author}, você não tem maças para vender.`) }
-            if (apple < 0) { return message.inlineReply(`❌ ${message.author}, você não tem maças para vender.`) }
+            if (isNaN(args[1])) { return message.inlineReply(`<:xis:835943511932665926> | **${args[1]}** não é um número.`) }
+            if (apple < args[1]) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem tudo isso de maças para vender.`) }
+            if (apple == 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem maças para vender.`) }
+            if (apple < 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem maças para vender.`) }
 
             if (apple = args[1] || apple > args[1]) {
                 db.subtract(`apple_${message.author.id}`, args[1])

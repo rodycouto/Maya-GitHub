@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
     const lan = new Discord.MessageEmbed()
         .setColor('#8B0000') // Red
         .setTitle('Siga o formato correto')
-        .setDescription('`' + prefix + 'translate en/pt/fr/lt A frase que deseja traduzir`')
+        .setDescription('`' + prefix + 't en/pt/fr/lt A frase que deseja traduzir`')
 
     if (!language || language.length !== 2 || !text) { return message.inlineReply(lan) }
 
@@ -26,7 +26,6 @@ exports.run = async (client, message, args) => {
             .setColor("#6959CD")
         message.inlineReply(translateEmbed)
     }).catch(err => {
-        message.inlineReply("Eu tive um problema com a tradução.\nTente novamente usando o padrão do comando, se o problema persistir, por favor, use o comando `" + prefix + 'support`')
-        console.log(err)
+        message.inlineReply("Eu tive um problema com a tradução.\nTente novamente usando o padrão do comando, se o problema persistir, por favor, use o comando `" + prefix + 'support`\n~~~ **Siglas de paises não são linguas.**')
     })
 }

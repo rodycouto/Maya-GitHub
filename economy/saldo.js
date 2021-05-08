@@ -61,7 +61,7 @@ exports.run = async (client, message, args) => {
     )
   if (vip) {
     embed.setDescription(`<a:vip:837441854332338227> ${frase}`)
-    embed.setFooter(`${user.user.username} é um membro vip. | ${prefix}vip`)
+    embed.setFooter(`${user.user.username} é um membro vip | ${prefix}vip`)
   }
   return message.inlineReply(embed)
 }
