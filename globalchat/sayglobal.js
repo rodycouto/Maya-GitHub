@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
 
         client.guilds.cache.forEach(Canal => {
             try {
-                client.channels.cache.get(db.fetch(`globalchat_${Canal.id}`)).send(`📢 ${Mensagem}\n \n*~ Raphy Global System*`)
+                client.channels.cache.get(db.fetch(`globalchat_${Canal.id}`)).send(`📢 ${Mensagem}`)
             } catch (e) { return }
         })
     }
