@@ -280,7 +280,7 @@ exports.run = async (client, message, args) => {
           return
         }
       }).catch(_ => {
-        message.inlineReply("**Você perdeu todo seu dinheiro**")
+        message.inlineReply("**Você não respondeu a tempo. Então eu peguei seu dinheiro.**")
         bet("lose")
         return
       })
