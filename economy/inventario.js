@@ -137,20 +137,44 @@ exports.run = async (client, message, args) => {
     if (!nada2) { nada2 = '' }
 
     let vermelho = db.get(`red_${user.id}`)
-    if (vermelho) { vermelho = '🟥 Vermelho' }
+    if (vermelho) { vermelho = 'Vermelho' }
     if (vermelho === null) { vermelho = '' }
 
     let branco = db.get(`white_${user.id}`)
-    if (branco) { branco = '\n⬜ Branco' }
+    if (branco) { branco = '\nBranco' }
     if (branco === null) { branco = '' }
 
     let laranja = db.get(`orange_${user.id}`)
-    if (laranja) { laranja = '\n🟧 Laranja' }
+    if (laranja) { laranja = '\nLaranja' }
     if (laranja === null) { laranja = '' }
 
-    let nada3 = !vermelho && !branco && !laranja
+    let rosa = db.get(`pink_${user.id}`)
+    if (rosa) { rosa = '\nRosa' }
+    if (rosa === null) { rosa = '' }
+
+    let ciane = db.get(`ciane_${user.id}`)
+    if (ciane) { ciane = '\nCiane' }
+    if (ciane === null) { ciane = '' }
+
+    let verde = db.get(`green_${user.id}`)
+    if (verde) { verde = '\nVerde' }
+    if (verde === null) { verde = '' }
+
+    let amarelo = db.get(`yellow_${user.id}`)
+    if (amarelo) { amarelo = '\nAmarelo' }
+    if (amarelo === null) { amarelo = '' }
+
+    let azul = db.get(`blue_${user.id}`)
+    if (azul) { azul = '\nAzul' }
+    if (azul === null) { azul = '' }
+
+    let nada3 = !vermelho && !branco && !laranja && !rosa && !ciano
     if (nada3) { nada3 = 'Nenhuma cor foi comprada ainda.' }
     if (!nada3) { nada3 = '' }
+
+    let nada4 = !verde && !amarelo && !azul
+    if (nada4) { nada4 = 'Nenhuma cor foi comprada ainda.' }
+    if (!nada4) { nada4 = '' }
 
     let avatar = user.user.displayAvatarURL({ dynamic: true, format: "png", size: 1024 })
 
@@ -158,7 +182,7 @@ exports.run = async (client, message, args) => {
         const VipEmbed = new Discord.MessageEmbed()
             .setColor(color)
             .setAuthor(`Inventário VIP de ${user.user.username}`, avatar)
-            .addField('Cores Liberadas', `${nada3}${vermelho}${branco}${laranja}`)
+            .addField('Cores Liberadas', `${nada3}${vermelho}${branco}${laranja}${rosa}${ciane}`)
             .setFooter(`${prefix}buy | ${prefix}itens | ${prefix}shop vip`)
         return message.inlineReply(VipEmbed)
     }
@@ -172,6 +196,7 @@ exports.run = async (client, message, args) => {
         if (!medalha) { NormalSlotEmbed.addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}${bola}${cachorro}${remedio}`) }
         if (medalha) { NormalSlotEmbed.addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}\n🏅 Medalha Cammum${dogname}`) }
         NormalSlotEmbed.addField('Mantimentos', `🐟 ${peixes} Peixes\n🥘 ${comida} Comidas\n🪱 ${iscas} Iscas\n🥤 ${agua} Água\n🎟️ ${fichas} Fichas\n🍤 ${camarao} Camarões\n🦴 ${ossos} Ossos\n🌹 ${rosas} Rosas\n🍎 ${apple} Maça\n🪨 ${minerio} Minérios\n💎 ${diamond} Diamantes`)
+        NormalSlotEmbed.addField('Cores', `${nada4}${verde}${amarelo}${azul}`)
         return message.inlineReply(NormalSlotEmbed)
     }
 }
