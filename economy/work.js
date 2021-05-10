@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
     if (author1 !== null && timeout1 - (Date.now() - author1) > 0) {
         let time = ms(timeout1 - (Date.now() - author1))
 
-        let presomax = new Discord.MessageEmbed()
+        const presomax = new Discord.MessageEmbed()
             .setColor('#8B0000')
             .setTitle('🚨 Você está em prisão máxima!')
             .setDescription(`Liberdade em: ${time.hours}h ${time.minutes}m e ${time.seconds}s`)
@@ -30,17 +30,19 @@ exports.run = async (client, message, args) => {
             let luck = ['win', 'lose', 'lose', 'lose', 'lose']
             let result = luck[Math.floor(Math.random() * luck.length)]
             let gorjeta = [Math.floor(Math.random() * 400) + 1]
-            db.add(`mpoints_${message.author.id}`, 33)
-            db.add(`xp_${message.author.id}`, 150)
+            let work = [Math.floor(Math.random() * 1000) + 1]
+            let xp = [Math.floor(Math.random() * 800) + 1]
+            db.add(`mpoints_${message.author.id}`, work)
+            db.add(`xp_${message.author.id}`, xp)
             db.set(`worked_${message.author.id}`, Date.now())
 
             if (result === "win") {
                 db.add(`mpoints_${message.author.id}`, gorjeta)
-                return message.inlineReply(`Você trabalhou e ganhou 33 <:RPoints:837666759389347910>RPoints, 150 XP e uma gorjeta de ${gorjeta} <:RPoints:837666759389347910>RPoints`)
+                return message.inlineReply(`Você trabalhou e ganhou ${work} <:RPoints:837666759389347910>RPoints, ${xp} XP e uma gorjeta de ${gorjeta} <:RPoints:837666759389347910>RPoints`)
             }
 
             if (result === 'lose') {
-                return message.inlineReply(`Você trabalhou e ganhou 33 <:RPoints:837666759389347910>RPoints e 150 XP`)
+                return message.inlineReply(`Você trabalhou e ganhou ${work} <:RPoints:837666759389347910>RPoints e ${xp} XP`)
             }
         }
     }

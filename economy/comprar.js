@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
                 .setColor('BLUE')
                 .setTitle('<:RPoints:837666759389347910> Sistema de Compras Raphy')
                 .setDescription('Aqui você pode comprar os itens da lojinha. É muito simples, basta usar o comando, assim você compra itens e pode usa-lo.\n \nDigite o nome do item com meu prefixo que eu te falo mais informações sobre ele.')
-                .addField('Comando', '`' + prefix + 'buy Nome do item`')
+                .addField('Comando', '`' + prefix + 'comprar Nome do item`')
                 .addField('Todos os itens', '`' + prefix + 'loja`')
             return message.inlineReply(noargs)
         }
@@ -101,7 +101,7 @@ exports.run = async (client, message, args) => {
         if (['ticketloteria', 'ticket', 'Ticket', 'tickets', 'Tickets'].includes(args[0].toLowerCase())) {
 
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar este item.`) }
-            if (!args[1]) { return message.inlineReply('Quantos tickets você quer comprar? `' + prefix + 'buy tickets quantidade`') }
+            if (!args[1]) { return message.inlineReply('Quantos tickets você quer comprar? `' + prefix + 'comprar tickets quantidade`') }
             if (isNaN(args[1])) { return message.inlineReply(`${args[1]} não é um número.`) }
             if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
@@ -120,7 +120,7 @@ exports.run = async (client, message, args) => {
         if (['ficha', 'fichas'].includes(args[0].toLowerCase())) {
 
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar este item.`) }
-            if (!args[1]) { return message.inlineReply('Quantas fichas você quer comprar? `' + prefix + 'buy fichas quantidade`') }
+            if (!args[1]) { return message.inlineReply('Quantas fichas você quer comprar? `' + prefix + 'comprar fichas quantidade`') }
             if (isNaN(!args[1])) { return message.inlineReply(`${args[1]} não é um número.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
             if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
@@ -149,8 +149,8 @@ exports.run = async (client, message, args) => {
         if (['agua', 'Água', 'água', 'water', 'águas', 'aguas', 'copo', 'd\água'].includes(args[0].toLowerCase())) {
 
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar este item.`) }
-            if (!args[1]) { return message.inlineReply('Quantas águas você quer comprar? `' + prefix + 'buy águas quantidade`') }
-            if (isNaN(args[1])) { return message.inlineReply('`' + prefix + 'buy águas quantidade`') }
+            if (!args[1]) { return message.inlineReply('Quantas águas você quer comprar? `' + prefix + 'comprar águas quantidade`') }
+            if (isNaN(args[1])) { return message.inlineReply('`' + prefix + 'comprar águas quantidade`') }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
             if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
             if (money < args[1]) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar este item.`) }
@@ -198,9 +198,30 @@ exports.run = async (client, message, args) => {
             }
         }
 
+        if (['ciano', 'ciane'].includes(args[0].toLowerCase())) {
+
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Esta é uma cor exclusiva para vips.\nSaiba mais em `' + prefix + 'vip`') }
+            if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
+            if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
+            if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
+            if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
+            if (money < 1000000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+
+            if (money = 1000000 || money > 1000000) {
+                db.subtract(`mpoints_${message.author.id}`, 1000000)
+                db.add(`banco_${client.user.id}`, 1000000)
+                db.set(`ciane_${message.author.id}`, "#00FFFF")
+                const BuyColorEmbed = new Discord.MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('<a:Check:836347816036663309> Compra aprovada')
+                    .setDescription(`${message.author}, você comprou a cor Ciana.\n` + '`' + prefix + 'setcolor`')
+                return message.inlineReply(BuyColorEmbed)
+            }
+        }
+
         if (['vermelho', 'red'].includes(args[0].toLowerCase())) {
 
-            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Este é um comando exclusivo para vips.\nSaiba mais em `' + prefix + 'vip`') }
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Esta é uma cor exclusiva para vips.\nSaiba mais em `' + prefix + 'vip`') }
             if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
@@ -221,7 +242,7 @@ exports.run = async (client, message, args) => {
 
         if (['branco', 'white'].includes(args[0].toLowerCase())) {
 
-            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Este é um comando exclusivo para vips.\nSaiba mais em `' + prefix + 'vip`') }
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Esta é uma cor exclusiva para vips.\nSaiba mais em `' + prefix + 'vip`') }
             if (db.get(`white_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
@@ -240,9 +261,30 @@ exports.run = async (client, message, args) => {
             }
         }
 
+        if (['rosa', 'pink'].includes(args[0].toLowerCase())) {
+
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Esta é uma cor exclusiva para vips.\nSaiba mais em `' + prefix + 'vip`') }
+            if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
+            if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
+            if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
+            if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
+            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+
+            if (money = 10000 || money > 10000) {
+                db.subtract(`mpoints_${message.author.id}`, 10000)
+                db.add(`banco_${client.user.id}`, 10000)
+                db.set(`pink_${message.author.id}`, "#D000FC")
+                const BuyColorEmbed = new Discord.MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('<a:Check:836347816036663309> Compra aprovada')
+                    .setDescription(`${message.author}, você comprou a cor Azul.\n` + '`' + prefix + 'setcolor`')
+                return message.inlineReply(BuyColorEmbed)
+            }
+        }
+
         if (['laranja', 'orange'].includes(args[0].toLowerCase())) {
 
-            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Este é um comando exclusivo para vips.\nSaiba mais em `' + prefix + 'vip`') }
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Esta é uma cor exclusiva para vips.\nSaiba mais em `' + prefix + 'vip`') }
             if (db.get(`orange_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
@@ -257,6 +299,66 @@ exports.run = async (client, message, args) => {
                     .setColor('GREEN')
                     .setTitle('<a:Check:836347816036663309> Compra aprovada')
                     .setDescription(`${message.author}, você comprou a cor Laranja.\n` + '`' + prefix + 'setcolor`')
+                return message.inlineReply(BuyColorEmbed)
+            }
+        }
+
+        if (['verde', 'green'].includes(args[0].toLowerCase())) {
+
+            if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
+            if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
+            if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
+            if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
+            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+
+            if (money = 10000 || money > 10000) {
+                db.subtract(`mpoints_${message.author.id}`, 10000)
+                db.add(`banco_${client.user.id}`, 10000)
+                db.set(`green_${message.author.id}`, "#00FC07")
+                const BuyColorEmbed = new Discord.MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('<a:Check:836347816036663309> Compra aprovada')
+                    .setDescription(`${message.author}, você comprou a cor Verde.\n` + '`' + prefix + 'setcolor`')
+                return message.inlineReply(BuyColorEmbed)
+            }
+        }
+
+        if (['amarelo', 'yellow'].includes(args[0].toLowerCase())) {
+
+            if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
+            if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
+            if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
+            if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
+            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+
+            if (money = 10000 || money > 10000) {
+                db.subtract(`mpoints_${message.author.id}`, 10000)
+                db.add(`banco_${client.user.id}`, 10000)
+                db.set(`yellow_${message.author.id}`, "#E5FC00")
+                const BuyColorEmbed = new Discord.MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('<a:Check:836347816036663309> Compra aprovada')
+                    .setDescription(`${message.author}, você comprou a cor Amarelo.\n` + '`' + prefix + 'setcolor`')
+                return message.inlineReply(BuyColorEmbed)
+            }
+        }
+
+        if (['azul', 'blue'].includes(args[0].toLowerCase())) {
+
+            if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
+            if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
+            if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
+            if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
+            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+
+            if (money = 10000 || money > 10000) {
+                db.subtract(`mpoints_${message.author.id}`, 10000)
+                db.add(`banco_${client.user.id}`, 10000)
+                db.set(`blue_${message.author.id}`, "#0005FC")
+                const BuyColorEmbed = new Discord.MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('<a:Check:836347816036663309> Compra aprovada')
+                    .setDescription(`${message.author}, você comprou a cor Azul.\n` + '`' + prefix + 'setcolor`')
                 return message.inlineReply(BuyColorEmbed)
             }
         }
@@ -297,8 +399,8 @@ exports.run = async (client, message, args) => {
         if (['isca', 'minhoca', 'iscas', 'minhocas', 'Isca', 'Iscas'].includes(args[0].toLowerCase())) {
 
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar este item.`) }
-            if (!args[1]) { return message.inlineReply('Quantas iscas você quer comprar? `' + prefix + 'buy iscas quantidade`') }
-            if (isNaN(args[1])) { return message.inlineReply(args[1] + ', não é um número, ok?`' + prefix + 'buy iscas quantidade`') }
+            if (!args[1]) { return message.inlineReply('Quantas iscas você quer comprar? `' + prefix + 'comprar iscas quantidade`') }
+            if (isNaN(args[1])) { return message.inlineReply(args[1] + ', não é um número, ok?`' + prefix + 'comprar iscas quantidade`') }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
             if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
             if (money < args[1]) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar este item.`) }
@@ -328,8 +430,8 @@ exports.run = async (client, message, args) => {
         if (['comida', 'food', 'comidas'].includes(args[0].toLowerCase())) {
 
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar este item.`) }
-            if (!args[1]) { return message.inlineReply('Quantas comidas você quer comprar? `' + prefix + 'buy comida quantidade`') }
-            if (isNaN(args[1])) { return message.inlineReply(args[1] + ', não é um número, ok?`' + prefix + 'buy comida quantidade`') }
+            if (!args[1]) { return message.inlineReply('Quantas comidas você quer comprar? `' + prefix + 'comprar comida quantidade`') }
+            if (isNaN(args[1])) { return message.inlineReply(args[1] + ', não é um número, ok?`' + prefix + 'comprar comida quantidade`') }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
             if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
             if (money < args[1] * 2) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar este item.`) }
@@ -357,8 +459,8 @@ exports.run = async (client, message, args) => {
         if (['Carta', 'carta', 'cartas', 'Cartas', 'letter', 'Letter'].includes(args[0].toLowerCase())) {
 
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar este item.`) }
-            if (!args[1]) { return message.inlineReply('Quantas cartas você quer comprar? `' + prefix + 'buy cartas quantidade`') }
-            if (isNaN(args[1])) { return message.inlineReply('A quantidade precisa ser um número. `' + prefix + 'buy cartas quantidade`') }
+            if (!args[1]) { return message.inlineReply('Quantas cartas você quer comprar? `' + prefix + 'comprar cartas quantidade`') }
+            if (isNaN(args[1])) { return message.inlineReply('A quantidade precisa ser um número. `' + prefix + 'comprar cartas quantidade`') }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
             if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
             if (money < args[1]) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar este item.`) }
@@ -496,7 +598,7 @@ exports.run = async (client, message, args) => {
                     .setTitle('<a:Check:836347816036663309> Compra aprovada')
                     .setDescription(`${message.author}, você comprou <:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787>` + '`Estrela 5`')
                 return message.inlineReply(buyStar1)
-            }            
+            }
         } else {
             return message.inlineReply(`Eu não achei nenhum item com o nome **${args.join(" ")}** na minha loja, tente digitar um único nome, tipo "vara" ou "água".`)
         }

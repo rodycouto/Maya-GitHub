@@ -198,9 +198,30 @@ exports.run = async (client, message, args) => {
             }
         }
 
+        if (['ciano', 'ciane'].includes(args[0].toLowerCase())) {
+
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Esta é uma cor exclusiva para vips.\nSaiba mais em `' + prefix + 'vip`') }
+            if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
+            if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
+            if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
+            if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
+            if (money < 1000000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+
+            if (money = 1000000 || money > 1000000) {
+                db.subtract(`mpoints_${message.author.id}`, 1000000)
+                db.add(`banco_${client.user.id}`, 1000000)
+                db.set(`ciane_${message.author.id}`, "#00FFFF")
+                const BuyColorEmbed = new Discord.MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('<a:Check:836347816036663309> Compra aprovada')
+                    .setDescription(`${message.author}, você comprou a cor Ciana.\n` + '`' + prefix + 'setcolor`')
+                return message.inlineReply(BuyColorEmbed)
+            }
+        }
+
         if (['vermelho', 'red'].includes(args[0].toLowerCase())) {
 
-            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Este é um comando exclusivo para vips.\nSaiba mais em `' + prefix + 'vip`') }
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Esta é uma cor exclusiva para vips.\nSaiba mais em `' + prefix + 'vip`') }
             if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
@@ -221,7 +242,7 @@ exports.run = async (client, message, args) => {
 
         if (['branco', 'white'].includes(args[0].toLowerCase())) {
 
-            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Este é um comando exclusivo para vips.\nSaiba mais em `' + prefix + 'vip`') }
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Esta é uma cor exclusiva para vips.\nSaiba mais em `' + prefix + 'vip`') }
             if (db.get(`white_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
@@ -240,9 +261,30 @@ exports.run = async (client, message, args) => {
             }
         }
 
+        if (['rosa', 'pink'].includes(args[0].toLowerCase())) {
+
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Esta é uma cor exclusiva para vips.\nSaiba mais em `' + prefix + 'vip`') }
+            if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
+            if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
+            if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
+            if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
+            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+
+            if (money = 10000 || money > 10000) {
+                db.subtract(`mpoints_${message.author.id}`, 10000)
+                db.add(`banco_${client.user.id}`, 10000)
+                db.set(`pink_${message.author.id}`, "#D000FC")
+                const BuyColorEmbed = new Discord.MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('<a:Check:836347816036663309> Compra aprovada')
+                    .setDescription(`${message.author}, você comprou a cor Azul.\n` + '`' + prefix + 'setcolor`')
+                return message.inlineReply(BuyColorEmbed)
+            }
+        }
+
         if (['laranja', 'orange'].includes(args[0].toLowerCase())) {
 
-            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Este é um comando exclusivo para vips.\nSaiba mais em `' + prefix + 'vip`') }
+            if (!vip) { return message.inlineReply('<:xis:835943511932665926> Esta é uma cor exclusiva para vips.\nSaiba mais em `' + prefix + 'vip`') }
             if (db.get(`orange_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
@@ -257,6 +299,66 @@ exports.run = async (client, message, args) => {
                     .setColor('GREEN')
                     .setTitle('<a:Check:836347816036663309> Compra aprovada')
                     .setDescription(`${message.author}, você comprou a cor Laranja.\n` + '`' + prefix + 'setcolor`')
+                return message.inlineReply(BuyColorEmbed)
+            }
+        }
+
+        if (['verde', 'green'].includes(args[0].toLowerCase())) {
+
+            if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
+            if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
+            if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
+            if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
+            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+
+            if (money = 10000 || money > 10000) {
+                db.subtract(`mpoints_${message.author.id}`, 10000)
+                db.add(`banco_${client.user.id}`, 10000)
+                db.set(`green_${message.author.id}`, "#00FC07")
+                const BuyColorEmbed = new Discord.MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('<a:Check:836347816036663309> Compra aprovada')
+                    .setDescription(`${message.author}, você comprou a cor Verde.\n` + '`' + prefix + 'setcolor`')
+                return message.inlineReply(BuyColorEmbed)
+            }
+        }
+
+        if (['amarelo', 'yellow'].includes(args[0].toLowerCase())) {
+
+            if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
+            if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
+            if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
+            if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
+            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+
+            if (money = 10000 || money > 10000) {
+                db.subtract(`mpoints_${message.author.id}`, 10000)
+                db.add(`banco_${client.user.id}`, 10000)
+                db.set(`yellow_${message.author.id}`, "#E5FC00")
+                const BuyColorEmbed = new Discord.MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('<a:Check:836347816036663309> Compra aprovada')
+                    .setDescription(`${message.author}, você comprou a cor Amarelo.\n` + '`' + prefix + 'setcolor`')
+                return message.inlineReply(BuyColorEmbed)
+            }
+        }
+
+        if (['azul', 'blue'].includes(args[0].toLowerCase())) {
+
+            if (db.get(`red_${message.author.id}`)) { return message.inlineReply(`❗ Você já possui este item.`) }
+            if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
+            if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
+            if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
+            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+
+            if (money = 10000 || money > 10000) {
+                db.subtract(`mpoints_${message.author.id}`, 10000)
+                db.add(`banco_${client.user.id}`, 10000)
+                db.set(`blue_${message.author.id}`, "#0005FC")
+                const BuyColorEmbed = new Discord.MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('<a:Check:836347816036663309> Compra aprovada')
+                    .setDescription(`${message.author}, você comprou a cor Azul.\n` + '`' + prefix + 'setcolor`')
                 return message.inlineReply(BuyColorEmbed)
             }
         }

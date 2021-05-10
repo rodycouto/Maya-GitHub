@@ -31,14 +31,14 @@ exports.run = async (client, message, args) => {
 
         if (args[0] === 'vip') {
 
-            const loja = new Discord.MessageEmbed()
+            const lojavip = new Discord.MessageEmbed()
                 .setColor(color)
                 .setTitle('🏪 Lojinha VIP Raphy 24h')
                 .setDescription('Aqui na Lojinha VIP, você pode comprar itens exclusivos que né... Só os vips podem.')
                 .addFields(
                     {
                         name: 'Cores',
-                        value: '🟥 `Vermelho` 10000 <:RPoints:837666759389347910>RPoints\n🟧 `Laranja` 10000 <:RPoints:837666759389347910>RPoints\n⬜ `Branco` 10000 <:RPoints:837666759389347910>RPoints'
+                        value: '🟥 `Vermelho` 10000 <:RPoints:837666759389347910>RPoints\n🟧 `Laranja` 10000 <:RPoints:837666759389347910>RPoints\n⬜ `Branco` 10000 <:RPoints:837666759389347910>RPoints\n `Rosa` 10000 <:RPoints:837666759389347910>RPoints\n `Ciano` 1000000 <:RPoints:837666759389347910>RPoints'
                     },
                     {
                         name: 'Perfil',
@@ -46,7 +46,7 @@ exports.run = async (client, message, args) => {
                     }
                 )
                 .setFooter(`${prefix}buy | ${prefix}itens | ${prefix}setcolor | ${prefix}slot`)
-            return message.inlineReply(loja)
+            return message.inlineReply(lojavip)
 
         } else {
 
@@ -66,6 +66,10 @@ exports.run = async (client, message, args) => {
                     {
                         name: 'Perfil',
                         value: '<:starM:832974891635572787> `Estrela1` 500.000 <:RPoints:837666759389347910>RPoints\n<:starM:832974891635572787><:starM:832974891635572787> `Estrela2` 1.000.000 <:RPoints:837666759389347910>RPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela3` 2.000.000 <:RPoints:837666759389347910>RPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela4` 4.000.000 <:RPoints:837666759389347910>RPoints\n🔰 `Título` 10.000<:RPoints:837666759389347910>RPoints'
+                    },
+                    {
+                        name: 'Cores',
+                        value: '`Verde` 15000<:RPoints:837666759389347910>RPoints\n`Amarelo` 15000 <:RPoints:837666759389347910>RPoints\n`Azul` 15000 <:RPoints:837666759389347910>RPoints'
                     }
                 )
                 .setFooter(`${prefix}buy | ${prefix}itens | ${prefix}vender | ${prefix}slot | ${prefix}loja vip`)
