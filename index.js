@@ -3,7 +3,6 @@ const Discord = require("discord.js")
 require("dotenv").config()
 require("./inlineReply") // Remove in Discord.js V13
 const client = new Discord.Client()
-const { token } = require("./config.json")
 const db = require("quick.db")
 const ms = require("parse-ms")
 const { palavraum } = require("./palavrasfeias.json") // Filtro Palavrões JSON
