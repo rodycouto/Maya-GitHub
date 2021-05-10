@@ -9,7 +9,6 @@ exports.run = async (client, message, args) => {
     if (prefix === null) { prefix = "-" }
 
     let color = await db.get(`color_${user.id}`)
-    let vip = await db.get(`vip_${user.id}`)
 
     let title = await db.get(`title_${user.id}`)
     if (title) (title = "🔰 Título")
