@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
             .setColor('BLUE')
             .setTitle('📋 Comandos Exclusivos de Delete (OWNER)')
             .setDescription('Com este comando, o meu criador torna possivel a opção de Deletar qualquer item de qualquer pessoa.')
-            .addField('Comando', '`' + prefix + 'del Item @user`')
+            .addField('Comando', '`' + prefix + 'delete Item @user`')
         return message.channel.send(commands)
     }
 
@@ -25,7 +25,7 @@ exports.run = async (client, message, args) => {
 
     if (['banco', 'bank'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del bank @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete bank @user`') }
 
         db.delete(`banco_${user.id}`)
         return message.channel.send(`O banco de ${user} foi deletado`)
@@ -34,7 +34,7 @@ exports.run = async (client, message, args) => {
     if (['banco', 'bank'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del bancoid ID Valor`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete bancoid ID Valor`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
@@ -44,7 +44,7 @@ exports.run = async (client, message, args) => {
 
     if (['cachorro', 'doguinho', 'dog'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del cachorro @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete cachorro @user`') }
 
         db.delete(`cachorro_${user.id}`)
         return message.channel.send(`Cachorrinho Brown foi deletado do slot de ${user}`)
@@ -52,7 +52,7 @@ exports.run = async (client, message, args) => {
 
     if (['money', 'rp', 'rpoints'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del money @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete money @user`') }
 
         db.delete(`mpoints_${user.id}`)
         db.delete(`banco_${user.id}`)
@@ -62,7 +62,7 @@ exports.run = async (client, message, args) => {
     if (['moneyid', 'rpid', 'rpointsid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.channel.send('`' + prefix + 'del moneyid ID`') }
+        if (!id) { return message.channel.send('`' + prefix + 'delete moneyid ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send('<:xis:835943511932665926> Esse ID não é um número.') }
 
@@ -73,8 +73,9 @@ exports.run = async (client, message, args) => {
 
     if (['medalha'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del medalha @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete medalha @user`') }
 
+        db.delete(`MedalhaAcess_${user.id}`)
         db.delete(`medalha_${user.id}`)
         return message.channel.send(`A medalha de ${user} foi deletada com sucesso!`)
     }
@@ -82,10 +83,11 @@ exports.run = async (client, message, args) => {
     if (['medalhaid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.channel.send('`' + prefix + 'del medalhaid ID`') }
+        if (!id) { return message.channel.send('`' + prefix + 'delete medalhaid ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send('<:xis:835943511932665926> Esse ID não é um número.') }
 
+        db.delete(`MedalhaAcess_${id}`)
         db.delete(`medalha_${id}`)
         return message.channel.send(`A medalha de <@${id}> *(${id})* foi deletada com sucesso!.`)
     }
@@ -93,7 +95,7 @@ exports.run = async (client, message, args) => {
     if (['cachorroid', 'doguinhoid', 'dogid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.channel.send('`' + prefix + 'del cachorroid ID`') }
+        if (!id) { return message.channel.send('`' + prefix + 'delete cachorroid ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send('<:xis:835943511932665926> Esse ID não é um número.') }
 
@@ -103,7 +105,7 @@ exports.run = async (client, message, args) => {
 
     if (['estrelas', 'estrela'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del estrelas @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete estrelas @user`') }
 
         db.delete(`estrela1_${user.id}`)
         db.delete(`estrela2_${user.id}`)
@@ -116,7 +118,7 @@ exports.run = async (client, message, args) => {
     if (['estrelasid', 'estrelaid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del estrelasid ID Valor`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete estrelasid ID Valor`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
@@ -130,7 +132,7 @@ exports.run = async (client, message, args) => {
 
     if (['status'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del status @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete status @user`') }
 
         db.delete(`status_${user.id}`)
         return message.channel.send(`O status de ${user} foi deletado.`)
@@ -139,7 +141,7 @@ exports.run = async (client, message, args) => {
     if (['statusid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del statusid ID`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete statusid ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
@@ -149,7 +151,7 @@ exports.run = async (client, message, args) => {
 
     if (['xp', 'level'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del xp @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete xp @user`') }
 
         db.delete(`xp_${user.id}`)
         db.delete(`level_${user.id}`)
@@ -159,7 +161,7 @@ exports.run = async (client, message, args) => {
     if (['xpid', 'levelid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del xpid ID`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete xpid ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
@@ -170,7 +172,7 @@ exports.run = async (client, message, args) => {
 
     if (['marry', 'casal', 'casamento'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del marry @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete marry @user`') }
 
         db.delete(`marry_${user.id}`)
         return message.channel.send(`O relacionamento de ${user} foi deletado.`)
@@ -179,7 +181,7 @@ exports.run = async (client, message, args) => {
     if (['marryid', 'casalid', 'casamentoid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del marryid ID`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete marryid ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
@@ -189,7 +191,7 @@ exports.run = async (client, message, args) => {
 
     if (['family1'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del family1 @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete family1 @user`') }
 
         db.delete(`family1_${user.id}`)
         return message.channel.send(`O family1 de ${user} foi deletado.`)
@@ -198,7 +200,7 @@ exports.run = async (client, message, args) => {
     if (['family1id'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del family1id ID`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete family1id ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
@@ -208,7 +210,7 @@ exports.run = async (client, message, args) => {
 
     if (['family2'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del family2 @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete family2 @user`') }
 
         db.delete(`family2_${user.id}`)
         return message.channel.send(`O family2 de ${user} foi deletado.`)
@@ -217,7 +219,7 @@ exports.run = async (client, message, args) => {
     if (['family2id'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del family2id ID`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete family2id ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
@@ -227,7 +229,7 @@ exports.run = async (client, message, args) => {
 
     if (['family3'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del family2 @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete family2 @user`') }
 
         db.delete(`family3_${user.id}`)
         return message.channel.send(`O family3 de ${user} foi deletado.`)
@@ -236,7 +238,7 @@ exports.run = async (client, message, args) => {
     if (['family3id'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del family3id ID`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete family3id ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
@@ -246,7 +248,7 @@ exports.run = async (client, message, args) => {
 
     if (['title', 'titulo', 'título'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del título @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete título @user`') }
 
         db.delete(`title_${user.id}`)
         return message.channel.send(`A permissão de alterar o título, foi deletada da conta de ${user}.`)
@@ -255,7 +257,7 @@ exports.run = async (client, message, args) => {
     if (['titleid', 'tituloid', 'títuloid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del tituloid ID`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete tituloid ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
@@ -265,7 +267,7 @@ exports.run = async (client, message, args) => {
 
     if (['remedio', 'remédio'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del remedio @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete remedio @user`') }
 
         db.delete(`remedio_${user.id}`)
         return message.channel.send(`O remédio Do Velho Welter foi deletado do slot de ${user}.`)
@@ -274,7 +276,7 @@ exports.run = async (client, message, args) => {
     if (['remedioid', 'remédioid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del remedioid ID`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete remedioid ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
@@ -284,7 +286,7 @@ exports.run = async (client, message, args) => {
 
     if (['niver', 'aniversário', 'aniversario'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del niver @user`') }
+        if (!user) { return message.channel.send('`' + prefix + 'delete niver @user`') }
 
         db.delete(`aniversario_${user.id}`)
         return message.channel.send(`Você deletou a data de aniversário de ${user}.`)
@@ -293,7 +295,7 @@ exports.run = async (client, message, args) => {
     if (['niverid', 'aniversárioid', 'aniversarioid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del niverid ID`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'delete niverid ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
