@@ -9,6 +9,7 @@ exports.run = async (client, message, args) => {
     if (prefix === null) { prefix = "-" }
 
     let color = await db.get(`color_${user.id}`)
+    let MedalhaAcess = await db.get(`MedalhaAcess_${user.id}`)
 
     let title = await db.get(`title_${user.id}`)
     if (title) (title = "🔰 Título")
@@ -182,6 +183,12 @@ exports.run = async (client, message, args) => {
     let nada4 = !verde && !amarelo && !azul
     if (nada4) { nada4 = 'Nenhuma cor foi comprada ainda.' }
     if (!nada4) { nada4 = '' }
+
+    if (MedalhaAcess) {
+        cachorro = ''
+        bola = ''
+        remedio = ''
+    }
 
     let avatar = user.user.displayAvatarURL({ dynamic: true, format: "png", size: 1024 })
 

@@ -40,8 +40,12 @@ exports.run = async (client, message, args) => {
 
             if (reaction.emoji.name === '✅') { // Sim
                 msg.delete().catch(err => { return })
-                db.set(`dogname_${message.author.id}`, args[0])
-                return message.inlineReply('<a:Pulse:839682326211854337> Validando nome no banco de dados...').then(msg => msg.delete({ timeout: 5000 }).catch(err => { return })).then(msg => msg.channel.send(`<a:Check:836347816036663309> ${message.author}, o nome do seu cachorro/a agora é **${args[0]}**`))
+                
+                setTimeout(function () {
+                    db.set(`dogname_${message.author.id}`, args[0])
+                    message.inlineReply(`<a:Check:836347816036663309> ${message.author}, o nome do seu cachorro/a agora é **${args[0]}**`)
+                })
+                return message.inlineReply('<a:Pulse:839682326211854337> Validando nome no banco de dados...').then(msg => msg.delete({ timeout: 5000 }).catch(err => { return }))
             }
 
             if (reaction.emoji.name === '❌') { // Não
