@@ -56,6 +56,10 @@ exports.run = async (client, message, args) => {
         if (ossos === null) { ossos = 0 }
         if (!db.get(`ossos_${message.author.id}`)) { ossos = 0 }
 
+        let dima = await db.get(`dima_${message.author.id}`)
+        if (dima === null) { ossos = 0 }
+        if (!db.get(`dima_${message.author.id}`)) { dima = 0 }
+
         let rosas = await db.get(`rosas_${message.author.id}`)
         if (rosas === null) { rosas = "0" }
         if (!db.get(`rosas_${message.author.id}`)) { rosas = "0" }
@@ -202,6 +206,22 @@ exports.run = async (client, message, args) => {
                     .setDescription(`${message.author} vendeu 🍎 ${args[1]} maças e obteve ${args[1] * 2}<:RPoints:837666759389347910>RPoints`)
                 return message.inlineReply(buyarma)
             }
+        }
+
+        if (['darkdiamond', 'diamantenegro'].includes(args[0])) {
+
+            if (dima === null) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem diamante negro para vender.`) }
+            if (args[1]) { return message.inlineReply('<:xis:835943511932665926> | Digite apenas `' + prefix + 'sell diamantenegro`') }
+            if (dima == 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem diamante negro para vender.`) }
+            if (dima < 0) { return message.inlineReply(`<:xis:835943511932665926> | ${message.author}, você não tem diamante negro para vender.`) }
+
+            db.delete(`dima_${message.author.id}`)
+            db.add(`mpoints_${message.author.id}`, 350000)
+            const buyarma = new Discord.MessageEmbed()
+                .setColor('GREEN')
+                .setTitle('<a:Check:836347816036663309> Venda aprovada')
+                .setDescription(`${message.author} vendeu <:darkdiamond:841328892898967593> Diamante Negro e obteve 350,000<:RPoints:837666759389347910>RPoints`)
+            return message.inlineReply(buyarma)
         } else {
             return message.inlineReply(`Eu não achei nenhum item com o nome **${args.join(" ")}** no meu banco de dados.`)
         }

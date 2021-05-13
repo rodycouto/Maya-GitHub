@@ -39,7 +39,7 @@ exports.run = async (client, message, args) => {
 
         const TopicoDoCanal = args.slice(1).join(" ")
         if (!TopicoDoCanal) { return message.inlineReply('<:xis:835943511932665926> Você não disse o tópico do canal.\n`' + prefix + 'channel topic O tópico do canal em diante.`') }
-        if (TopicoDoCanal.length > 1024) { return message.inlineReply('<:xis:835943511932665926> O tópico do canal não pode ultrapassar **1024 caracteres**') }
+        if (TopicoDoCanal.length > 1024) { return message.inlineReply('<:xis:835943511932665926> O nome do canal não pode ultrapassar **1024 caracteres**') }
 
         message.channel.setTopic(TopicoDoCanal)
         const sucess = new Discord.MessageEmbed()

@@ -6,6 +6,6 @@ exports.run = async (client, message, args) => {
     .setColor('#8B0000')
     .setImage('https://imgur.com/RcrfOc3.gif')
 
-  setTimeout(function () { message.delete() }, 5000)
+  setTimeout(function () { message.delete().catch(err => { return })}, 5000)
   return message.inlineReply(Random).then(msg => msg.delete({ timeout: 5000 }).catch(err => { return }))
 }
