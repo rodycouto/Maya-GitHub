@@ -32,7 +32,7 @@ client.on("message", async (message) => {
         if (db.get(`nolink_${message.guild.id}`)) {
             if (message.content.toLowerCase().includes('https://discord.gg/')) {
                 message.delete().catch(err => { return })
-                return message.channel.send(`<:xis:835943511932665926> | ${message.author}, você não pode enviar links de servidores aqui.`)
+                return message.channel.send(`<:xis:835943511932665926> | ${message.author}, você não pode enviar links de servidores aqui.`).catch(err => { return })
             }
         }
     }
